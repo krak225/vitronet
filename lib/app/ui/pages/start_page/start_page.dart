@@ -9,7 +9,7 @@ class StartPage extends GetView<StartController> {
   Widget build(BuildContext context) {
      return MainLayoutView(
             child: Center(
-        child: Image.asset('assets/images/logo.jpg', width: Get.width * 0.6,),
+        child: Image.asset('assets/images/logo.jpg', width: Get.width * 0.3,),
       ),
     );
   }
