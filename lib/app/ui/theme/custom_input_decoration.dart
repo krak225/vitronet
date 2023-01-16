@@ -5,7 +5,7 @@ import 'themes.dart';
 
 class CustomInputDecoration {
 
- static InputDecoration style1({String? labelText}) {
+ static InputDecoration style1({String? labelText, Widget? suffixIcon}) {
     return InputDecoration(
         labelText: labelText,
         labelStyle: Themes.globalFont(
@@ -13,19 +13,18 @@ class CustomInputDecoration {
         hintStyle: Themes.globalFont(
             style: TextStyle(color: LightColor.lightGrey2, fontSize: 12)),
         contentPadding:
-        EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+        EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         floatingLabelStyle: Themes.globalFont(
             style: TextStyle(color: LightColor.black, fontSize: 14)),
         hintText: labelText,
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+        enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: LightColor.primary, width: 0.5)),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
-                color: LightColor.lightGrey2, width: 0.5)),
-        );
+                color: LightColor.grey, width: 0.5)),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+                color: LightColor.grey, width: 0.5)
+        ),
+        suffixIcon: suffixIcon);
   }
 
  static InputDecoration style2({String? labelText, String? hintText}) {
