@@ -153,7 +153,7 @@ class LoginPage extends GetView<LoginController> {
                     child: SocialButtomWidget(
                       text: 'Continuer avec Google',
                       icon: 'google.png',
-                      onPressed: () => null,
+                      onPressed: () => Get.toNamed(AppRoutes.HOME),
                     ),
                   ),
 
@@ -162,7 +162,7 @@ class LoginPage extends GetView<LoginController> {
                     child: SocialButtomWidget(
                       text: 'Continuer avec Apple',
                       icon: 'apple.png',
-                      onPressed: () => null,
+                      onPressed: () => Get.toNamed(AppRoutes.HOME),
                     ),
                   ),
 
@@ -171,7 +171,7 @@ class LoginPage extends GetView<LoginController> {
                     child: SocialButtomWidget(
                       text: 'Continuer avec Facebook',
                       icon: 'facebook.png',
-                      onPressed: () => null,
+                      onPressed: () => Get.toNamed(AppRoutes.HOME),
                     ),
                   ),
                   SizedBox(

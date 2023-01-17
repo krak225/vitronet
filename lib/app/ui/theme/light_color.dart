@@ -11,7 +11,7 @@ class LightColor {
   static const Color red = Color(0xffF72804);
 
   static const Color lightGrey = Color(0xffE1E2E4);
-  static const Color lightGrey2 = Color(0xffB8B8B8);
+  static const Color lightGrey2 = Color(0xffD9D9D9);
   static const Color lightSecond = Color(0xffF5AC3C);
   static const Color lightSecond2 = Color(0xffF5AC3C);
   static const Color grey = Color(0xffA1A3A6);
@@ -28,7 +28,7 @@ class LightColor {
   static const Color lightBlack = Color(0xff5F5F60);
 
   static const Color second = Color(0xff3C9458);
-  static const Color blue = Color(0xff47B6D4);
+  static const Color secondAccent = Color(0xffB6ECBB);
   static const Color blue2 = Color(0xffDAF0F6);
   static const Color rose = Color(0xffEE1E5F);
   static const Color rose2 = Color(0xffFCD2DF);

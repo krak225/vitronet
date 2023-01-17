@@ -31,9 +31,9 @@ class CustomInputDecoration {
    return InputDecoration(
      //labelText: labelText,
      labelStyle: Themes.globalFont(
-         style: TextStyle(color: LightColor.lightGrey2, fontSize: 12)),
+         style: TextStyle(color: LightColor.black, fontSize: 12)),
      hintStyle: Themes.globalFont(
-         style: TextStyle(color: LightColor.lightGrey2, fontSize: 12)),
+         style: TextStyle(color: LightColor.black, fontSize: 14, fontWeight: FontWeight.w600)),
      contentPadding:
      EdgeInsets.symmetric(horizontal: 20, vertical: 0),
      floatingLabelStyle: Themes.globalFont(
@@ -44,7 +44,7 @@ class CustomInputDecoration {
          borderSide: BorderSide(
              color: LightColor.primary, width: 0.5)),
      enabledBorder: OutlineInputBorder(
-         borderRadius: BorderRadius.circular(8),
+         borderRadius: BorderRadius.circular(0),
          borderSide: BorderSide(
              color: LightColor.lightGrey2, width: 0.5)),
    );
