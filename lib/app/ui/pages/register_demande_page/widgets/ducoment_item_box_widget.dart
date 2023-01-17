@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../data/provider/requests/document_dto.dart';
 import '../../../theme/light_color.dart';
@@ -39,7 +38,7 @@ class DocumentItemBoxWidget extends StatelessWidget {
           height: 48,
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: !doc.status ? LightColor.secondAccent : Colors.white,
+            color: doc.status ? LightColor.secondAccent : Colors.white,
             borderRadius: BorderRadius.circular(7),
             boxShadow: [
               BoxShadow(
@@ -49,9 +48,9 @@ class DocumentItemBoxWidget extends StatelessWidget {
               )
             ],
           ),
-          child: SvgPicture.asset(
+          child: Image.asset(
             "${doc.icon}",
-            color: !doc.status ? Colors.black : null,
+            color: doc.status ? Colors.black : null,
           ),
         ),
       ),

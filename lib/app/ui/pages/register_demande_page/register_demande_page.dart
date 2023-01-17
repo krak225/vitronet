@@ -29,7 +29,7 @@ class RegisterDemandePage extends GetView<RegisterDemandeController> {
                   height: 50,
                 ),
                 AutoSizeText(
-                  "Création de compte",
+                  "Ma demande d'inscription",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -104,10 +104,10 @@ class RegisterDemandePage extends GetView<RegisterDemandeController> {
                   maxLines: 1,
                 ),
                 Column(
-                  children: controller.documents.map((doc) => DocumentItemBoxWidget( doc: doc,)).toList(),
+                  children: controller.documents.map((doc) => DocumentItemBoxWidget( doc: doc, onTap: () => controller.selectDocument(doc),)).toList(),
                 ),
 
-                SizedBox(height: Get.height * 0.04),
+                SizedBox(height: Get.height * 0.1),
                 FadeInRight(
                   duration: Duration(milliseconds: 600),
                   child: ButtonStyle1Widget(

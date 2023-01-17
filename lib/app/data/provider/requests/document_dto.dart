@@ -1,9 +1,9 @@
 class DocumentDto{
-  final String? code;
-  final String? name;
-  final String? icon;
-  final String? type;
-  final bool status;
+   String? code;
+   String? name;
+   String? icon;
+   String? type;
+   bool status;
 
   DocumentDto({
     this.code,
