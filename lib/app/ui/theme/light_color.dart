@@ -36,6 +36,7 @@ class LightColor {
   // light
   static Color primary = Color(0xffFF833F);
   static const Color background = Color(0xffffffff);
+  static const Color backgroundHome = Color(0xffF4F6F7);
   static Color card = Colors.white;
   static Color shadow = Colors.grey;
   // dark

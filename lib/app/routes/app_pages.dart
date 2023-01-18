@@ -1,3 +1,6 @@
+import 'package:job_boarder/app/ui/layouts/main/main_page.dart';
+
+import '../bindings/main_binding.dart';
 import '../bindings/profil_update_binding.dart';
 import '../ui/pages/profil_update_page/profil_update_page.dart';
       import '../bindings/profil_binding.dart';
@@ -23,8 +26,6 @@ import '../ui/pages/start_page/start_page.dart';
       import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
-import '../bindings/home_binding.dart';
-import '../ui/pages/home_page/home_page.dart';
 import '../ui/pages/unknown_route_page/unknown_route_page.dart';
 import 'app_routes.dart';
 
@@ -41,8 +42,8 @@ class AppPages {
     unknownRoutePage,
     GetPage(
       name: AppRoutes.HOME,
-      page: () => HomePage(),
-      binding: HomeBinding(),
+      page: () => MainPage(),
+      binding: MainBinding(),
       transition: _defaultTransition,
     ),
     GetPage(
