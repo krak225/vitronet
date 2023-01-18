@@ -18,12 +18,9 @@ class MainPage extends GetView<MainController> {
         body: Obx(
           () => Column(
             children: [
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 400),
-                child: Header2Widget(
-                      title: controller.pageListTitle[controller.index.value],
-                    ),
-              ),
+              controller.index.value == 2 ? Container() : Header2Widget(
+                    title: controller.pageListTitle[controller.index.value],
+                  ),
 
               Expanded(child: controller.pageList[controller.index.value]),
             ],
