@@ -18,9 +18,8 @@ class MainPage extends GetView<MainController> {
         body: Obx(
           () => Column(
             children: [
-              controller.index.value == 2 ? Container() : Header2Widget(
-                    title: controller.pageListTitle[controller.index.value],
-                  ),
+              //controller.index.value == 2 ? Container() : Header2Widget(title: controller.pageListTitle[controller.index.value],),
+              Header2Widget(title: controller.pageListTitle[controller.index.value],),
 
               Expanded(child: controller.pageList[controller.index.value]),
             ],

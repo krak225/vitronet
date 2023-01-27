@@ -15,7 +15,7 @@ class MainController extends GetxController {
     CommentPage(),
     Container(),
   ];
-  final pageListTitle = ['Accueil', 'Recherche un job...', 'Commentaire', 'Profil'];
+  final pageListTitle = ['Accueil', 'Recherche un job...', 'Offres d\'emploi', 'Profil'];
 
   Future<void> changeIndex(int? index) async {
     //Get.toNamed(pageList[index]);

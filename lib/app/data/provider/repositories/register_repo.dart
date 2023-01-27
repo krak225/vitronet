@@ -1,0 +1,33 @@
+import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:job_boarder/app/data/provider/responses/register_response.dart';
+
+import '../../../config/app_constants.dart';
+import '../../services/dio_service.dart';
+
+class RegisterRepo {
+
+  final DioService dioService;
+  final GetStorage box = GetStorage();
+  RegisterRepo({required this.dioService});
+
+  Future<Response> register({required dynamic data}) async {
+    return await dioService.postData('/register', data: data);
+  }
+
+  Future<Response> update_profile({required dynamic data}) async {
+    return await dioService.postData('/update_profile', data: data);
+  }
+
+  Future sessionDataSave(RegisterResponse registerResponse) async {
+    box.write(AppConstants.USER_ID, registerResponse.data?.id);
+    box.write(AppConstants.USER_FIRSTNAME, registerResponse.data?.firstname);
+    box.write(AppConstants.USER_LASTNAME, registerResponse.data?.lastname);
+    box.write(AppConstants.USER_EMAIL, registerResponse.data?.email);
+    print('@@@@@@@@@@@@@@@@@@RegisterResponse@@@@@@@@@@@');
+    print(registerResponse.data?.firstname);
+    print(registerResponse.data?.email);
+  }
+
+
+}

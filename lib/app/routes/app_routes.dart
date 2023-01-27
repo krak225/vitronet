@@ -9,7 +9,9 @@ class AppRoutes {
   static const REGISTER_PROFIL = '/register-profil';
   static const REGISTER_OTP = '/register-otp';
   static const SEARCH = '/search';
+  static const OFFRES = '/offres';
   static const COMMENT = '/comment';
+  static const DETAILS_OFFRE = '/offre';
   static const PROFIL = '/profil';
   static const PROFIL_UPDATE = '/profil-update';
 }

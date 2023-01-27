@@ -104,7 +104,7 @@ class RegisterInitPage extends GetView<RegisterInitController> {
 
                 ),
                 SizedBox(
-                  height: Get.height * 0.3,
+                  height: Get.height * 0.15,
                 ),
                 FadeInRight(
                   duration: Duration(milliseconds: 600),

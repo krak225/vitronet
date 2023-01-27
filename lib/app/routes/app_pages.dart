@@ -1,7 +1,11 @@
 import 'package:job_boarder/app/ui/layouts/main/main_page.dart';
 
+import '../bindings/details_offre_binding.dart';
 import '../bindings/main_binding.dart';
+import '../bindings/offre_binding.dart';
 import '../bindings/profil_update_binding.dart';
+import '../ui/pages/details_offre_page/details_offre_page.dart';
+import '../ui/pages/offre_page/offre_page.dart';
 import '../ui/pages/profil_update_page/profil_update_page.dart';
       import '../bindings/profil_binding.dart';
 import '../ui/pages/profil_page/profil_page.dart';
@@ -92,6 +96,18 @@ class AppPages {
       name: AppRoutes.SEARCH,
       page: () => SearchPage(),
       binding: SearchBinding(),
+      transition: _defaultTransition,
+    ),
+    GetPage(
+      name: AppRoutes.OFFRES,
+      page: () => OffrePage(),
+      binding: OffreBinding(),
+      transition: _defaultTransition,
+    ),
+    GetPage(
+      name: AppRoutes.DETAILS_OFFRE,
+      page: () => DetailsOffrePage(),
+      binding: DetailsOffreBinding(),
       transition: _defaultTransition,
     ),
     GetPage(

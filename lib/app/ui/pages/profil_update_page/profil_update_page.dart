@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../../../config/app_constants.dart';
 import '../../global_widgets/button_style1_widget.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
@@ -11,10 +13,20 @@ import 'package:get/get.dart';
 import '../../../controllers/profil_update_controller.dart';
 import '../../theme/custom_input_decoration.dart';
 import '../../theme/light_color.dart';
+import '../../utils/validator_state.dart';
 
 class ProfilUpdatePage extends GetView<ProfilUpdateController> {
   @override
   Widget build(BuildContext context) {
+
+    GetStorage _storage = GetStorage();
+    String email = _storage.read(AppConstants.USER_EMAIL).toString();
+    String firstname = _storage.read(AppConstants.USER_FIRSTNAME).toString();
+    String lastname = _storage.read(AppConstants.USER_LASTNAME).toString();
+    String telephone = _storage.read(AppConstants.USER_TELEPHONE).toString();
+    String adresse = _storage.read(AppConstants.USER_ADRESSE).toString();
+    String genre = _storage.read(AppConstants.USER_GENRE).toString();
+
     return MainLayoutView(
         child: Column(
       children: [
@@ -87,11 +99,11 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         Expanded(
                           child: FadeInRight(
                             child: FormBuilderTextField(
-                              name: 'prenom',
-                              initialValue: 'Armel',
+                              name: 'prenoms',
+                              initialValue: firstname,
                               // validator: ValidatorState.email,
                               decoration: CustomInputDecoration.style1(
-                                  labelText: 'Prénom'),
+                                  labelText: 'Prénoms'),
                             ),
                           ),
                         ),
@@ -102,7 +114,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                           child: FadeInRight(
                             child: FormBuilderTextField(
                               name: 'nom',
-                              initialValue: 'TISSI',
+                              initialValue: lastname,
                               // validator: ValidatorState.email,
                               decoration: CustomInputDecoration.style1(
                                   labelText: 'Nom de famille'),
@@ -115,8 +127,8 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                     FadeInRight(
                       child: FormBuilderTextField(
                         name: 'email',
-                        initialValue: 'tkjarmel@gmail.com',
-                        // validator: ValidatorState.email,
+                        initialValue: email,
+                        validator: ValidatorState.email,
                         decoration:
                             CustomInputDecoration.style1(labelText: 'Email'),
                       ),
@@ -128,7 +140,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                           child: FadeInRight(
                             child: FormBuilderTextField(
                               name: 'genre',
-                              initialValue: 'Homme',
+                              initialValue: genre,
                               // validator: ValidatorState.email,
                               decoration: CustomInputDecoration.style1(
                                   labelText: 'Le genre'),
@@ -141,8 +153,8 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         Expanded(
                           child: FadeInRight(
                             child: FormBuilderTextField(
-                              name: 'tel',
-                              initialValue: '+227',
+                              name: 'telephone',
+                              initialValue: telephone,
                               // validator: ValidatorState.email,
                               decoration: CustomInputDecoration.style1(
                                   labelText: 'Phone'),
@@ -151,10 +163,20 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         ),
                       ],
                     ),
+                    SizedBox(height: Get.height * 0.04),
+                    FadeInRight(
+                      child: FormBuilderTextField(
+                        name: 'adresse',
+                        initialValue: adresse +" ",
+                        //validator: ValidatorState.email,
+                        decoration:
+                        CustomInputDecoration.style1(labelText: 'Adresse'),
+                      ),
+                    ),
                   ]),
                 ),
                 SizedBox(height: 20),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AutoSizeText(
@@ -183,21 +205,21 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                 ),
                 ListTile(
                   leading: Icon(Icons.location_on_outlined, color: Colors.black, size: 32,),
-                  title: Text('00 Niamey avenue suite 00'),
-                  subtitle: Text('00 Niger avenue suite 00 Niamey '),
-                ),
+                  title: Text(adresse),//00 Niamey avenue suite 00
+                  subtitle: Text(''),//00 Niger avenue suite 00 Niamey
+                ),*/
                 Divider(
                   color: LightColor.lightGrey2,
                 ),
 
-                SizedBox(height: Get.height * 0.18),
+                SizedBox(height: Get.height * 0.05),
 
                 FadeInRight(
                   duration: Duration(milliseconds: 600),
                   child: ButtonStyle1Widget(
                     text: 'Sauvegarder',
                     color: LightColor.second,
-                    onPressed: () => Get.back(),
+                    onPressed: () => controller.update_profile(),
                   ),
                 ),
               ],

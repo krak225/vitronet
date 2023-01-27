@@ -78,7 +78,7 @@ class ProfilPage extends GetView<ProfilController> {
                     color: LightColor.black.withOpacity(0.8),
                     size: 18,
                   ),
-                  onTap: () =>null,
+                  onTap: () => controller.logout(),
                 ),
               ],
             ),

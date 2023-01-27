@@ -63,7 +63,7 @@ class RegisterOtpPage extends GetView<RegisterOtpController> {
                             ),
                             children: [
                               TextSpan(
-                                text: "tkjarmel@gmail.com",
+                                text: "mohamed@gmail.com",
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,

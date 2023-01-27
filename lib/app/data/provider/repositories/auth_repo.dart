@@ -12,7 +12,7 @@ class AuthRepo {
   AuthRepo({required this.dioService});
 
   Future<Response> login({required dynamic data}) async {
-    return await dioService.postData('/token', data: data);
+    return await dioService.postData('/login', data: data);
   }
 
   Future<Response> refreshToken({required dynamic data}) async {
@@ -20,12 +20,22 @@ class AuthRepo {
   }
 
   Future sessionTokenDataSave(LoginResponse loginResponse) async {
+    box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
     box.write(AppConstants.TOKEN_STORAGE, loginResponse.access);
     box.write(AppConstants.REFRESH_TOKEN_STORAGE, loginResponse.refresh);
-    print('@@@@@@@@@@@@@@@@@@loginResponse.access@@@@@@@@@@@');
-    print(loginResponse.access);
-    print(loginResponse.refresh);
+    box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
+    box.write(AppConstants.USER_LASTNAME, loginResponse.lastname);
+    box.write(AppConstants.USER_ID, loginResponse.id);
+    box.write(AppConstants.USER_EMAIL, loginResponse.email);
+    box.write(AppConstants.USER_TELEPHONE, loginResponse.telephone);
+    box.write(AppConstants.USER_ADRESSE, loginResponse.adresse);
+    box.write(AppConstants.USER_GENRE, loginResponse.genre);
+    print('@@@@@@@@@@@@@@@@@@loginResponse@@@@@@@@@@@');
+    print(loginResponse.firstname);
+    //print(loginResponse.refresh);
   }
+
+
 
 
 }

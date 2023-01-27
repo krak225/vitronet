@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../../routes/app_routes.dart';
 
-class CommentHeaderBoxWidget extends StatelessWidget {
-  const CommentHeaderBoxWidget({Key? key}) : super(key: key);
+class DetailsOffreHeaderBoxWidget extends StatelessWidget {
+  const DetailsOffreHeaderBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CommentHeaderBoxWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.grey,
         image: DecorationImage(
-          image: AssetImage('assets/images/slide1.png'),
+          image: AssetImage('assets/images/orange-2 1.png'),
           fit: BoxFit.fitHeight,
           alignment: Alignment.bottomCenter,
         ),
@@ -89,20 +89,6 @@ class CommentHeaderBoxWidget extends StatelessWidget {
                         ),
                       ),
 
-
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          width: 45,
-                          child: Row(
-                            children: [
-                              Image.asset('assets/icons/like-icon.png'),
-                              SizedBox(width: 10,),
-                              Text('386', style: TextStyle(color: Colors.white),),
-                            ],
-                          ),
-                        ),
-                      ),
                       SizedBox(width: 20,),
                       Expanded(
                         flex: 1,
@@ -110,7 +96,7 @@ class CommentHeaderBoxWidget extends StatelessWidget {
                           width: 45,
                           child: Row(
                             children: [
-                              Image.asset('assets/icons/comment-Icon.png'),
+                              Image.asset('assets/icons/like-icon.png'),
                               SizedBox(width: 10,),
                               Text('38', style: TextStyle(color: Colors.white),),
                             ],

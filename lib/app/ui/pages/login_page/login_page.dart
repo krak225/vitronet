@@ -19,7 +19,7 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return MainLayoutView(
-        hPadding: 30,
+        hPadding: 25,
         child: Obx(
           () => SingleChildScrollView(
               child: Container(
@@ -63,7 +63,7 @@ class LoginPage extends GetView<LoginController> {
                               CustomInputDecoration.style1(labelText: 'Email'),
                         ),
                       ),
-                      SizedBox(height: Get.height * 0.04),
+                      SizedBox(height: Get.height * 0.02),
                       FadeInRight(
                         delay: Duration(milliseconds: 300),
                         child: FormBuilderTextField(
@@ -96,7 +96,7 @@ class LoginPage extends GetView<LoginController> {
                     ]),
                   ),
                   SizedBox(
-                    height: Get.height * 0.02,
+                    height: Get.height * 0.01,
                   ),
                   TextButton(onPressed: () => null, child: AutoSizeText(
                     "Mot de passe oublié ?",
@@ -110,7 +110,7 @@ class LoginPage extends GetView<LoginController> {
                   )),
 
                   SizedBox(
-                    height: Get.height * 0.03,
+                    height: Get.height * 0.01,
                   ),
 
                   Row(

@@ -105,7 +105,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'nom',
-                            initialValue: 'TISSI',
+                            initialValue: '',
                             // validator: ValidatorState.email,
                             decoration:
                             CustomInputDecoration.style1(labelText: 'Nom'),
@@ -114,18 +114,18 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         SizedBox(height: Get.height * 0.04),
                         FadeInRight(
                           child: FormBuilderTextField(
-                            name: 'prenom',
-                            initialValue: 'Armel',
+                            name: 'prenoms',
+                            initialValue: '',
                             // validator: ValidatorState.email,
                             decoration:
-                            CustomInputDecoration.style1(labelText: 'Prenom'),
+                            CustomInputDecoration.style1(labelText: 'Prenoms'),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.04),
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'email',
-                            initialValue: 'tkjarmel@gmail.com',
+                            initialValue: '',
                             // validator: ValidatorState.email,
                             decoration:
                             CustomInputDecoration.style1(labelText: 'Email'),
@@ -203,13 +203,13 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                       ]),
                     ),
                     SizedBox(height: Get.height * 0.04),
-                    SizedBox(height: Get.height * 0.1),
+                    //SizedBox(height: Get.height * 0.1),
                     FadeInRight(
                       duration: Duration(milliseconds: 600),
                       child: ButtonStyle1Widget(
                         text: 'Démarrer l’inscription',
                         color: LightColor.second,
-                        onPressed: () => Get.toNamed(AppRoutes.REGISTER_OTP),
+                        onPressed: () => controller.register(),
                       ),
                     ),
                   ],

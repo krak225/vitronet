@@ -49,7 +49,7 @@ class DioService extends Interceptor {
       var response = await this.dio.get(endpoint,
           queryParameters: query,
           options: Options(headers: headers ?? _mainHeaders));
-      print(response);
+      //print(response);
       return handleResponse(response, endpoint);
     } on DioError catch (e) {
       print(e.response?.statusCode);
@@ -65,25 +65,28 @@ class DioService extends Interceptor {
       Map<String, dynamic>? query,
       Map<String, String>? headers,
       bool userToken = true}) async {
+
+    print('Post Data' + data.toString());
+
     try {
       print('postData');
       this.updateHeader(_storage.read(AppConstants.TOKEN_STORAGE));
       print(AppConstants.API_URL + endpoint);
-      if (!userToken) {
-        _mainHeaders?.remove('Authorization');
-        headers?.remove('Authorization');
-      }
+      //if (!userToken) {
+      //  _mainHeaders?.remove('Authorization');
+      //  headers?.remove('Authorization');
+      //}
       var response = await this.dio.post(endpoint,
           data: data,
           queryParameters: query,
           options: Options(headers: headers ?? _mainHeaders));
-      print(response);
+      //print(response);
       return handleResponse(response, endpoint);
     } on DioError catch (e) {
       print('@@@@@@@@@ DioError');
-      print(e.response?.data);
-      print(e.response?.headers);
-      print(e.response?.requestOptions);
+      //print(e.response?.data);
+      //print(e.response?.headers);
+      //print(e.response?.requestOptions);
       return handleErrorResponse(e, endpoint:endpoint);
     }
   }
@@ -169,9 +172,10 @@ class DioService extends Interceptor {
     }
 
     if (e.response != null) {
-      String message = '';
+      String? message = '';
 
-      message = e.response?.data['detail'] ?? e.response?.statusMessage;
+      //message = e.response?.data['detail'] ?? e.response?.statusMessage;
+      message  = e.response?.statusMessage;
 
       return Dio.Response(
           requestOptions: e.requestOptions,

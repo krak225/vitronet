@@ -107,7 +107,7 @@ class RegisterDemandePage extends GetView<RegisterDemandeController> {
                   children: controller.documents.map((doc) => DocumentItemBoxWidget( doc: doc, onTap: () => controller.selectDocument(doc),)).toList(),
                 ),
 
-                SizedBox(height: Get.height * 0.1),
+                SizedBox(height: Get.height * 0.02),
                 FadeInRight(
                   duration: Duration(milliseconds: 600),
                   child: ButtonStyle1Widget(

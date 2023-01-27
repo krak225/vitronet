@@ -53,9 +53,9 @@ class OnboardingPage extends GetView<OnboardingController> {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                   ),
-                  SizedBox(height: Get.height * 0.08),
+                  SizedBox(height: Get.height * 0.008),
                   AutoSizeText(
-                    "Rechercher des offres par région ou par",
+                    "Rechercher des offres par région ou par secteur d'activité",
                     style: TextStyle(
                       color: LightColor.grey,
                       fontSize: 14,
@@ -64,7 +64,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                     textAlign: TextAlign.center,
                     maxLines: 1,
                   ),
-                  AutoSizeText(
+                  /*AutoSizeText(
                     "secteur d'activité",
                     style: TextStyle(
                       color: LightColor.grey,
@@ -73,8 +73,8 @@ class OnboardingPage extends GetView<OnboardingController> {
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
-                  ),
-                  SizedBox(height: Get.height * 0.06),
+                  ),*/
+                  SizedBox(height: Get.height * 0.05),
                   IndicatorWidget(
                     index: controller.index,
                     pagesLength: pagesLength,

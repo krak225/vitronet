@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../../../../config/app_constants.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../global_widgets/button_style1_widget.dart';
 import '../../../theme/light_color.dart';
@@ -11,6 +13,12 @@ class ProfilBoxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    GetStorage _storage = GetStorage();
+    String email = _storage.read(AppConstants.USER_EMAIL).toString();
+    String firstname = _storage.read(AppConstants.USER_FIRSTNAME).toString();
+    String lastname = _storage.read(AppConstants.USER_LASTNAME).toString();
+
     return Container(
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -39,7 +47,7 @@ class ProfilBoxWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
-                        'Armel TISSI',
+                        firstname + " " + lastname,
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -49,7 +57,7 @@ class ProfilBoxWidget extends StatelessWidget {
                         height: 5,
                       ),
                       AutoSizeText(
-                        'tkjarmel@gmail.com',
+                        email,
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
