@@ -18,6 +18,7 @@ class RegisterProfilController extends GetxController {
   final RxBool isHide2 = false.obs;
   final AuthRepo authRepo = Get.find();
   final RegisterRepo registerRepo = Get.find();
+  final RxBool isLoading = false.obs;
 
   Future<void> register() async {
     //box.write('isLogin', true);
@@ -26,15 +27,16 @@ class RegisterProfilController extends GetxController {
 
 
     if (formKey.currentState!.validate()) {
-      //isLoading.value = true;
+      isLoading.value = true;
       //SnackbarUi.info(formKey.currentState!.value);
       print(formKey.currentState!.value);
+
       dio.Response response = await this.registerRepo.register(data: formKey.currentState!.value);
 
       if (response.statusCode == 200) {
 
         //RegisterResponse registerResponse = RegisterResponse.fromJson(response.data);
-        //this.registerRepo.sessionDataSave(registerResponse);
+        //this.registerRepo.sessionDataSave(registerResponse);user123
 
         //le connecter en même temps
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);
@@ -48,12 +50,13 @@ class RegisterProfilController extends GetxController {
 
       } else {
         SnackbarUi.error(response.data.toString());
-        //isLoading.value = false;
+        isLoading.value = false;
       }
 
 
     } else {
       SnackbarUi.error("Veuillez renseigner correctement le formulaire");
+      isLoading.value = false;
     }
   }
 

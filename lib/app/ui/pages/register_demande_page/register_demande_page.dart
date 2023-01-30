@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:job_boarder/app/routes/app_routes.dart';
 
 import '../../global_widgets/button_style1_widget.dart';
@@ -18,6 +19,8 @@ import 'widgets/ducoment_item_box_widget.dart';
 class RegisterDemandePage extends GetView<RegisterDemandeController> {
   @override
   Widget build(BuildContext context) {
+    int situation_id = 0;
+
     return MainLayoutView(
         hPadding: 30,
         child: Obx(
@@ -77,14 +80,17 @@ class RegisterDemandePage extends GetView<RegisterDemandeController> {
                           DropdownMenuItem(
                             child: Text('Je suis sans aucune activité professionnelle'),
                             value: '1',
+                            onTap: ()=>{situation_id = 1},
                           ),
                           DropdownMenuItem(
                             child: Text('Je suis en cours de préavis'),
                             value: '2',
+                            onTap: ()=>{situation_id = 2},
                           ),
                           DropdownMenuItem(
                             child: Text('Je suis en fonction ou en stage'),
                             value: '3',
+                            onTap: ()=>{situation_id = 3},
                           ),
                         ],
 
@@ -113,7 +119,7 @@ class RegisterDemandePage extends GetView<RegisterDemandeController> {
                   child: ButtonStyle1Widget(
                     text: 'Je précise mon profil',
                     color: LightColor.second,
-                    onPressed: () => Get.toNamed(AppRoutes.REGISTER_PROFIL),
+                    onPressed: () => controller.preciser_userinfo(situation_id.toString()),
                   ),
                 ),
               ],

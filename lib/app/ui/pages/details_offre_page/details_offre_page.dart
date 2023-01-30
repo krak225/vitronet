@@ -245,25 +245,23 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                     key: controller.formKey,
                     ///initialValue: controller.initValues,
                     autovalidateMode: AutovalidateMode.disabled,
-                    child: Column(children: [
-                      Visibility(
-                        visible:false,
-                        child: FormBuilderTextField(
-                          name: 'offre_id',
-                          initialValue: comment.id.toString(),
-                          decoration:CustomInputDecoration.style1(labelText: 'offre_id'),
-                        ),
-                      ),
-                    Visibility(
-                        visible:false,
-                        child: FormBuilderTextField(
-                          name: 'user_id',
-                          initialValue: user_id.toString(),
-                          enabled: false,
-                          decoration:CustomInputDecoration.style1(labelText: 'user_id'),
-                        ),
-                      ),
-                    ]),
+                    child: SizedBox(
+                      width: 0,
+                      height: 0,
+                      child: Column(children: [
+                        FormBuilderTextField(
+                            name: 'offre_id',
+                            initialValue: comment.id.toString(),
+                            decoration:CustomInputDecoration.style1(labelText: 'offre_id'),
+                          ),
+                        FormBuilderTextField(
+                            name: 'user_id',
+                            initialValue: user_id.toString(),
+                            enabled: false,
+                            decoration:CustomInputDecoration.style1(labelText: 'user_id'),
+                          ),
+                      ]),
+                    ),
                   ),
                   Visibility(
                     visible: controller.isPostulable.value,

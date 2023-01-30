@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../../../config/app_constants.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/button_style1_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
@@ -16,6 +18,14 @@ import '../../utils/validator_state.dart';
 class RegisterProfilPage extends GetView<RegisterProfilController> {
   @override
   Widget build(BuildContext context) {
+    GetStorage _storage = GetStorage();
+    String document_data_cni = _storage.read(AppConstants.USER_CNI).toString();
+    String document_data_dpc = _storage.read(AppConstants.USER_DPC).toString();
+    String document_data_cv = _storage.read(AppConstants.USER_CV).toString();
+    String document_data_att = _storage.read(AppConstants.USER_ATT).toString();
+    String profil_id = _storage.read(AppConstants.USER_PROFIL_ID).toString();
+    String situation_id = _storage.read(AppConstants.USER_SITUATION_ID).toString();
+
     return MainLayoutView(
         hPadding: 30,
         child: Obx(
@@ -197,8 +207,44 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                               ),
                               ),),
                           ],
-                        )
-
+                        ),
+                        //les champs caché pour les documents et autres
+                        SizedBox(
+                          width: 0,
+                          height: 0,
+                          child: Column(children: [
+                            FormBuilderTextField(
+                              name: 'situation_id',
+                              initialValue: situation_id,
+                              decoration:CustomInputDecoration.style1(labelText: 'situation_id'),
+                            ),
+                            FormBuilderTextField(
+                              name: 'profil_id',
+                              initialValue: profil_id,
+                              decoration:CustomInputDecoration.style1(labelText: 'profil_id'),
+                            ),
+                            FormBuilderTextField(
+                              name: 'user_cni',
+                              initialValue: document_data_cni,
+                              decoration:CustomInputDecoration.style1(labelText: 'user_cni'),
+                            ),
+                            FormBuilderTextField(
+                              name: 'user_dpc',
+                              initialValue: document_data_dpc,
+                              decoration:CustomInputDecoration.style1(labelText: 'user_dpc'),
+                            ),
+                            FormBuilderTextField(
+                              name: 'user_cv',
+                              initialValue: document_data_cv,
+                              decoration:CustomInputDecoration.style1(labelText: 'user_cv'),
+                            ),
+                            FormBuilderTextField(
+                              name: 'user_att',
+                              initialValue: document_data_att,
+                              decoration:CustomInputDecoration.style1(labelText: 'user_att'),
+                            ),
+                          ]),
+                        ),
 
                       ]),
                     ),
@@ -206,11 +252,26 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                     //SizedBox(height: Get.height * 0.1),
                     FadeInRight(
                       duration: Duration(milliseconds: 600),
-                      child: ButtonStyle1Widget(
+                      child: /*ButtonStyle1Widget(
                         text: 'Démarrer l’inscription',
                         color: LightColor.second,
                         onPressed: () => controller.register(),
-                      ),
+                      ),*/
+                      ElevatedButton.icon(
+                          onPressed: () => controller.isLoading.value ? null : controller.register(),
+                          style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0)),
+                          icon: controller.isLoading.value ? Container(
+                            width: 24,
+                            height: 24,
+                            padding: const EdgeInsets.all(2.0),
+                            child: const CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 3,
+                            ),
+                          )
+                              : const Icon(Icons.feedback),
+                          label: const Text('Démarrer l’inscription'),
+                    ),
                     ),
                   ],
                 ),

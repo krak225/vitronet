@@ -17,6 +17,15 @@ class AppConstants {
   static const String USER_ADRESSE = "USER_ADRESSE";
   static const String USER_GENRE = "USER_GENRE";
 
+  //pour les documents
+  static const String USER_PROFIL_ID = "USER_PROFIL_ID";
+  static const String USER_SITUATION_ID = "USER_SITUATION_ID";
+  static const String USER_CNI = "USER_CNI";
+  static const String USER_DPC = "USER_DPC";
+  static const String USER_CV = "USER_CV";
+  static const String USER_ATT = "USER_ATT";
+
+
   //static const String BASE_URL = "http://10.0.2.2:8000"; //localhost for android
   // static const String BASE_URL = "http://127.0.0.1:8000"; //localhost for ios
   //static const String BASE_URL = "http://jobboard.target-ci.com";

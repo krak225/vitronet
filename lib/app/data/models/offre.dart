@@ -21,7 +21,7 @@ class Comment{
   });
 
   factory Comment.fromMap(Map<String, dynamic> json) => Comment(
-    id: json["id"],
+    id: json["offre_id"],
     offrenombreposte: json["offrenombreposte"],
     offretitre: json["offretitre"],
     offredescription: json["offredescription"],

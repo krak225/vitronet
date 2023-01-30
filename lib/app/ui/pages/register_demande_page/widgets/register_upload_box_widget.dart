@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:job_boarder/app/controllers/register_demande_controller.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 
@@ -39,10 +40,15 @@ class RegisterUploadBoxWidget extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 5,
-                  child: CircleAvatar(
-                    radius: 32,
-                    backgroundColor: LightColor.lightGrey2,
-                    child: Image.asset('assets/icons/camera.png'),
+                  child:  GestureDetector(
+                    onTap: () {
+                      controller.pickImage(ImageSource.camera, "${doc.code}", context);
+                    },
+                    child:CircleAvatar(
+                      radius: 32,
+                      backgroundColor: LightColor.lightGrey2,
+                      child: Image.asset('assets/icons/camera.png'),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -92,9 +98,13 @@ class RegisterUploadBoxWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: Get.width * 0.1),
-                TextButton(onPressed: () {}, child: Image.asset('assets/icons/attachment.png')),
-                TextButton(onPressed: () {}, child: Image.asset('assets/icons/gallery.png')),
-                TextButton(onPressed: () {}, child: Image.asset('assets/icons/file.png')),
+                TextButton(onPressed: () {
+                  controller.pickFile("${doc.code}", context);
+                }, child: Image.asset('assets/icons/attachment.png')),
+                TextButton(onPressed: () {
+                  controller.pickImage(ImageSource.gallery, "${doc.code}", context);
+                }, child: Image.asset('assets/icons/gallery.png')),
+                //TextButton(onPressed: () {}, child: Image.asset('assets/icons/file.png')),
               ],
             ),
           )

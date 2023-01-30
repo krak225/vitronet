@@ -14,6 +14,8 @@ import 'widgets/radio_box_widget.dart';
 class RegisterInitPage extends GetView<RegisterInitController> {
   @override
   Widget build(BuildContext context) {
+    int choix = 2;
+
     return MainLayoutView(
         hPadding: 30,
         child: Obx(
@@ -54,6 +56,7 @@ class RegisterInitPage extends GetView<RegisterInitController> {
                   subtitle: "Vous souhaitez créer et diffuser votre profil de compétences, vous abonner aux offres d'emploi, postuler aux offres.",
                   isSelected: controller.isSelect.value,
                   onTap: () {
+                    choix = 1;
                     controller.isSelect.value = !controller.isSelect.value;
                   },
 
@@ -99,6 +102,7 @@ class RegisterInitPage extends GetView<RegisterInitController> {
                   subtitle: "Vous souhaitez effectuer votre demande d'inscription.",
                   isSelected: !controller.isSelect.value,
                   onTap: () {
+                    choix = 2;
                     controller.isSelect.value = !controller.isSelect.value;
                   },
 
@@ -110,7 +114,7 @@ class RegisterInitPage extends GetView<RegisterInitController> {
                   duration: Duration(milliseconds: 600),
                   child: ButtonStyle1Widget(
                     text: 'Poursuivre',
-                    onPressed: () => Get.toNamed(AppRoutes.REGISTER_DEMANDE),
+                    onPressed: () => controller.setProfil(choix.toString()),
                   ),
                 ),
                 SizedBox(
