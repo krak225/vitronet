@@ -18,13 +18,14 @@ import '../../utils/validator_state.dart';
 class RegisterProfilPage extends GetView<RegisterProfilController> {
   @override
   Widget build(BuildContext context) {
-    GetStorage _storage = GetStorage();
-    String document_data_cni = _storage.read(AppConstants.USER_CNI).toString();
-    String document_data_dpc = _storage.read(AppConstants.USER_DPC).toString();
-    String document_data_cv = _storage.read(AppConstants.USER_CV).toString();
-    String document_data_att = _storage.read(AppConstants.USER_ATT).toString();
+    /*GetStorage _storage = GetStorage();
+    String document_data_cni = '';//_storage.read(AppConstants.USER_CNI).toString();
+    String document_data_dpc = '';//_storage.read(AppConstants.USER_DPC).toString();
+    String document_data_cv = '';//_storage.read(AppConstants.USER_CV).toString();
+    String document_data_att = '';//_storage.read(AppConstants.USER_ATT).toString();
     String profil_id = _storage.read(AppConstants.USER_PROFIL_ID).toString();
     String situation_id = _storage.read(AppConstants.USER_SITUATION_ID).toString();
+    */
 
     return MainLayoutView(
         hPadding: 30,
@@ -50,7 +51,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         ),
 
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => Get.back(),
                           child: AutoSizeText(
                             "Annuller",
                             style: TextStyle(
@@ -121,7 +122,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             CustomInputDecoration.style1(labelText: 'Nom'),
                           ),
                         ),
-                        SizedBox(height: Get.height * 0.04),
+                        SizedBox(height: Get.height * 0.02),
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'prenoms',
@@ -131,7 +132,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             CustomInputDecoration.style1(labelText: 'Prenoms'),
                           ),
                         ),
-                        SizedBox(height: Get.height * 0.04),
+                        SizedBox(height: Get.height * 0.02),
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'email',
@@ -141,7 +142,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             CustomInputDecoration.style1(labelText: 'Email'),
                           ),
                         ),
-                        SizedBox(height: Get.height * 0.04),
+                        SizedBox(height: Get.height * 0.02),
 
                         FadeInRight(
                           delay: Duration(milliseconds: 300),
@@ -165,7 +166,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           ),
                         ),
 
-                        SizedBox(height: Get.height * 0.04),
+                        SizedBox(height: Get.height * 0.02),
 
                         FadeInRight(
                           delay: Duration(milliseconds: 300),
@@ -209,7 +210,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           ],
                         ),
                         //les champs caché pour les documents et autres
-                        SizedBox(
+                        /*SizedBox(
                           width: 0,
                           height: 0,
                           child: Column(children: [
@@ -244,7 +245,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                               decoration:CustomInputDecoration.style1(labelText: 'user_att'),
                             ),
                           ]),
-                        ),
+                        ),*/
 
                       ]),
                     ),
@@ -257,21 +258,23 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         color: LightColor.second,
                         onPressed: () => controller.register(),
                       ),*/
-                      ElevatedButton.icon(
-                          onPressed: () => controller.isLoading.value ? null : controller.register(),
-                          style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0)),
-                          icon: controller.isLoading.value ? Container(
-                            width: 24,
-                            height: 24,
-                            padding: const EdgeInsets.all(2.0),
-                            child: const CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 3,
-                            ),
-                          )
-                              : const Icon(Icons.feedback),
-                          label: const Text('Démarrer l’inscription'),
-                    ),
+                      Center(
+                        child: ElevatedButton.icon(
+                            onPressed: () => controller.isLoading.value ? null : controller.register(),
+                            style: ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0),),
+                            icon: controller.isLoading.value ? Container(
+                              width: 24,
+                              height: 24,
+                              padding: const EdgeInsets.all(2.0),
+                              child: const CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 3,
+                              ),
+                            )
+                                : const Icon(Icons.check),
+                            label: const Text('Démarrer l’inscription'),
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -33,7 +33,6 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
     String user_id = _storage.read(AppConstants.USER_ID).toString();
 
     final Comment comment = Get.arguments;
-    print(comment);
 
     return MainLayoutView(
         hPadding: 0,
@@ -41,7 +40,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
         controller: ScrollController(),
         child: Column(
           children: [
-            DetailsOffreHeaderBoxWidget(),
+            DetailsOffreHeaderBoxWidget(comment),
             Container(
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               decoration: BoxDecoration(
@@ -57,7 +56,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
               ),
               child: Row(
                 children: [
-                  Image.asset(comment.offre_image),
+                  Image.network(comment.offre_image, width: 50,),
                   SizedBox(
                     width: 50,
                   ),
@@ -161,6 +160,30 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                         Expanded(
                           child: FadeInRight(
                             child: Text(comment.offre_datepublic, textAlign: TextAlign.right, style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text("Recruteur"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text(comment.entreprise, textAlign: TextAlign.right, style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: LightColor.black),
                             ),

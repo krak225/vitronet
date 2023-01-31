@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_boarder/app/data/models/offre.dart';
 
 import '../../../../routes/app_routes.dart';
 
 class DetailsOffreHeaderBoxWidget extends StatelessWidget {
-  const DetailsOffreHeaderBoxWidget({Key? key}) : super(key: key);
+  final Comment comment;
+
+  DetailsOffreHeaderBoxWidget(this.comment);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +16,8 @@ class DetailsOffreHeaderBoxWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.grey,
         image: DecorationImage(
-          image: AssetImage('assets/images/orange-2 1.png'),
-          fit: BoxFit.fitHeight,
+          image: NetworkImage(comment.offre_image),//AssetImage('assets/images/orange-2 1.png'),
+          fit: BoxFit.cover,//fitHeight
           alignment: Alignment.bottomCenter,
         ),
       ),
@@ -54,8 +57,9 @@ class DetailsOffreHeaderBoxWidget extends StatelessWidget {
                         width: 45,
                         height: 45,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.black.withOpacity(0.2),//Colors.white.withOpacity(0.2),
                           borderRadius: BorderRadius.circular(3),
+                          border: Border.all(color: Colors.grey),
                         ),
                         child: Image.asset('assets/icons/arrow-icon.png'),
                       ),
@@ -83,7 +87,7 @@ class DetailsOffreHeaderBoxWidget extends StatelessWidget {
                             children: [
                               Image.asset('assets/icons/share-icon.png'),
                               SizedBox(width: 10,),
-                              Text('8', style: TextStyle(color: Colors.white),),
+                              Text(comment.offre_partage.toString(), style: TextStyle(color: Colors.white),),
                             ],
                           ),
                         ),
@@ -98,7 +102,7 @@ class DetailsOffreHeaderBoxWidget extends StatelessWidget {
                             children: [
                               Image.asset('assets/icons/like-icon.png'),
                               SizedBox(width: 10,),
-                              Text('38', style: TextStyle(color: Colors.white),),
+                              Text(comment.offre_like.toString(), style: TextStyle(color: Colors.white),),
                             ],
                           ),
                         ),

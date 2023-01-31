@@ -207,17 +207,48 @@ class CommentPage extends GetView<CommentController> {
                                 comments!.length,
                                     (index) =>
                                         Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal:16.0, vertical: 8.0),
-                                              child: ItemBoxWidget(
-                                                title: comments[index].offretitre,
-                                                icon: "assets/images/depocv.png",
-                                                onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                              ),
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(4),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: LightColor.lightGrey2,
+                                                  blurRadius: 5,
+                                                  offset: Offset(0, 3),
+                                                )
+                                              ],
                                             ),
+                                            child:Padding(
+                                      padding: const EdgeInsets.all(0.0),
+                                      child: InkWell(
+                                          onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
+                                          child: Row(
+                                                  children: [
+                                                    Image.network(comments[index].offre_image, width: 50, height: 40,),
+                                                    SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    Expanded(
+                                                        child: AutoSizeText(
+                                                          comments[index].offretitre,
+                                                          maxLines: 2,
+                                                         )
+                                                    ),
+                                                    Image.asset("assets/images/arrow.png"),
+                                                  ],
+                                              ),
+                                          ),
+                                      ),
+                                    ),
+                                        ),
                               ),
                           );
 
                         } else if (snapshot.hasError) {
+                        print("${snapshot.error}");
                           return Text("Pas de données");//"${snapshot.error}"
                         }
                         return Center(child: CircularProgressIndicator());
