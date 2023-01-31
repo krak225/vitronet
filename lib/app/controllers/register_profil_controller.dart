@@ -29,7 +29,7 @@ class RegisterProfilController extends GetxController {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
       //SnackbarUi.info(formKey.currentState!.value);
-      print(formKey.currentState!.value);
+      //print(formKey.currentState!.value);
 
       dio.Response response = await this.registerRepo.register(data: formKey.currentState!.value);
 
@@ -46,7 +46,7 @@ class RegisterProfilController extends GetxController {
 
         //envoyer le token OTP
 
-        Get.offAllNamed(AppRoutes.REGISTER_OTP);
+        Get.offAllNamed(AppRoutes.REGISTER_OTP, arguments:loginResponse.email);
 
       } else {
         SnackbarUi.error(response.data.toString());

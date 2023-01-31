@@ -19,7 +19,10 @@ class RegisterDemandeController extends GetxController {
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
   final ImagePicker _picker = ImagePicker();
   String base64_image_picked = "";
+  late Io.File file_picked;
   final GetStorage box = GetStorage();
+  RxBool is_file_picked = false.obs;
+  late DocumentDto current_document;
 
   final RxList<DocumentDto> documents = <DocumentDto>[
     DocumentDto(code: "CNI",
@@ -38,7 +41,10 @@ class RegisterDemandeController extends GetxController {
 
 
   selectDocument(DocumentDto doc) {
+    is_file_picked = false.obs;
     print(doc);
+    current_document = doc;
+
     Get.to(RegisterUploadBoxWidget(doc: doc))?.then((value) {
       if (value != null) {
         this.documents
@@ -51,6 +57,7 @@ class RegisterDemandeController extends GetxController {
 
   Future<void> pickImage(ImageSource source, String document_code, BuildContext context) async {
       print("Picking image for " + document_code);
+      is_file_picked = true.obs;
 
       final XFile? pickedFile = await _picker.pickImage(
         source: source,
@@ -61,7 +68,8 @@ class RegisterDemandeController extends GetxController {
 
       print(pickedFile);
       if(pickedFile != null) {
-        final bytes = Io.File(pickedFile.path).readAsBytesSync();
+        file_picked = Io.File(pickedFile.path);
+        final bytes = file_picked.readAsBytesSync();
         base64_image_picked = base64Encode(bytes);
 
         SessionSaveDocument(document_code, base64_image_picked);
@@ -77,6 +85,7 @@ class RegisterDemandeController extends GetxController {
 
   Future<void> pickFile(String document_code, BuildContext context) async {
     print("Picking image for " + document_code);
+    is_file_picked = false.obs;
 
     FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
       allowMultiple: false,
@@ -85,9 +94,9 @@ class RegisterDemandeController extends GetxController {
     );
 
     if(pickedFile != null) {
-      print(pickedFile.files.single.path.toString());
-
-      final bytes = Io.File(pickedFile.files.single.path.toString()).readAsBytesSync();
+      //print(pickedFile.files.single.path.toString());
+      file_picked = Io.File(pickedFile.files.single.path.toString());
+      final bytes = file_picked.readAsBytesSync();
       base64_image_picked = base64Encode(bytes);
 
       SessionSaveDocument(document_code, base64_image_picked);
@@ -117,7 +126,24 @@ class RegisterDemandeController extends GetxController {
         break;
     }
 
-    SnackbarUi.success(document_code + " Stored in session");
+    this.documents
+        .firstWhere((element) => element.code == document_code)
+        .file = file_picked;
+    this.documents.refresh();
+
+    /*Get.to(RegisterUploadBoxWidget(doc: current_document))?.then((value) {
+      print ("GOING TO RegisterUploadBoxWidget");
+      if (value != null) {
+        this.documents
+            .firstWhere((element) => element.code == document_code)
+            .file = file_picked;
+        this.documents.refresh();
+      }
+    });*/
+
+    Get.back(result: true);
+
+    //SnackbarUi.success(document_code + " Stored in session");
 
   }
 

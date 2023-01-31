@@ -1,9 +1,12 @@
+import 'dart:io' as Io;
+
 class DocumentDto{
    String? code;
    String? name;
    String? icon;
    String? type;
    bool status;
+   Io.File? file;
 
   DocumentDto({
     this.code,
@@ -11,6 +14,7 @@ class DocumentDto{
     this.type,
     this.status = false,
     this.icon,
+    this.file,
   });
 
   // factory DocumentDto.fromJson(Map<String, dynamic> json) => DocumentDto(

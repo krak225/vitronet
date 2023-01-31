@@ -59,27 +59,78 @@ class CommentPage extends GetView<CommentController> {
                 ],
               ),
             ),
-            /*Expanded(
-              child: MediaQuery.removePadding(
-                context: context,
-                removeTop: true,
-                child:FutureBuilder<List<Comment>>(
+
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              child:FutureBuilder<List<Comment>>(
                   future: controller.fetchComments(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       List<Comment>? comments = snapshot.data;
 
-                      return ListView(
-                        scrollDirection: Axis.vertical,
-                        children:
-                        List.generate(
-                          comments!.length,
-                              (index) =>
-                              ItemBoxWidget(
-                                  title: comments[index].offretitre,
-                                  icon: "assets/images/depocv.png",
-                                  onTap: () => null,
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          left: 16,
+                        ),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: List.generate(
+                                comments!.length,
+                                    (index) => Container(
+                                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                                      child: InkWell(
+                                  onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
+                                  child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(39),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: LightColor.lightGrey2,
+                                            blurRadius: 5,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ],
+                                      ),
+                                      child:Row(
+                                          children: [
+                                              //Image.asset("assets/images/orange-3 1.png"),
+                                              Image.network(comments[index].offre_image, width: 80, height: 70,),
+                                              SizedBox(width: 5),
+                                              Column(children: [
+                                                AutoSizeText(
+                                                  comments[index].offretitre,
+                                                  maxLines: 2,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                                                ),
+                                                AutoSizeText(
+                                                  comments[index].entreprise,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
+                                                  child: Text(
+                                                    "Voir le détail",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                                                ),
+                                              ],)
+                                       ]),
+                                  ),
                                 ),
+                              ),
+                            ),
+                          ),
+                          ),
                         ),
                       );
 
@@ -90,8 +141,8 @@ class CommentPage extends GetView<CommentController> {
                   },
                 ),
               ),
-            ),*/
 
+            /*
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: Container(
@@ -147,7 +198,7 @@ class CommentPage extends GetView<CommentController> {
                   ],
                 ),
               ),
-            ),
+            ),*/
 
             /*
             Container(

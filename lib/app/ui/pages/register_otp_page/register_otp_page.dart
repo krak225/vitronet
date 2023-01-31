@@ -15,6 +15,9 @@ import '../../theme/light_color.dart';
 class RegisterOtpPage extends GetView<RegisterOtpController> {
   @override
   Widget build(BuildContext context) {
+
+    final String user_email = Get.arguments;
+
     return MainLayoutView(
       hPadding: 30,
             child:  SingleChildScrollView(
@@ -63,7 +66,7 @@ class RegisterOtpPage extends GetView<RegisterOtpController> {
                             ),
                             children: [
                               TextSpan(
-                                text: "mohamed@gmail.com",
+                                text: user_email,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
