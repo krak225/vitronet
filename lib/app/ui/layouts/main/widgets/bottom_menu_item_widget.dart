@@ -22,7 +22,7 @@ class BottomMenuItemWidget extends StatelessWidget {
         onPressed: onPressed,
         child: iconWidget ??
             (isSelected
-                ? Image.asset(activIcon)
-                : Image.asset(icon)));
+                ? Image.asset(activIcon, height: 30,)
+                : Image.asset(icon, height: 30)));
   }
 }

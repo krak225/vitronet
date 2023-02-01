@@ -1,10 +1,14 @@
 import 'package:job_boarder/app/ui/layouts/main/main_page.dart';
+import 'package:job_boarder/app/ui/pages/profil_details_page/profil_details_page.dart';
 
 import '../bindings/details_offre_binding.dart';
+import '../bindings/documents_binding.dart';
 import '../bindings/main_binding.dart';
 import '../bindings/offre_binding.dart';
+import '../bindings/profil_details_binding.dart';
 import '../bindings/profil_update_binding.dart';
 import '../ui/pages/details_offre_page/details_offre_page.dart';
+import '../ui/pages/documents_page/documents_page.dart';
 import '../ui/pages/offre_page/offre_page.dart';
 import '../ui/pages/profil_update_page/profil_update_page.dart';
       import '../bindings/profil_binding.dart';
@@ -93,6 +97,12 @@ class AppPages {
       transition: _defaultTransition,
     ),
     GetPage(
+      name: AppRoutes.MES_DOCUMENTS,
+      page: () => DocumentsPage(),
+      binding: DocumentsBinding(),
+      transition: _defaultTransition,
+    ),
+    GetPage(
       name: AppRoutes.SEARCH,
       page: () => SearchPage(),
       binding: SearchBinding(),
@@ -112,7 +122,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.COMMENT,
-      page: () => CommentPage(),
+      page: () => CommentPage(1, "Offres selon mon profil"),
       binding: CommentBinding(),
       transition: _defaultTransition,
     ),
@@ -127,6 +137,12 @@ class AppPages {
       page: () => ProfilUpdatePage(),
       binding: ProfilUpdateBinding(),
       transition: _defaultTransition,
-    ), 
+    ),
+    GetPage(
+      name: AppRoutes.PROFIL_DETAILS,
+      page: () => ProfilDetailsPage(),
+      binding: ProfilDetailsBinding(),
+      transition: _defaultTransition,
+    ),
 ];
 }

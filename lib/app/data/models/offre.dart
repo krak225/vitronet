@@ -9,6 +9,7 @@ class Comment{
   final String offre_image;
   final int offre_partage;
   final int offre_like;
+  final int postulable;
 
   Comment({
     required this.id,
@@ -21,6 +22,7 @@ class Comment{
     required this.offre_image,
     required this.offre_partage,
     required this.offre_like,
+    required this.postulable,
   });
 
   factory Comment.fromMap(Map<String, dynamic> json) => Comment(
@@ -34,5 +36,6 @@ class Comment{
     offre_image: json["offre_image"].toString(),
     offre_partage: json["offre_partage"],
     offre_like: json["offre_like"],
+    postulable: json["postulable"],
   );
 }

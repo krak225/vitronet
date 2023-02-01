@@ -14,4 +14,7 @@ class AppRoutes {
   static const DETAILS_OFFRE = '/offre';
   static const PROFIL = '/profil';
   static const PROFIL_UPDATE = '/profil-update';
+  static const PROFIL_DETAILS = '/profil-details';
+  static const MES_DOCUMENTS = '/documents';
+
 }

@@ -48,10 +48,9 @@ class DocumentItemBoxWidget extends StatelessWidget {
               )
             ],
           ),
-          child: Image.asset(
-            "${doc.icon}",
+          child: doc.file is Null ? Image.asset("${doc.icon}" ,
             color: doc.status ? Colors.black : null,
-          ),
+          ) : Text("${doc.file?.path}"),
         ),
       ),
     );

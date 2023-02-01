@@ -4,20 +4,24 @@ import 'package:job_boarder/app/ui/theme/light_color.dart';
 
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
-import '../../global_widgets/button_style1_widget.dart';
-import '../../global_widgets/item_box_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/comment_controller.dart';
-import '../home_page/widgets/home_header_box_widget.dart';
-import 'widgets/comment_header_box_widget.dart';
 
 
 class CommentPage extends GetView<CommentController> {
+  int type;
+  String libelle_offres = "Liste des offres d'emploi";
+  int nbre_offres = 0;
+  int? q = Get.arguments;
+
+  CommentPage(this.type, this.libelle_offres);
+
   @override
   Widget build(BuildContext context) {
+    q ?? 0;
 
     return MainLayoutView(
         hPadding: 0,
@@ -26,188 +30,135 @@ class CommentPage extends GetView<CommentController> {
             SizedBox(height:0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: SearchBoxWidget(),
-            ),
-            //CommentHeaderBoxWidget(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AutoSizeText(
-                    "Offres populaires",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                    maxLines: 1,
-                  ),
+              child: SearchBoxWidget(
+                  onTapSearch: () => {
+                    print("Veuillez saisire un texte")
+                  },
+                  onTapSettings: () => {
 
-                  TextButton(
-                    onPressed: () {},
-                    child: AutoSizeText(
-                      "Voir plus",
+                  }
+              ),
+            ),
+            /*
+            Container(
+              child: option == 10 ?
+              Column(children: [
+                Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AutoSizeText(
+                      "Offres selon mon profil",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
-                        color: Colors.grey,
+                        color: Colors.black,
                       ),
                       maxLines: 1,
                     ),
-                  ),
-                ],
-              ),
-            ),
 
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child:FutureBuilder<List<Comment>>(
+                    TextButton(
+                      onPressed: () => Get.toNamed(AppRoutes.COMMENT, arguments: 1),
+                      child: AutoSizeText(
+                        "Voir plus",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey,
+                        ),
+                        maxLines: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                  child:FutureBuilder<List<Comment>>(
                   future: controller.fetchComments(),
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List<Comment>? comments = snapshot.data;
+                  if (snapshot.hasData) {
+                  List<Comment>? comments = snapshot.data;
 
-                      return Padding(
-                        padding: EdgeInsets.only(
-                          left: 16,
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: List.generate(
-                                comments!.length,
-                                    (index) => Container(
-                                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                      child: InkWell(
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      left: 16,
+                    ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                        children: List.generate(
+                          comments!.length,
+                          (index) => Container(
+                            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(39),
+                              boxShadow: [
+                                  BoxShadow(
+                                    color: LightColor.lightGrey2,
+                                    blurRadius: 5,
+                                    offset: Offset(0, 3),
+                                  )
+                                ],
+                              ),
+                                child:InkWell(
                                   onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                  child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(39),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: LightColor.lightGrey2,
-                                            blurRadius: 5,
-                                            offset: Offset(0, 3),
-                                          )
-                                        ],
+                                  child: Row(
+                                    children: [
+                                    //Image.asset("assets/images/orange-3 1.png"),
+                                    Image.network(comments[index].offre_image, width: 80, height: 70,),
+                                    SizedBox(width: 5),
+                                    Column(children: [
+                                      AutoSizeText(
+                                        comments[index].offretitre,
+                                        maxLines: 2,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
                                       ),
-                                      child:Row(
-                                          children: [
-                                              //Image.asset("assets/images/orange-3 1.png"),
-                                              Image.network(comments[index].offre_image, width: 80, height: 70,),
-                                              SizedBox(width: 5),
-                                              Column(children: [
-                                                AutoSizeText(
-                                                  comments[index].offretitre,
-                                                  maxLines: 2,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
-                                                ),
-                                                AutoSizeText(
-                                                  comments[index].entreprise,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                                  child: Text(
-                                                    "Voir le détail",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
-                                                ),
-                                              ],)
-                                       ]),
-                                  ),
+                                      AutoSizeText(
+                                        comments[index].entreprise,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
+                                        child: Text(
+                                          "Voir le détail",
+                                          style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                        ),
+                                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                                      ),
+                                    ],
+                                    )
+                                  ]),
                                 ),
                               ),
                             ),
                           ),
-                          ),
-                        ),
-                      );
-
-                    } else if (snapshot.hasError) {
-                      return Text("Pas de données");//"${snapshot.error}"
-                    }
-                    return Center(child: CircularProgressIndicator());
-                  },
-                ),
-              ),
-
-            /*
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(39),
-                  boxShadow: [
-                    BoxShadow(
-                      color: LightColor.lightGrey2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset("assets/images/orange-3 1.png"),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Expanded(
-                            child: Column(
-                              children: [
-                                AutoSizeText(
-                                  "UI DESIGNER H/F",
-                                  maxLines: 2,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
-                                ),
-                                AutoSizeText(
-                                  "ORANGE NIGER",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
-                                ),
-                              ],
-                            )
-                        ),
-                      ],
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Voir le détail",
-                        style: TextStyle(
-                          color: Colors.white,
                         ),
                       ),
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
                     ),
-                  ],
-                ),
-              ),
-            ),*/
+                  );
 
-            /*
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ItemBoxWidget(
-                title: "UX/UI Designer, Niger, Niamey",
-                icon: "assets/images/orange-3 1.png",
-                onTap: () => null,
-              ),
+                  } else if (snapshot.hasError) {
+                  return Text("Pas de données");//"${snapshot.error}"
+                  }
+                  return Center(child: CircularProgressIndicator());
+                  },
+                  ),
+                ),
+              ])
+                  :
+              Text('-----------------------')
             ),
             */
 
@@ -218,7 +169,7 @@ class CommentPage extends GetView<CommentController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AutoSizeText(
-                    "Récemment publié",
+                    "${libelle_offres}",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -228,15 +179,22 @@ class CommentPage extends GetView<CommentController> {
                   ),
 
                   TextButton(
-                    onPressed: () {},
-                    child: AutoSizeText(
-                      "Voir plus",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
+                    onPressed: () => Get.toNamed(AppRoutes.COMMENT, arguments: 2),
+                    child: Container(
+                      padding: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                          color: Colors.orangeAccent,
+                          shape: BoxShape.circle
                       ),
-                      maxLines: 1,
+                      child: AutoSizeText(
+                        "$nbre_offres",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        maxLines: 1,
+                      ),
                     ),
                   ),
                 ],
@@ -247,10 +205,11 @@ class CommentPage extends GetView<CommentController> {
                   context: context,
                   removeTop: true,
                   child:FutureBuilder<List<Comment>>(
-                    future: controller.fetchComments(),
+                    future: controller.fetchComments(type.toString()),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                           List<Comment>? comments = snapshot.data;
+                          nbre_offres = comments!.length;
 
                           return ListView(
                             children:

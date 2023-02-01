@@ -33,7 +33,7 @@ class SearchBoxWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      'Search',
+                      'Rechercher une offre ...',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,

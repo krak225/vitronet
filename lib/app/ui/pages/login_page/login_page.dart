@@ -37,6 +37,9 @@ class LoginPage extends GetView<LoginController> {
                   SizedBox(
                     height: Get.height * 0.03,
                   ),
+                  SizedBox(
+                    height: Get.height * 0.03,
+                  ),
                   AutoSizeText(
                     "Connexion candidat",
                     style: TextStyle(
@@ -112,7 +115,7 @@ class LoginPage extends GetView<LoginController> {
                   SizedBox(
                     height: Get.height * 0.01,
                   ),
-
+                  /*
                   Row(
                     children: [
                       Expanded(
@@ -176,7 +179,7 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   SizedBox(
                     height: Get.height * 0.02,
-                  ),
+                  ),*/
 
                   AutoSizeText.rich(
                     TextSpan(

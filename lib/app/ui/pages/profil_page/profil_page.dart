@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
@@ -29,18 +30,19 @@ class ProfilPage extends GetView<ProfilController> {
                 ListTile(
                   leading: Image.asset('assets/icons/profil-user.png'),
                   title: AutoSizeText(
-                    'Mon information',
+                    'Mes informations',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: LightColor.black),
+                        color: LightColor.black
+                    ),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
                     color: LightColor.black.withOpacity(0.8),
                     size: 18,
                   ),
-                  onTap: () =>null,
+                  onTap: () => Get.toNamed(AppRoutes.PROFIL_DETAILS),
                 ),
                 Divider(
                   color: LightColor.grey,
@@ -48,9 +50,9 @@ class ProfilPage extends GetView<ProfilController> {
                 ListTile(
                   leading: Image.asset('assets/icons/profil-settings.png'),
                   title: AutoSizeText(
-                    'Réglages',
+                    'Mon CV et autres documents',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: LightColor.black),
                   ),
@@ -59,7 +61,7 @@ class ProfilPage extends GetView<ProfilController> {
                     color: LightColor.black.withOpacity(0.8),
                     size: 18,
                   ),
-                  onTap: () =>null,
+                  onTap: () => Get.toNamed(AppRoutes.MES_DOCUMENTS),
                 ),
                 Divider(
                   color: LightColor.grey,
@@ -69,7 +71,7 @@ class ProfilPage extends GetView<ProfilController> {
                   title: AutoSizeText(
                     'Se déconnecter',
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: LightColor.black),
                   ),

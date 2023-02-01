@@ -12,7 +12,7 @@ import '../routes/app_routes.dart';
 import '../ui/theme/snackbar_ui.dart';
 class LoginController extends GetxController {
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
-  final RxBool isHide = false.obs;
+  final RxBool isHide = true.obs;
   final AuthRepo authRepo = Get.find();
 
 
@@ -33,7 +33,7 @@ class LoginController extends GetxController {
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);
         this.authRepo.sessionTokenDataSave(loginResponse);
         //isLoading.value = true;
-        SnackbarUi.success("Connecté");
+        //SnackbarUi.success("Connecté");
 
         Get.offAllNamed(AppRoutes.HOME);
 

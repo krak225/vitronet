@@ -10,8 +10,12 @@ import 'package:get/get.dart';
 
 import '../../../controllers/home_controller.dart';
 
-class HomePage extends GetView<HomeController> {
-  //final MainController main_controller = Get.find();
+class HomePage extends GetView<MainController> {
+
+  /*late MainController main_controller;
+  HomePage(){
+    main_controller = Get.find();
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -30,21 +34,21 @@ class HomePage extends GetView<HomeController> {
             Column(
                 children: [
                   ItemBoxWidget(
-                    title: "Déposer mon CV",
+                    title: "CV et autres documents",
                     icon: "assets/images/depocv.png",
-                    onTap: () => null,
+                    onTap: () => Get.toNamed(AppRoutes.MES_DOCUMENTS),
                   ),
                   SizedBox(height: 20,),
                   ItemBoxWidget(
-                    title: "Postuler à une offre",
+                    title: "Offres selon mon profil",
                     icon: "assets/images/portfolio.png",
-                    onTap: () => null,
+                    onTap: () => controller.changeIndex(1), //Get.toNamed(AppRoutes.COMMENT, arguments: 1),
                   ),
                   SizedBox(height: 20,),
                   ItemBoxWidget(
-                    title: "Rechercher un Job",
+                    title: "Autres offres d'emploi",
                     icon: "assets/images/portfolio2.png",
-                    onTap: () => null, //main_controller.changeIndex(2),
+                    onTap: () => controller.changeIndex(2),
                   ),]
             ),
           )

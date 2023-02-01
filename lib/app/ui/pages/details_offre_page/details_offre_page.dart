@@ -288,12 +288,27 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                   ),
                   Visibility(
                     visible: controller.isPostulable.value,
-                    child: FadeInRight(
+                    child: comment.postulable == 1 ? FadeInRight(
                       duration: Duration(milliseconds: 900),
                       child: ButtonStyle1Widget(
                         text: 'Postuler',
                         onPressed: () => controller.postuler(comment.id.toString()),
                         color: LightColor.second
+                      ),
+                    ) :
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      child:Wrap(
+                        children:[
+                          Text("Vous avez déjà postulé à cette offre !", style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                          ),
+                        ]
                       ),
                     ),
                   ),

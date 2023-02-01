@@ -5,7 +5,7 @@ import 'themes.dart';
 
 class CustomInputDecoration {
 
- static InputDecoration style1({String? labelText, Widget? suffixIcon}) {
+ static InputDecoration style1({String? labelText, Widget? suffixIcon, InputBorder? border}) {
     return InputDecoration(
         labelText: labelText,
         labelStyle: Themes.globalFont(
@@ -17,6 +17,7 @@ class CustomInputDecoration {
         floatingLabelStyle: Themes.globalFont(
             style: TextStyle(color: LightColor.black, fontSize: 14)),
         hintText: labelText,
+        border: border,
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
                 color: LightColor.grey, width: 0.5)),

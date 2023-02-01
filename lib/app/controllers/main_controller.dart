@@ -11,11 +11,12 @@ class MainController extends GetxController {
   final index = 0.obs;
   final pageList = [
     HomePage(),
-    SearchPage(),
-    CommentPage(),
+    CommentPage(1, "Liste des offres selon mon profil"),
+    CommentPage(2, "Liste des autres offres"),
+    CommentPage(3, "Mes candidatures envoyées"),
     Container(),
   ];
-  final pageListTitle = ['Accueil', 'Recherche un job...', 'Offres d\'emploi', 'Profil'];
+  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Autres offres d\'emploi', 'Mes candidatures envoyées', 'Profil'];
 
   Future<void> changeIndex(int? index) async {
     //Get.toNamed(pageList[index]);
