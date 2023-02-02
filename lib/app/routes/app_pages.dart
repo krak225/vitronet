@@ -110,7 +110,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.OFFRES,
-      page: () => OffrePage(),
+      page: () => OffrePage(1, "Offres selon mon profil"),
       binding: OffreBinding(),
       transition: _defaultTransition,
     ),

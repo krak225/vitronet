@@ -15,6 +15,7 @@ class CommentController extends GetxController {
       final RxBool isHide = false.obs;
       final OffreRepo offreRepo = Get.find();
       GetStorage _storage = GetStorage();
+      late List<Comment> comments = List.empty();
 
       Future<List<Comment>> fetchComments(String type) async {
 
@@ -32,7 +33,9 @@ class CommentController extends GetxController {
 
           final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
 
-          return parsed.map<Comment>((json) => Comment.fromMap(json)).toList();
+          comments = parsed.map<Comment>((json) => Comment.fromMap(json)).toList();
+
+          return comments;
 
         } else {
 

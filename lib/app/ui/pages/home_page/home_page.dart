@@ -22,6 +22,8 @@ class HomePage extends GetView<MainController> {
     return MainLayoutView(
         hPadding: 0,
         // backgroundColors: LightColor.backgroundHome,
+        child:
+        SingleChildScrollView(
         child: Column(children: [
           //SearchBoxWidget(),
           HomeHeaderBoxWidget(),
@@ -30,29 +32,29 @@ class HomePage extends GetView<MainController> {
           ),
           Padding(
             padding: const EdgeInsets.all(25.0),
-            child:
-            Column(
-                children: [
-                  ItemBoxWidget(
-                    title: "CV et autres documents",
-                    icon: "assets/images/depocv.png",
-                    onTap: () => Get.toNamed(AppRoutes.MES_DOCUMENTS),
-                  ),
-                  SizedBox(height: 20,),
-                  ItemBoxWidget(
-                    title: "Offres selon mon profil",
-                    icon: "assets/images/portfolio.png",
-                    onTap: () => controller.changeIndex(1), //Get.toNamed(AppRoutes.COMMENT, arguments: 1),
-                  ),
-                  SizedBox(height: 20,),
-                  ItemBoxWidget(
-                    title: "Autres offres d'emploi",
-                    icon: "assets/images/portfolio2.png",
-                    onTap: () => controller.changeIndex(2),
-                  ),]
+            child:Column(
+                  children: [
+                    ItemBoxWidget(
+                      title: "CV et autres documents",
+                      icon: "assets/images/depocv.png",
+                      onTap: () => Get.toNamed(AppRoutes.MES_DOCUMENTS),
+                    ),
+                    SizedBox(height: 20,),
+                    ItemBoxWidget(
+                      title: "Offres selon mon profil",
+                      icon: "assets/images/portfolio.png",
+                      onTap: () => controller.changeIndex(1), //Get.toNamed(AppRoutes.COMMENT, arguments: 1),
+                    ),
+                    SizedBox(height: 20,),
+                    ItemBoxWidget(
+                      title: "Autres offres d'emploi",
+                      icon: "assets/images/portfolio2.png",
+                      onTap: () => controller.changeIndex(2),
+                    ),]
+              ),
             ),
-          )
-        ])
+        ]),
+        ),
     );
   }
 }

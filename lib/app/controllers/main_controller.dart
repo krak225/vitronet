@@ -6,17 +6,19 @@ import 'package:job_boarder/app/ui/pages/comment_page/comment_page.dart';
 import 'package:job_boarder/app/ui/pages/search_page/search_page.dart';
 
 import '../ui/pages/home_page/home_page.dart';
+import '../ui/pages/offre_page/offre_page.dart';
 import '../ui/theme/light_color.dart';
 class MainController extends GetxController {
   final index = 0.obs;
   final pageList = [
     HomePage(),
-    CommentPage(1, "Liste des offres selon mon profil"),
     CommentPage(2, "Liste des autres offres"),
-    CommentPage(3, "Mes candidatures envoyées"),
+    OffrePage(2, "Liste des offres d'emploi"),
+    OffrePage(3, "Mes candidatures envoyées"),
     Container(),
   ];
-  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Autres offres d\'emploi', 'Mes candidatures envoyées', 'Profil'];
+
+  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Offres d\'emploi', 'Mes candidatures envoyées', 'Profil'];
 
   Future<void> changeIndex(int? index) async {
     //Get.toNamed(pageList[index]);

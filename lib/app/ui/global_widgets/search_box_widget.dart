@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:job_boarder/app/data/models/offre.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 
 class SearchBoxWidget extends StatelessWidget {
   final dynamic onTapSettings;
   final dynamic onTapSearch;
-  const SearchBoxWidget({Key? key, this.onTapSettings, this.onTapSearch}) : super(key: key);
+  final dynamic comments;
+  const SearchBoxWidget({Key? key, this.onTapSettings, this.onTapSearch, this.comments}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
