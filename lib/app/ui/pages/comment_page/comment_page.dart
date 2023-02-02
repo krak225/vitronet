@@ -1,4 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:job_boarder/app/controllers/main_controller.dart';
 import 'package:job_boarder/app/ui/global_widgets/search_box_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
@@ -7,11 +10,14 @@ import 'package:multi_select_flutter/util/multi_select_item.dart';
 
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
+import '../../global_widgets/button_style1_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/comment_controller.dart';
+import '../../theme/custom_input_decoration.dart';
+import '../../utils/validator_state.dart';
 
 class Animal {
   final int id;
@@ -48,7 +54,71 @@ class CommentPage extends GetView<CommentController> {
                       Get.toNamed(AppRoutes.SEARCH)
                     },
                     onTapSettings: () => {
-
+                      Get.bottomSheet(
+                        Container(
+                          decoration: BoxDecoration(
+                            color: LightColor.second,
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xff000000).withOpacity(0.11),
+                                spreadRadius: 1,
+                                blurRadius: 30,
+                                offset: Offset(0, 20), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          height: 350,
+                          color: Colors.white,
+                          child:FormBuilder(
+                            key: controller.formKey,
+                            ///initialValue: controller.initValues,
+                            autovalidateMode: AutovalidateMode.disabled,
+                            child: Column(children: [
+                              FadeInRight(
+                                child: FormBuilderTextField(
+                                  name: 'diplome',
+                                  initialValue: '',
+                                  decoration:
+                                  CustomInputDecoration.style1(labelText: 'Diplôme requis'),
+                                ),
+                              ),
+                              SizedBox(height: Get.height * 0.02),
+                              FadeInRight(
+                                delay: Duration(milliseconds: 300),
+                                child: FormBuilderTextField(
+                                  name: 'domaine',
+                                  initialValue: '',
+                                  obscureText: controller.isHide.value,
+                                  validator: ValidatorState.required,
+                                  decoration: CustomInputDecoration.style1(
+                                      labelText: "Secteur d'activité",
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          Icons.remove_red_eye_outlined,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () {
+                                          controller.isHide.value =
+                                          !controller.isHide.value;
+                                        },
+                                      )),
+                                ),
+                              ),
+                              SizedBox(height: Get.height * 0.02),
+                              FadeInRight(
+                                duration: Duration(milliseconds: 600),
+                                child: ButtonStyle1Widget(
+                                  text: 'Continuer',
+                                  onPressed: () => {print("search performed")},
+                                ),
+                              ),
+                            ]),
+                          ),
+                          ),
+                          barrierColor: Colors.grey[3],
+                          isDismissible: true,
+                        )
                     },
                     comments: controller.comments,
                 ),
@@ -73,7 +143,7 @@ class CommentPage extends GetView<CommentController> {
                       ),
 
                       TextButton(
-                        onPressed: () => Get.toNamed(AppRoutes.OFFRES, arguments: 1),
+                        onPressed: () => controller.changeIndex(1),//Get.toNamed(AppRoutes.OFFRES, arguments: 1),
                         child: AutoSizeText(
                           "Voir plus",
                           style: TextStyle(
@@ -91,10 +161,10 @@ class CommentPage extends GetView<CommentController> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 4.0),
                     child:FutureBuilder<List<Comment>>(
-                    future: controller.fetchComments(2.toString()),
-                    builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                    List<Comment>? comments = snapshot.data;
+                    future: controller.fetchComments(1.toString()),
+                    builder: (context, snapshot_1) {
+                    if (snapshot_1.hasData) {
+                    List<Comment>? comments1 = snapshot_1.data;
 
                     return Padding(
                       padding: EdgeInsets.only(
@@ -106,7 +176,7 @@ class CommentPage extends GetView<CommentController> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                           children: List.generate(
-                            comments!.length,
+                            comments1!.length,
                             (index) => Container(
                               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                               child: Container(
@@ -123,37 +193,39 @@ class CommentPage extends GetView<CommentController> {
                                   ],
                                 ),
                                   child:InkWell(
-                                    onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                    child: Row(
-                                      children: [
-                                      //Image.asset("assets/images/orange-3 1.png"),
-                                      Image.network(comments[index].offre_image, width: 80, height: 70,),
-                                      SizedBox(width: 5),
-                                      Column(children: [
-                                        AutoSizeText(
-                                          comments[index].offretitre,
-                                          maxLines: 2,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
-                                        ),
-                                        AutoSizeText(
-                                          comments[index].entreprise,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                          child: Text(
-                                            "Voir le détail",
-                                            style: TextStyle(
-                                            color: Colors.white,
+                                    onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments1[index]),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                        //Image.asset("assets/images/orange-3 1.png"),
+                                        Image.network(comments1[index].offre_image, width: 80, height: 70,),
+                                        SizedBox(width: 5),
+                                        Column(children: [
+                                          AutoSizeText(
+                                            comments1[index].offretitre,
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
                                           ),
+                                          AutoSizeText(
+                                            comments1[index].entreprise,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
                                           ),
-                                          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
-                                        ),
-                                      ],
-                                      )
-                                    ]),
+                                          TextButton(
+                                            onPressed: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments1[index]),
+                                            child: Text(
+                                              "Voir le détail",
+                                              style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                            ),
+                                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                                          ),
+                                        ],
+                                        )
+                                      ]),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -163,8 +235,8 @@ class CommentPage extends GetView<CommentController> {
                       ),
                     );
 
-                    } else if (snapshot.hasError) {
-                    return Text("Pas de données");//"${snapshot.error}"
+                    } else if (snapshot_1.hasError) {
+                      return Text("AUCUNE OFFRE DISPONIBLE");//"${snapshot.error}"
                     }
                     return Center(child: CircularProgressIndicator());
                     },

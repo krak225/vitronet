@@ -1,21 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/app_constants.dart';
 import '../data/models/offre.dart';
 import '../data/provider/repositories/offre_repo.dart';
+import 'main_controller.dart';
 
 class CommentController extends GetxController {
+
+      GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+
       final RxBool isHide = false.obs;
       final OffreRepo offreRepo = Get.find();
       GetStorage _storage = GetStorage();
       late List<Comment> comments = List.empty();
+
+      Future<void> changeIndex(int? index) async {
+        print(index);
+         Get.find<MainController>().changeIndex(index);
+      }
+
 
       Future<List<Comment>> fetchComments(String type) async {
 
