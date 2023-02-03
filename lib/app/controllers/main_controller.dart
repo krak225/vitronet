@@ -2,17 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:job_boarder/app/ui/pages/comment_page/comment_page.dart';
-import 'package:job_boarder/app/ui/pages/search_page/search_page.dart';
 
 import '../ui/pages/home_page/home_page.dart';
+import '../ui/pages/job_page/job_page.dart';
 import '../ui/pages/offre_page/offre_page.dart';
 import '../ui/theme/light_color.dart';
 class MainController extends GetxController {
   final index = 0.obs;
   final pageList = [
     HomePage(),
-    CommentPage(2, "Liste des autres offres"),
+    JobPage(2, "Liste des autres offres"),
     OffrePage(2, "Liste des offres d'emploi"),
     OffrePage(3, "Mes candidatures envoyées"),
     Container(),
@@ -60,6 +59,9 @@ class MainController extends GetxController {
   init(){
     // this.userData.value =
     //     UserModel.fromJson(box.read(AppConstants.USER_STORAGE));
+
+    print('on init');
+
   }
 
   @override

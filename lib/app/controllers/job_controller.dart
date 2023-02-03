@@ -14,7 +14,7 @@ import '../data/models/offre.dart';
 import '../data/provider/repositories/offre_repo.dart';
 import 'main_controller.dart';
 
-class CommentController extends GetxController {
+class JobController extends GetxController {
 
       GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
 

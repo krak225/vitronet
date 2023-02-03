@@ -17,28 +17,19 @@ import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/comment_controller.dart';
+import '../../../controllers/job_controller.dart';
 import '../../theme/custom_input_decoration.dart';
 import '../../theme/themes.dart';
 import '../../utils/validator_state.dart';
 
-class Animal {
-  final int id;
-  final String name;
 
-  Animal({
-    required this.id,
-    required this.name,
-  });
-}
-
-class CommentPage extends GetView<CommentController> {
+class JobPage extends GetView<JobController> {
   int type;
   String libelle_offres = "Liste des offres d'emploi";
   int nbre_offres = 0;
   int? q = Get.arguments;
 
-  CommentPage(this.type, this.libelle_offres);
+  JobPage(this.type, this.libelle_offres);
 
   @override
   Widget build(BuildContext context) {

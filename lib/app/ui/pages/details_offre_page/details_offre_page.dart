@@ -17,7 +17,7 @@ import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/comment_controller.dart';
+import '../../../controllers/job_controller.dart';
 import '../../theme/custom_input_decoration.dart';
 import '../home_page/widgets/home_header_box_widget.dart';
 import '../login_page/widgets/social_buttom_widget.dart';

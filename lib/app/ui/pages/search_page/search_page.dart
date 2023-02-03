@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:job_boarder/app/ui/pages/search_page/recherche_view.dart';
 
 import '../../../controllers/search_controller.dart';
 import '../../../data/models/offre.dart';
@@ -14,8 +13,6 @@ class SearchPage extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-
-    //return RechercheView();
 
     controller.getOffres("");
 

@@ -29,10 +29,10 @@ class Header2Widget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: TextButton(
-              onPressed: () => Get.toNamed(AppRoutes.PROFIL)?.then((value) => mainController.init()),
+              onPressed: () => Scaffold.of(context).openDrawer(),
               child: Image.asset(
                 'assets/icons/menu.png',
-                width: 21,
+                width: 54,
               ),
             ),
           ),

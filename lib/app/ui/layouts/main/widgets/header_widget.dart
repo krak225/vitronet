@@ -26,7 +26,7 @@ class HeaderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextButton(
-            onPressed: () => Get.toNamed(AppRoutes.PROFIL)?.then((value) => mainController.init()),
+            onPressed: () => openDrawer,
             child: Obx(
               () => Container(
                 width: Get.width * 0.6,

@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../../routes/app_routes.dart';
 
-class CommentHeaderBoxWidget extends StatelessWidget {
-  const CommentHeaderBoxWidget({Key? key}) : super(key: key);
+class JobHeaderBoxWidget extends StatelessWidget {
+  const JobHeaderBoxWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

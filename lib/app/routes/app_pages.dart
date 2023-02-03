@@ -11,27 +11,27 @@ import '../ui/pages/details_offre_page/details_offre_page.dart';
 import '../ui/pages/documents_page/documents_page.dart';
 import '../ui/pages/offre_page/offre_page.dart';
 import '../ui/pages/profil_update_page/profil_update_page.dart';
-      import '../bindings/profil_binding.dart';
+import '../bindings/profil_binding.dart';
 import '../ui/pages/profil_page/profil_page.dart';
-      import '../bindings/comment_binding.dart';
-import '../ui/pages/comment_page/comment_page.dart';
-      import '../bindings/search_binding.dart';
+import '../bindings/job_binding.dart';
+import '../ui/pages/job_page/job_page.dart';
+import '../bindings/search_binding.dart';
 import '../ui/pages/search_page/search_page.dart';
-      import '../bindings/register_otp_binding.dart';
+import '../bindings/register_otp_binding.dart';
 import '../ui/pages/register_otp_page/register_otp_page.dart';
-      import '../bindings/register_profil_binding.dart';
+import '../bindings/register_profil_binding.dart';
 import '../ui/pages/register_profil_page/register_profil_page.dart';
-      import '../bindings/register_demande_binding.dart';
+import '../bindings/register_demande_binding.dart';
 import '../ui/pages/register_demande_page/register_demande_page.dart';
-      import '../bindings/register_init_binding.dart';
+import '../bindings/register_init_binding.dart';
 import '../ui/pages/register_init_page/register_init_page.dart';
-      import '../bindings/login_binding.dart';
+import '../bindings/login_binding.dart';
 import '../ui/pages/login_page/login_page.dart';
-      import '../bindings/onboarding_binding.dart';
+import '../bindings/onboarding_binding.dart';
 import '../ui/pages/onboarding_page/onboarding_page.dart';
-      import '../bindings/start_binding.dart';
+import '../bindings/start_binding.dart';
 import '../ui/pages/start_page/start_page.dart';
-      import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../ui/pages/unknown_route_page/unknown_route_page.dart';
@@ -122,7 +122,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.COMMENT,
-      page: () => CommentPage(1, "Offres selon mon profil"),
+      page: () => JobPage(1, "Offres selon mon profil"),
       binding: CommentBinding(),
       transition: _defaultTransition,
     ),

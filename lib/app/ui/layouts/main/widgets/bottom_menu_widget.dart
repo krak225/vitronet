@@ -43,14 +43,14 @@ class BottomMenuWidget extends StatelessWidget {
               onPressed: () => controller.changeIndex(1),
             ),
 
-
+            /*
             BottomMenuItemWidget(
               icon: 'assets/icons/find.png',
               activIcon: 'assets/icons/find-active.png',
               isSelected: controller.index.value == 2,
               onPressed: () => controller.changeIndex(2),
             ),
-
+            */
 
             BottomMenuItemWidget(
               icon: 'assets/icons/certificat.png',

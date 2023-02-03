@@ -60,7 +60,7 @@ class LoginPage extends GetView<LoginController> {
                       FadeInRight(
                         child: FormBuilderTextField(
                           name: 'email',
-                          initialValue: 'richmond@gmail.com',
+                          initialValue: '',
                           validator: ValidatorState.email,
                           decoration:
                               CustomInputDecoration.style1(labelText: 'Email'),
@@ -71,7 +71,7 @@ class LoginPage extends GetView<LoginController> {
                         delay: Duration(milliseconds: 300),
                         child: FormBuilderTextField(
                           name: 'password',
-                          initialValue: 'user123',
+                          initialValue: '',
                           obscureText: controller.isHide.value,
                           validator: ValidatorState.required,
                           decoration: CustomInputDecoration.style1(
