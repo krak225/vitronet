@@ -101,6 +101,7 @@ class LoginPage extends GetView<LoginController> {
                   SizedBox(
                     height: Get.height * 0.01,
                   ),
+
                   TextButton(onPressed: () => null, child: AutoSizeText(
                     "Mot de passe oublié ?",
                     style: TextStyle(
@@ -115,6 +116,7 @@ class LoginPage extends GetView<LoginController> {
                   SizedBox(
                     height: Get.height * 0.01,
                   ),
+
                   /*
                   Row(
                     children: [

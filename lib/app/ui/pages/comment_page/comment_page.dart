@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:job_boarder/app/controllers/main_controller.dart';
 import 'package:job_boarder/app/ui/global_widgets/search_box_widget.dart';
+import 'package:job_boarder/app/ui/layouts/main/widgets/header_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
 import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
@@ -11,12 +12,14 @@ import 'package:multi_select_flutter/util/multi_select_item.dart';
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/button_style1_widget.dart';
+import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/comment_controller.dart';
 import '../../theme/custom_input_decoration.dart';
+import '../../theme/themes.dart';
 import '../../utils/validator_state.dart';
 
 class Animal {
@@ -51,69 +54,84 @@ class CommentPage extends GetView<CommentController> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: SearchBoxWidget(
                     onTapSearch: () => {
-                      Get.toNamed(AppRoutes.SEARCH)
+                      Get.toNamed(AppRoutes.SEARCH),
                     },
                     onTapSettings: () => {
                       Get.bottomSheet(
                         Container(
-                          decoration: BoxDecoration(
-                            color: LightColor.second,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff000000).withOpacity(0.11),
-                                spreadRadius: 1,
-                                blurRadius: 30,
-                                offset: Offset(0, 20), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          height: 350,
+                          height: 400,
                           color: Colors.white,
-                          child:FormBuilder(
-                            key: controller.formKey,
-                            ///initialValue: controller.initValues,
-                            autovalidateMode: AutovalidateMode.disabled,
-                            child: Column(children: [
-                              FadeInRight(
-                                child: FormBuilderTextField(
-                                  name: 'diplome',
-                                  initialValue: '',
-                                  decoration:
-                                  CustomInputDecoration.style1(labelText: 'Diplôme requis'),
-                                ),
-                              ),
-                              SizedBox(height: Get.height * 0.02),
-                              FadeInRight(
-                                delay: Duration(milliseconds: 300),
-                                child: FormBuilderTextField(
-                                  name: 'domaine',
-                                  initialValue: '',
-                                  obscureText: controller.isHide.value,
-                                  validator: ValidatorState.required,
-                                  decoration: CustomInputDecoration.style1(
-                                      labelText: "Secteur d'activité",
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          Icons.remove_red_eye_outlined,
-                                          color: Colors.black,
+                          child:Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: FormBuilder(
+                              key: controller.formKey,
+                              ///initialValue: controller.initValues,
+                              autovalidateMode: AutovalidateMode.disabled,
+                              child: SingleChildScrollView(
+                                child: Column(children: [
+                                  Container(
+                                    // height: 85,
+                                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10, ),
+                                    // color: Colors.red,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Icon(Icons.settings_suggest, size: 24, color: Colors.black,))
+                                        ,
+                                        Expanded(
+                                          flex: 5,
+                                          child: AutoSizeText("Mon agent de recherche",
+                                              maxLines: 1,
+                                              minFontSize: 16,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.left,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          controller.isHide.value =
-                                          !controller.isHide.value;
-                                        },
-                                      )),
-                                ),
+                                        Expanded(
+                                            flex: 1,
+                                            child: Container()
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  FadeInRight(
+                                    child: FormBuilderTextField(
+                                      name: 'titre',
+                                      initialValue: '',
+                                      decoration: CustomInputDecoration.style1(labelText: "Titre de l'offre"),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.04),
+                                  FadeInRight(
+                                    delay: Duration(milliseconds: 300),
+                                    child: FormBuilderTextField(
+                                      name: 'entreprise',
+                                      initialValue: '',
+                                      decoration: CustomInputDecoration.style1(labelText: "Nom de l'entreprise"),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.04),
+                                  FadeInRight(
+                                    delay: Duration(milliseconds: 300),
+                                    child: FormBuilderTextField(
+                                      name: 'domaine',
+                                      initialValue: '',
+                                      decoration: CustomInputDecoration.style1(labelText: "Secteur d'activité"),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.04),
+                                  FadeInRight(
+                                    duration: Duration(milliseconds: 600),
+                                    child: ButtonStyle1Widget(
+                                      text: 'Appliquer',
+                                      onPressed: () => {print("search performed")},
+                                    ),
+                                  ),
+                                ]),
                               ),
-                              SizedBox(height: Get.height * 0.02),
-                              FadeInRight(
-                                duration: Duration(milliseconds: 600),
-                                child: ButtonStyle1Widget(
-                                  text: 'Continuer',
-                                  onPressed: () => {print("search performed")},
-                                ),
-                              ),
-                            ]),
+                            ),
                           ),
                           ),
                           barrierColor: Colors.grey[3],

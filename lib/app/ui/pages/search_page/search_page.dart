@@ -1,122 +1,135 @@
-// main.dart
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:job_boarder/app/ui/pages/search_page/recherche_view.dart';
 
+import '../../../controllers/search_controller.dart';
+import '../../../data/models/offre.dart';
+import '../../../routes/app_routes.dart';
+import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
+import '../../theme/light_color.dart';
 
-void main() {
-  runApp(const SearchApp());
-}
-
-class SearchApp extends StatelessWidget {
-  const SearchApp({Key? key}) : super(key: key);
+class SearchPage extends GetView<SearchController> {
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SearchPage(),
-    );
-  }
-}
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+    //return RechercheView();
 
-  @override
-  _SearchPageState createState() => _SearchPageState();
-}
+    controller.getOffres("");
 
-class _SearchPageState extends State<SearchPage> {
-
-  final List<Map<String, dynamic>> _allUsers = [
-    {"id": 1, "name": "Andy", "age": 29},
-    {"id": 2, "name": "Aragon", "age": 40},
-    {"id": 3, "name": "Bob", "age": 5},
-    {"id": 4, "name": "Barbara", "age": 35},
-    {"id": 5, "name": "Candy", "age": 21},
-    {"id": 6, "name": "Colin", "age": 55},
-    {"id": 7, "name": "Audra", "age": 30},
-    {"id": 8, "name": "Banana", "age": 14},
-    {"id": 9, "name": "Caversky", "age": 100},
-    {"id": 10, "name": "Becky", "age": 32},
-  ];
-
-  // This list holds the data for the list view
-  List<Map<String, dynamic>> _foundUsers = [];
-  @override
-  initState() {
-
-    _foundUsers = _allUsers;
-    super.initState();
-  }
-
-  // This function is called whenever the text field changes
-  void _runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
-    if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      results = _allUsers;
-    } else {
-      results = _allUsers
-          .where((user) =>
-          user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
-      // we use the toLowerCase() method to make it case-insensitive
-    }
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MainLayoutView(
+    return Obx(()=> MainLayoutView(
       hPadding: 0,
-      child:Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: const InputDecoration(
-                  labelText: 'Search', suffixIcon: Icon(Icons.search)),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: _foundUsers.isNotEmpty
-                  ? ListView.builder(
-                itemCount: _foundUsers.length,
-                itemBuilder: (context, index) => Card(
-                  key: ValueKey(_foundUsers[index]["id"]),
-                  color: Colors.blue,
-                  elevation: 4,
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  child: ListTile(
-                    leading: Text(
-                      _foundUsers[index]["id"].toString(),
-                      style: const TextStyle(fontSize: 24, color:Colors.white),
-                    ),
-                    title: Text(_foundUsers[index]['name'], style:TextStyle(
-                        color:Colors.white
-                    )),
-                    subtitle: Text(
-                        '${_foundUsers[index]["age"].toString()} years old',style:TextStyle(
-                        color:Colors.white
-                    )),
-                  ),
-                ),
-              )
-                  : const Text(
-                'No results found',
-                style: TextStyle(fontSize: 24),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              DefaultHeaderWidget(title: "Rechercher une offre"),
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: TextFormField(
+                          controller: textEditingController,
+                          onChanged: (value) {
+                            controller.getOffres(value);
+                          },
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.getOffres(textEditingController.text);
+                                },
+                                icon: Icon(Icons.search),
+                              ),
+                              hintText: "Rechercher l'intitulé de l'offre"),
+                        ),
+                      )),
+                  SizedBox(width: 10,),
+                  /*Container(
+                      color: Colors.white,
+                      child: Center(
+                        child: IconButton(
+                          onPressed: (){
+                            textEditingController.clear();
+                            controller.FactRepo.clear();
+                          },
+                          icon: Icon(Icons.clear,color: Colors.red,),
+                        ),
+                      ),
+                    )*/
+                ],
               ),
-            ),
-          ],
+              SizedBox(height: 10,),
+              SizedBox(height: 600,
+                child: ListView.builder(
+                    itemCount: controller.factModels.length,
+                    itemBuilder: (BuildContext, index){
+
+                      Comment comment = controller.factModels[index];
+
+                      return Container(
+                        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(4),
+                            boxShadow: [
+                              BoxShadow(
+                                color: LightColor.lightGrey2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              )
+                            ],
+                          ),
+                          child:InkWell(
+                            onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: controller.factModels[index]),
+                            child: Row(
+                                children: [
+                                  Image.network(comment.offre_image, width: 70, height: 70,),
+                                  SizedBox(width: 5),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        comment.offretitre,
+                                        maxLines: 2,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                      Text(
+                                        comment.entreprise,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.grey),
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                    ],
+                                  ),
+                                  Image.asset("assets/images/arrow.png"),
+                                ]
+                            ),
+                          ),
+                        ),
+                      );
+
+                    }),
+              )
+            ],
+          ),
         ),
-    ),
+      ),
+    )
     );
+
   }
+
 }

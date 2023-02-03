@@ -1,24 +1,15 @@
-
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+import 'package:job_boarder/app/Model/fact_model.dart';
 
-import '../Model/fact_model.dart';
 import '../config/app_constants.dart';
 import '../data/models/offre.dart';
-import '../data/provider/repositories/offre_repo.dart';
-import 'main_controller.dart';
 
-class SearchController extends GetxController {
+class RechercheController extends GetxController {
   var factModels = [].obs;
   GetStorage _storage = GetStorage();
 

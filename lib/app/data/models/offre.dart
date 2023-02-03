@@ -38,4 +38,6 @@ class Comment{
     offre_like: json["offre_like"],
     postulable: json["postulable"],
   );
+
+
 }
