@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/default_header_widget.dart';
@@ -11,6 +12,7 @@ import '../../theme/light_color.dart';
 import 'widgets/profil_box_widget.dart';
 
 class ProfilPage extends GetView<ProfilController> {
+
   @override
   Widget build(BuildContext context) {
     return MainLayoutView(

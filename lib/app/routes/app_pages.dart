@@ -5,11 +5,13 @@ import '../bindings/details_offre_binding.dart';
 import '../bindings/documents_binding.dart';
 import '../bindings/main_binding.dart';
 import '../bindings/offre_binding.dart';
+import '../bindings/photo_update_binding.dart';
 import '../bindings/profil_details_binding.dart';
 import '../bindings/profil_update_binding.dart';
 import '../ui/pages/details_offre_page/details_offre_page.dart';
 import '../ui/pages/documents_page/documents_page.dart';
 import '../ui/pages/offre_page/offre_page.dart';
+import '../ui/pages/photo_update_page/photo_update_page.dart';
 import '../ui/pages/profil_update_page/profil_update_page.dart';
 import '../bindings/profil_binding.dart';
 import '../ui/pages/profil_page/profil_page.dart';
@@ -100,6 +102,12 @@ class AppPages {
       name: AppRoutes.MES_DOCUMENTS,
       page: () => DocumentsPage(),
       binding: DocumentsBinding(),
+      transition: _defaultTransition,
+    ),
+    GetPage(
+      name: AppRoutes.MES_PHOTOS,
+      page: () => PhotoUpdatePage(),
+      binding: PhotoUpdateBinding(),
       transition: _defaultTransition,
     ),
     GetPage(

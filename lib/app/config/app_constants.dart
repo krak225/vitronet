@@ -16,6 +16,9 @@ class AppConstants {
   static const String USER_TELEPHONE = "USER_TELEPHONE";
   static const String USER_ADRESSE = "USER_ADRESSE";
   static const String USER_GENRE = "USER_GENRE";
+  static const String USER_DOMAINE = "USER_DOMAINE";
+  static const String USER_EXPERIENCE = "USER_EXPERIENCE";
+  static const String USER_DIPLOME = "USER_DIPLOME";
 
   //pour les documents
   static const String USER_PROFIL_ID = "USER_PROFIL_ID";
@@ -24,6 +27,7 @@ class AppConstants {
   static const String USER_DPC = "USER_DPC";
   static const String USER_CV = "USER_CV";
   static const String USER_ATT = "USER_ATT";
+  static const String USER_PHOTO = "USER_PHOTO";
 
 
   //static const String BASE_URL = "http://10.0.2.2:8000"; //localhost for android

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -26,6 +28,10 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
     String telephone = _storage.read(AppConstants.USER_TELEPHONE).toString();
     String adresse = _storage.read(AppConstants.USER_ADRESSE).toString();
     String genre = _storage.read(AppConstants.USER_GENRE).toString();
+    String photo = _storage.read(AppConstants.USER_PHOTO).toString();
+    String experience = _storage.read(AppConstants.USER_EXPERIENCE).toString();
+    String diplome = _storage.read(AppConstants.USER_DIPLOME).toString();
+    int diplome_id = 0;
 
     return MainLayoutView(
         child: Column(
@@ -52,10 +58,13 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         ], borderRadius: BorderRadius.circular(50)),
                     child: Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              AssetImage('assets/images/profil.png'),
+                        InkWell(
+                          onTap: ()=> controller.pickPhoto(),
+                          child:GetBuilder<ProfilUpdateController>(
+                            builder: (_) {
+                              return controller.getAvatar(photo);
+                            },
+                          ),
                         ),
                         Positioned(
                           bottom: 0,
@@ -71,7 +80,10 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                               // ),
                               color: LightColor.second,
                             ),
-                            child: Image.asset('assets/images/photo.png'),
+                            child: InkWell(
+                                onTap: ()=> controller.pickPhoto(),
+                                child: Image.asset('assets/images/photo.png'),
+                            ),
                           ),
                         ),
                       ],
@@ -158,6 +170,64 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                               // validator: ValidatorState.email,
                               decoration: CustomInputDecoration.style1(
                                   labelText: 'Phone'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: Get.height * 0.04),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: FadeInRight(
+                            child: FormBuilderDropdown(
+                              name: 'diplome',
+                              validator: ValidatorState.required,
+                              decoration: CustomInputDecoration.style2(labelText: 'Dernier diplôme'),
+                              items: [
+                                DropdownMenuItem(
+                                  child: Text('Bac'),
+                                  value: '1',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +1'),
+                                  value: '2',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +2'),
+                                  value: '3',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +3'),
+                                  value: '4',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +4'),
+                                  value: '5',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +5'),
+                                  value: '6',
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Bac +5 et plus'),
+                                  value: '7',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: FadeInRight(
+                            child: FormBuilderTextField(
+                              name: 'experience',
+                              initialValue: experience,
+                              // validator: ValidatorState.email,
+                              decoration: CustomInputDecoration.style1(
+                                  labelText: "Année d'expérience"),
                             ),
                           ),
                         ),

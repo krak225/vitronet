@@ -75,7 +75,8 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
               child: Column(
                 children: [
                   SizedBox(height: 20,),
-                  Padding(
+
+                /*Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
@@ -97,7 +98,8 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                         ),
                       ],
                     ),
-                  ),
+                  ),*/
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -151,30 +153,6 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                       children: [
                         Expanded(
                           child: FadeInRight(
-                            child: Text("Date publication"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: FadeInRight(
-                            child: Text(comment.offre_datepublic, textAlign: TextAlign.right, style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.black),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: FadeInRight(
                             child: Text("Recruteur"),
                           ),
                         ),
@@ -199,7 +177,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                       children: [
                         Expanded(
                           child: FadeInRight(
-                            child: Text("Diplôme"),
+                            child: Text("Diplôme minimum"),
                           ),
                         ),
                         SizedBox(
@@ -207,7 +185,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                         ),
                         Expanded(
                           child: FadeInRight(
-                            child: Text("BAC +2/3", textAlign: TextAlign.right, style: TextStyle(
+                            child: Text(comment.diplome, textAlign: TextAlign.right, style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: LightColor.black),
                             ),
@@ -230,7 +208,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                         ),
                         Expanded(
                           child: FadeInRight(
-                            child: Text("CDI", textAlign: TextAlign.right, style: TextStyle(
+                            child: Text(comment.type_contrat, textAlign: TextAlign.right, style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: LightColor.black),
                             ),
@@ -239,6 +217,55 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                       ],
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text("Date publication"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text(comment.offre_datepublic, textAlign: TextAlign.right, style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text("Date expiration"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: FadeInRight(
+                            child: Text(comment.offre_datefin, textAlign: TextAlign.right, style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                   Divider(
                     color: Colors.grey,
                   ),

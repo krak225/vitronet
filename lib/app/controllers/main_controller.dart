@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../config/app_constants.dart';
 import '../ui/pages/home_page/home_page.dart';
 import '../ui/pages/job_page/job_page.dart';
 import '../ui/pages/offre_page/offre_page.dart';
@@ -13,11 +15,12 @@ class MainController extends GetxController {
     HomePage(),
     JobPage(2, "Liste des autres offres"),
     OffrePage(2, "Liste des offres d'emploi"),
-    OffrePage(3, "Mes candidatures envoyées"),
+    OffrePage(3, "Mes alerts emploi"),
+    OffrePage(4, "Mes candidatures envoyées"),
     Container(),
   ];
 
-  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Offres d\'emploi', 'Mes candidatures envoyées', 'Profil'];
+  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Offres d\'emploi', 'Mes notifications', 'Mes candidatures envoyées', 'Profil'];
 
   Future<void> changeIndex(int? index) async {
     //Get.toNamed(pageList[index]);
@@ -49,12 +52,41 @@ class MainController extends GetxController {
     Get.toNamed(page);
   }
 
-  getAvatar() {
+  getAvatar_armel() {
     // return userData.value.avatar != null
     //     ? NetworkImage('${AppConstants.BASE_URL}${userData.value.avatar}')
     //     : AssetImage('assets/img/profil.jpg');
+
+
     return AssetImage('assets/images/profil.png');
   }
+
+
+  getAvatar(double radius) {
+
+    GetStorage _storage = GetStorage();
+    String photo = _storage.read(AppConstants.USER_PHOTO).toString();
+
+      if(photo.length > 4){
+
+        return ClipOval(
+          child: SizedBox.fromSize(
+            size: Size.fromRadius(radius),
+            child: Image.network(photo, fit: BoxFit.cover),
+          ),
+        );
+
+      }else {
+
+        return CircleAvatar(
+          radius: radius,
+          backgroundImage: AssetImage('assets/images/profil.png'),
+        );
+
+      }
+
+  }
+
 
   init(){
     // this.userData.value =

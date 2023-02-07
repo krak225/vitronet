@@ -1,7 +1,9 @@
 
 import 'dart:convert';
 import 'dart:io' as Io;
+import 'dart:io';
 
+import 'package:mime/mime.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,7 +16,9 @@ import 'package:job_boarder/app/ui/pages/register_demande_page/widgets/register_
 import '../config/app_constants.dart';
 import '../data/provider/requests/document_dto.dart';
 import '../routes/app_routes.dart';
+import '../ui/theme/light_color.dart';
 import '../ui/theme/snackbar_ui.dart';
+
 class RegisterDemandeController extends GetxController {
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
   final ImagePicker _picker = ImagePicker();
@@ -42,7 +46,7 @@ class RegisterDemandeController extends GetxController {
 
   selectDocument(DocumentDto doc) {
     is_file_picked = false.obs;
-    print(doc);
+    //print(doc);
     current_document = doc;
 
     Get.to(RegisterUploadBoxWidget(doc: doc))?.then((value) {
@@ -68,11 +72,9 @@ class RegisterDemandeController extends GetxController {
 
       print(pickedFile);
       if(pickedFile != null) {
-        file_picked = Io.File(pickedFile.path);
-        final bytes = file_picked.readAsBytesSync();
-        base64_image_picked = base64Encode(bytes);
+        file_picked = File(pickedFile.path);
 
-        SessionSaveDocument(document_code, base64_image_picked);
+        SessionSaveDocument(document_code, pickedFile.path.toString());
 
         //SnackbarUi.success(pickedFile.name.toString());
 
@@ -94,14 +96,9 @@ class RegisterDemandeController extends GetxController {
     );
 
     if(pickedFile != null) {
-      //print(pickedFile.files.single.path.toString());
       file_picked = Io.File(pickedFile.files.single.path.toString());
-      final bytes = file_picked.readAsBytesSync();
-      base64_image_picked = base64Encode(bytes);
 
-      SessionSaveDocument(document_code, base64_image_picked);
-
-      //SnackbarUi.success("Document sélectionné avec succès");
+      SessionSaveDocument(document_code, pickedFile.files.single.path.toString());
 
     }else{
       SnackbarUi.error("Erreur lors de la sélection du document");
@@ -109,27 +106,34 @@ class RegisterDemandeController extends GetxController {
 
   }
 
-  Future SessionSaveDocument(String document_code, document_data) async {
+  Future SessionSaveDocument(String document_code, String path) async {
 
     switch(document_code){
       case "CNI":
-        box.write(AppConstants.USER_CNI, document_data);
+        box.write(AppConstants.USER_CNI, path);
         break;
       case "DPC":
-        box.write(AppConstants.USER_DPC, document_data);
+        box.write(AppConstants.USER_DPC, path);
         break;
       case "CV":
-        box.write(AppConstants.USER_CV, document_data);
+        box.write(AppConstants.USER_CV, path);
         break;
       case "ATT":
-        box.write(AppConstants.USER_ATT, document_data);
+        box.write(AppConstants.USER_ATT, path);
         break;
     }
 
     this.documents
         .firstWhere((element) => element.code == document_code)
-        .file = file_picked;
+        .path = path;
+
+    this.documents
+        .firstWhere((element) => element.code == document_code)
+        .isImage = isImage(path);
+
     this.documents.refresh();
+
+    print(documents.toString());
 
     /*Get.to(RegisterUploadBoxWidget(doc: current_document))?.then((value) {
       print ("GOING TO RegisterUploadBoxWidget");
@@ -141,7 +145,7 @@ class RegisterDemandeController extends GetxController {
       }
     });*/
 
-    Get.back(result: true);
+    //Get.back(result: true);
 
     //SnackbarUi.success(document_code + " Stored in session");
 
@@ -152,7 +156,68 @@ class RegisterDemandeController extends GetxController {
     box.write(AppConstants.USER_SITUATION_ID, situation_id);
     print("USER_SITUATION_ID: "+situation_id);
 
-    Get.toNamed(AppRoutes.REGISTER_PROFIL);
+    if(allDocumentAdded()) {
+
+      Get.toNamed(AppRoutes.REGISTER_PROFIL);
+
+    }else{
+      SnackbarUi.info("Veuillez joindre les documents SVP");
+    }
+
+  }
+
+  bool allDocumentAdded(){
+
+    for(DocumentDto doc in this.documents){
+      if(doc.path is Null){
+        return false;
+      }
+    }
+
+    return true;
+
+  }
+
+  getDocumentPhoto(DocumentDto doc) {
+
+    print("doc.path=" + doc.path.toString());
+
+    if (doc.path != null && doc.type == "img") {
+      return Image(image:  FileImage(File(doc.path!)), fit: BoxFit.fitHeight);
+    } else {
+
+      return Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: doc.status ? LightColor.secondAccent : Colors.transparent,
+            borderRadius: BorderRadius.circular(7),
+            boxShadow: [
+              BoxShadow(
+                color: LightColor.lightGrey2,
+                blurRadius: 3,
+                offset: Offset(0, 4),
+              )
+            ],
+          ),child:Image(
+            image: AssetImage(doc.icon!),
+          ),
+      );
+      return AssetImage(doc.icon!);
+      //return NetworkImage('${userData.value.avatar}');
+    }
+
+  }
+
+
+  bool isImage(String path) {
+    String? mimeType = lookupMimeType(path);
+
+    return mimeType!.startsWith('image/');
+
+  }
+
+  String getFileExtension(String fileName) {
+    return "." + fileName.split('.').last;
   }
 
 }

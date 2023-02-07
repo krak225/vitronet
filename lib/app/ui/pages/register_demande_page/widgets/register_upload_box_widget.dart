@@ -18,9 +18,6 @@ class RegisterUploadBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Io.File file_apercu = doc.file ?? Io.File.fromUri(Uri.parse("krak225"));
-    print(file_apercu.path);
-
     return MainLayoutView(
       child: SingleChildScrollView(
         child: Column(
@@ -83,8 +80,12 @@ class RegisterUploadBoxWidget extends StatelessWidget {
               ),
 
               child: Center(
-                child: Image.file(file_apercu, fit: BoxFit.cover,)
-                //child: Text(file_apercu.path)
+                child: GetBuilder<RegisterDemandeController>(
+                  builder: (_) {
+                    return controller.getDocumentPhoto(doc);
+                  },
+                ),
+                //child: Image.asset("${doc.icon}", ),
               ),
             ),
             SizedBox(height: 20),

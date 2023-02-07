@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:job_boarder/app/controllers/main_controller.dart';
 
 import '../../../config/app_constants.dart';
 import '../../../controllers/documents_controller.dart';
@@ -21,7 +22,9 @@ import '../register_demande_page/widgets/ducoment_item_box_widget.dart';
 class DocumentsPage extends GetView<DocumentsController> {
   @override
   Widget build(BuildContext context) {
-
+    
+    final MainController mainController = Get.find();
+    
     return MainLayoutView(
         child: Column(
           children: [
@@ -47,10 +50,10 @@ class DocumentsPage extends GetView<DocumentsController> {
                                 ], borderRadius: BorderRadius.circular(50)),
                             child: Stack(
                               children: [
-                                CircleAvatar(
-                                  radius: 50,
-                                  backgroundImage:
-                                  AssetImage('assets/images/profil.png'),
+                                GetBuilder<MainController>(
+                                  builder: (_) {
+                                    return mainController.getAvatar(50);
+                                  },
                                 ),
                                 Positioned(
                                   bottom: 0,

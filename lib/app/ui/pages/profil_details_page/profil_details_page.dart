@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../config/app_constants.dart';
 import '../../../controllers/profil_details_controller.dart';
+import '../../../controllers/profil_update_controller.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,9 @@ import '../../theme/light_color.dart';
 import '../../utils/validator_state.dart';
 
 class ProfilDetailsPage extends GetView<ProfilDetailsController> {
+
+  ProfilUpdateController profilUpdateController = Get.put(ProfilUpdateController());
+
   @override
   Widget build(BuildContext context) {
 
@@ -25,6 +29,9 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
     String telephone = _storage.read(AppConstants.USER_TELEPHONE).toString();
     String adresse = _storage.read(AppConstants.USER_ADRESSE).toString();
     String genre = _storage.read(AppConstants.USER_GENRE).toString();
+    String domaine = _storage.read(AppConstants.USER_DOMAINE).toString();
+    String experience = _storage.read(AppConstants.USER_EXPERIENCE).toString();
+    String photo = _storage.read(AppConstants.USER_PHOTO).toString();
 
     return MainLayoutView(
         child: Column(
@@ -51,10 +58,10 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
                               ], borderRadius: BorderRadius.circular(50)),
                           child: Stack(
                             children: [
-                              CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/images/profil.png'),
+                              GetBuilder<ProfilUpdateController>(
+                                builder: (_) {
+                                  return profilUpdateController.getAvatar(photo);
+                                },
                               ),
                               Positioned(
                                 bottom: 0,
@@ -146,6 +153,32 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
                                     enabled: false,
                                     initialValue: telephone,
                                     decoration: CustomInputDecoration.style1(labelText: 'Phone', border: InputBorder.none,),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: Get.height * 0.04),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: FadeInRight(
+                                  child: TextFormField(
+                                    enabled: false,
+                                    initialValue: experience,
+                                    decoration: CustomInputDecoration.style1(labelText: "Année d'expérience", border: InputBorder.none,),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                child: FadeInRight(
+                                  child: TextFormField(
+                                    enabled: false,
+                                    initialValue: domaine,
+                                    decoration: CustomInputDecoration.style1(labelText: "Domaine de compétence", border: InputBorder.none,),
                                   ),
                                 ),
                               ),

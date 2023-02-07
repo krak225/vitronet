@@ -4,12 +4,17 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../config/app_constants.dart';
+import '../../../../controllers/main_controller.dart';
+import '../../../../controllers/profil_update_controller.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../global_widgets/button_style1_widget.dart';
 import '../../../theme/light_color.dart';
 
 class ProfilBoxWidget extends StatelessWidget {
-  const ProfilBoxWidget({Key? key}) : super(key: key);
+  ProfilBoxWidget({Key? key}) : super(key: key);
+
+  final MainController mainController = Get.find();
+  ProfilUpdateController profilUpdateController = Get.put(ProfilUpdateController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,7 @@ class ProfilBoxWidget extends StatelessWidget {
     String email = _storage.read(AppConstants.USER_EMAIL).toString();
     String firstname = _storage.read(AppConstants.USER_FIRSTNAME).toString();
     String lastname = _storage.read(AppConstants.USER_LASTNAME).toString();
+    String photo = _storage.read(AppConstants.USER_PHOTO).toString();
 
     return Container(
         padding: EdgeInsets.all(20),
@@ -36,8 +42,10 @@ class ProfilBoxWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/profil2.png',
+                 GetBuilder<ProfilUpdateController>(
+                  builder: (_) {
+                    return profilUpdateController.getAvatar(photo);
+                  },
                 ),
                 SizedBox(
                   width: 20,

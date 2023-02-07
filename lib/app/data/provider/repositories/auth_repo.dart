@@ -20,6 +20,7 @@ class AuthRepo {
   }
 
   Future sessionTokenDataSave(LoginResponse loginResponse) async {
+
     box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
     box.write(AppConstants.TOKEN_STORAGE, loginResponse.access);
     box.write(AppConstants.REFRESH_TOKEN_STORAGE, loginResponse.refresh);
@@ -30,9 +31,13 @@ class AuthRepo {
     box.write(AppConstants.USER_TELEPHONE, loginResponse.telephone);
     box.write(AppConstants.USER_ADRESSE, loginResponse.adresse);
     box.write(AppConstants.USER_GENRE, loginResponse.genre);
+    box.write(AppConstants.USER_PHOTO, loginResponse.photo);
+    box.write(AppConstants.USER_DOMAINE, loginResponse.domaine);
+    box.write(AppConstants.USER_EXPERIENCE, loginResponse.experience);
     print('@@@@@@@@@@@@@@@@@@loginResponse@@@@@@@@@@@');
-    print(loginResponse.firstname);
+    print(loginResponse.experience);
     //print(loginResponse.refresh);
+
   }
 
 

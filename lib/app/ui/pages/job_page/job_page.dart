@@ -327,10 +327,18 @@ class JobPage extends GetView<JobController> {
                                                 ],
                                               ),
                                               child:Padding(
-                                        padding: const EdgeInsets.all(0.0),
-                                        child: InkWell(
-                                            onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]),
-                                            child: Row(
+                                                padding: const EdgeInsets.all(0.0),
+                                                child: ListTile(
+                                                            leading: Image.network(comments[index].offre_image, width: 35, ),
+                                                            title: AutoSizeText(comments[index].offretitre,maxLines: 2,),
+                                                            subtitle: AutoSizeText(comments[index].diplome, maxLines: 1,),
+                                                            trailing:Image.asset("assets/images/arrow.png"),
+                                                            onTap: () {
+                                                              Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comments[index]);
+                                                            },
+                                                          ),
+                                                  /*
+                                                  Row(
                                                     children: [
                                                       Image.network(comments[index].offre_image, width: 50, height: 40,),
                                                       SizedBox(
@@ -344,11 +352,10 @@ class JobPage extends GetView<JobController> {
                                                       ),
                                                       Image.asset("assets/images/arrow.png"),
                                                     ],
-                                                ),
+                                                ),*/
                                             ),
                                         ),
                                       ),
-                                          ),
                                 ),
                             );
 

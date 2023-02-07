@@ -6,7 +6,8 @@ class DocumentDto{
    String? icon;
    String? type;
    bool status;
-   Io.File? file;
+   bool isImage;
+   String? path;
 
   DocumentDto({
     this.code,
@@ -14,10 +15,16 @@ class DocumentDto{
     this.type,
     this.status = false,
     this.icon,
-    this.file,
+    this.isImage = false,
+    this.path,
   });
 
-  // factory DocumentDto.fromJson(Map<String, dynamic> json) => DocumentDto(
+   @override
+  String toString() {
+    return 'DocumentDto{code: $code, name: $name, icon: $icon, type: $type, status: $status, file: $isImage, path: $path}';
+  }
+
+// factory DocumentDto.fromJson(Map<String, dynamic> json) => DocumentDto(
   //   id: json["id"],
   //   name: json["name"],
   //   description: json["description"],
@@ -38,4 +45,5 @@ class DocumentDto{
   //   "createdAt": createdAt,
   //   "updatedAt": updatedAt,
   // };
+
 }

@@ -209,43 +209,6 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                               ),),
                           ],
                         ),
-                        //les champs caché pour les documents et autres
-                        /*SizedBox(
-                          width: 0,
-                          height: 0,
-                          child: Column(children: [
-                            FormBuilderTextField(
-                              name: 'situation_id',
-                              initialValue: situation_id,
-                              decoration:CustomInputDecoration.style1(labelText: 'situation_id'),
-                            ),
-                            FormBuilderTextField(
-                              name: 'profil_id',
-                              initialValue: profil_id,
-                              decoration:CustomInputDecoration.style1(labelText: 'profil_id'),
-                            ),
-                            FormBuilderTextField(
-                              name: 'user_cni',
-                              initialValue: document_data_cni,
-                              decoration:CustomInputDecoration.style1(labelText: 'user_cni'),
-                            ),
-                            FormBuilderTextField(
-                              name: 'user_dpc',
-                              initialValue: document_data_dpc,
-                              decoration:CustomInputDecoration.style1(labelText: 'user_dpc'),
-                            ),
-                            FormBuilderTextField(
-                              name: 'user_cv',
-                              initialValue: document_data_cv,
-                              decoration:CustomInputDecoration.style1(labelText: 'user_cv'),
-                            ),
-                            FormBuilderTextField(
-                              name: 'user_att',
-                              initialValue: document_data_att,
-                              decoration:CustomInputDecoration.style1(labelText: 'user_att'),
-                            ),
-                          ]),
-                        ),*/
 
                       ]),
                     ),

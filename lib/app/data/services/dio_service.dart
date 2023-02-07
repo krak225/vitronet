@@ -84,7 +84,7 @@ class DioService extends Interceptor {
       return handleResponse(response, endpoint);
     } on DioError catch (e) {
       print('@@@@@@@@@ DioError');
-      //print(e.response?.data);
+      print(e.response?.data);
       //print(e.response?.headers);
       //print(e.response?.requestOptions);
       return handleErrorResponse(e, endpoint:endpoint);

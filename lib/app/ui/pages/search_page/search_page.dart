@@ -67,55 +67,27 @@ class SearchPage extends GetView<SearchController> {
               ),
               SizedBox(height: 10,),
               SizedBox(height: 600,
-                child: ListView.builder(
+                child: ListView.separated(
+                    separatorBuilder: (context, index) { // <-- SEE HERE
+                      return Divider();
+                    },
                     itemCount: controller.factModels.length,
                     itemBuilder: (BuildContext, index){
 
                       Comment comment = controller.factModels[index];
 
-                      return Container(
-                        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                            boxShadow: [
-                              BoxShadow(
-                                color: LightColor.lightGrey2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              )
-                            ],
-                          ),
-                          child:InkWell(
-                            onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: controller.factModels[index]),
-                            child: Row(
-                                children: [
-                                  Image.network(comment.offre_image, width: 70, height: 70,),
-                                  SizedBox(width: 5),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        comment.offretitre,
-                                        maxLines: 2,
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-                                        overflow: TextOverflow.fade,
-                                      ),
-                                      Text(
-                                        comment.entreprise,
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.grey),
-                                        overflow: TextOverflow.fade,
-                                      ),
-                                    ],
-                                  ),
-                                  Image.asset("assets/images/arrow.png"),
-                                ]
+                      return InkWell(
+                        onTap: () => Get.toNamed(AppRoutes.DETAILS_OFFRE, arguments: comment),
+                        child:ListTile(
+                            leading: Image.network(comment.offre_image, width: 50,),
+                            title: Text(
+                              comment.offretitre,
                             ),
-                          ),
-                        ),
+                            subtitle: Text(
+                              comment.entreprise,
+                            ),
+                            trailing: Image.asset("assets/images/arrow.png"),
+                          )
                       );
 
                     }),

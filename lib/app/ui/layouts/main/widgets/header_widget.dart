@@ -46,7 +46,7 @@ class HeaderWidget extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 20,
-                        backgroundImage: mainController.getAvatar(),
+                        backgroundImage: mainController.getAvatar(20),
                         backgroundColor: LightColor.lightGrey2,
                       ),
                       SizedBox(

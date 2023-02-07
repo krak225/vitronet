@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/main_controller.dart';
+import '../../../../controllers/profil_update_controller.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../theme/light_color.dart';
 import '../../../theme/themes.dart';
@@ -53,11 +54,16 @@ class Header2Widget extends StatelessWidget {
             flex: 1,
             child: TextButton(
               onPressed: () => Get.toNamed(AppRoutes.PROFIL)?.then((value) => mainController.init()),
-              child: CircleAvatar(
+              child: GetBuilder<MainController>(
+                builder: (_) {
+                  return mainController.getAvatar(16);
+                },
+              ),
+              /*CircleAvatar(
                 radius: 16,
                 backgroundImage: mainController.getAvatar(),
                 backgroundColor: LightColor.lightGrey2,
-              ),
+              ),*/
             ),
           ),
         ],

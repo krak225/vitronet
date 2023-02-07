@@ -53,16 +53,24 @@ class BottomMenuWidget extends StatelessWidget {
             */
 
             BottomMenuItemWidget(
-              icon: 'assets/icons/certificat.png',
-              activIcon: 'assets/icons/certificat.png',
+              icon: 'assets/icons/notification.png',
+              activIcon: 'assets/icons/notification-active.png',
               isSelected: controller.index.value == 3,
               onPressed: () => controller.changeIndex(3),
             ),
 
-            /*BottomMenuItemWidget(
+            /*
+            BottomMenuItemWidget(
+              icon: 'assets/icons/certificat.png',
+              activIcon: 'assets/icons/certificat.png',
+              isSelected: controller.index.value == 4,
+              onPressed: () => controller.changeIndex(4),
+            ),
+
+            BottomMenuItemWidget(
               icon: 'assets/icons/user.png',
               activIcon: 'assets/icons/user.png',
-              isSelected: controller.index.value == 4,
+              isSelected: controller.index.value == 5,
               onPressed: () => Get.toNamed(AppRoutes.PROFIL),
             ),*/
 

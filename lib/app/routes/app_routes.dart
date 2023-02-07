@@ -16,5 +16,6 @@ class AppRoutes {
   static const PROFIL_UPDATE = '/profil-update';
   static const PROFIL_DETAILS = '/profil-details';
   static const MES_DOCUMENTS = '/documents';
+  static const MES_PHOTOS = '/photos';
 
 }

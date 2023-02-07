@@ -7,6 +7,9 @@ class Comment{
   final String offre_datefin;
   final String entreprise;
   final String offre_image;
+  final String type_contrat;
+  final String diplome;
+  final String metier;
   final int offre_partage;
   final int offre_like;
   final int postulable;
@@ -20,6 +23,9 @@ class Comment{
     required this.offre_datefin,
     required this.entreprise,
     required this.offre_image,
+    required this.type_contrat,
+    required this.diplome,
+    required this.metier,
     required this.offre_partage,
     required this.offre_like,
     required this.postulable,
@@ -34,6 +40,9 @@ class Comment{
     offre_datefin: json["offre_datefin"].toString(),
     entreprise: json["raisonsociale"],
     offre_image: json["offre_image"].toString(),
+    type_contrat: json["typetravailib"].toString(),
+    diplome: json["diplomelib"].toString(),
+    metier: json["metier_libelle"].toString(),
     offre_partage: json["offre_partage"],
     offre_like: json["offre_like"],
     postulable: json["postulable"],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../../../data/provider/requests/document_dto.dart';
@@ -26,7 +28,7 @@ class DocumentItemBoxWidget extends StatelessWidget {
         contentPadding: EdgeInsets.all(0),
         onTap: onTap,
         title: Text(
-          "${doc.name}",
+          "${doc.name}",//name
           style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.normal,
@@ -48,9 +50,9 @@ class DocumentItemBoxWidget extends StatelessWidget {
               )
             ],
           ),
-          child: doc.file is Null ? Image.asset("${doc.icon}" ,
+          child: doc.path is Null || !doc.isImage ? Image.asset("${doc.icon}" ,
             color: doc.status ? Colors.black : null,
-          ) : Text("${doc.file?.path}"),
+          ) : Image.file(File("${doc.path}")),
         ),
       ),
     );

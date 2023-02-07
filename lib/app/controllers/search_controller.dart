@@ -22,7 +22,7 @@ class SearchController extends GetxController {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
         .toString();
 
-    String url = AppConstants.API_URL + "/offres/" + user_id + "/2";
+    String url = AppConstants.API_URL + "/offres_all/";
 
     final response = await http.get(Uri.parse(url), headers: {
       HttpHeaders.authorizationHeader: 'bearer $TOKEN_STORAGE',

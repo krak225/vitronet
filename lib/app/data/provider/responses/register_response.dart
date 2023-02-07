@@ -6,6 +6,7 @@ class User{
   }
 
 }
+
 class RegisterResponse {
   String? status;
   String? message;
