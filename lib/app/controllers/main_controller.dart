@@ -13,14 +13,15 @@ class MainController extends GetxController {
   final index = 0.obs;
   final pageList = [
     HomePage(),
-    JobPage(2, "Liste des autres offres"),
+    JobPage(2, "Liste des offres d'emploi"),
     OffrePage(2, "Liste des offres d'emploi"),
     OffrePage(3, "Mes alerts emploi"),
     OffrePage(4, "Mes candidatures envoyées"),
+    OffrePage(1, "Offres selon mon profil"),
     Container(),
   ];
 
-  final pageListTitle = ['Accueil', 'Offres selon mon profil', 'Offres d\'emploi', 'Mes notifications', 'Mes candidatures envoyées', 'Profil'];
+  final pageListTitle = ["Accueil", "Offres d'emploi", "Offres d'emploi", "Mes notifications", "Mes candidatures envoyées", "Offres selon mon profil", "Profil"];
 
   Future<void> changeIndex(int? index) async {
     //Get.toNamed(pageList[index]);

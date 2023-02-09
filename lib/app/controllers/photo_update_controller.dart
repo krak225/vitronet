@@ -3,13 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:image_picker/image_picker.dart';
-
-import '../data/provider/repositories/auth_repo.dart';
-import '../data/provider/repositories/register_repo.dart';
-import '../data/provider/responses/login_response.dart';
-import '../ui/theme/snackbar_ui.dart';
 
 class PhotoUpdateController extends GetxController {
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();

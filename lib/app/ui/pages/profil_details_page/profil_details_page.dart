@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../config/app_constants.dart';
@@ -8,12 +9,8 @@ import '../../../controllers/profil_details_controller.dart';
 import '../../../controllers/profil_update_controller.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../../theme/custom_input_decoration.dart';
 import '../../theme/light_color.dart';
-import '../../utils/validator_state.dart';
 
 class ProfilDetailsPage extends GetView<ProfilDetailsController> {
 

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:job_boarder/app/data/provider/responses/register_response.dart';
 
-import '../../../config/app_constants.dart';
 import '../../services/dio_service.dart';
 
 class OffreRepo {

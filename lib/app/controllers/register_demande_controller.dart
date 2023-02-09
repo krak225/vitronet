@@ -1,9 +1,7 @@
 
-import 'dart:convert';
 import 'dart:io' as Io;
 import 'dart:io';
 
-import 'package:mime/mime.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -12,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:job_boarder/app/ui/pages/register_demande_page/widgets/register_upload_box_widget.dart';
+import 'package:mime/mime.dart';
 
 import '../config/app_constants.dart';
 import '../data/provider/requests/document_dto.dart';

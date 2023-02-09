@@ -1,40 +1,29 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:job_boarder/app/controllers/main_controller.dart';
+import 'package:get/get.dart';
 import 'package:job_boarder/app/ui/global_widgets/search_box_widget.dart';
-import 'package:job_boarder/app/ui/layouts/main/widgets/header_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
-import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
-import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
-import 'package:multi_select_flutter/util/multi_select_item.dart';
 
+import '../../../controllers/job_controller.dart';
+import '../../../controllers/main_controller.dart';
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/button_style1_widget.dart';
-import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../controllers/job_controller.dart';
 import '../../theme/custom_input_decoration.dart';
-import '../../theme/themes.dart';
-import '../../utils/validator_state.dart';
 
 
 class JobPage extends GetView<JobController> {
   int type;
-  String libelle_offres = "Liste des offres d'emploi";
+  String libelle_offres = "Liste des offres d'emploi ";
   int nbre_offres = 0;
-  int? q = Get.arguments;
 
   JobPage(this.type, this.libelle_offres);
 
   @override
   Widget build(BuildContext context) {
-    q ?? 0;
-    q = 0;
 
     return MainLayoutView(
         hPadding: 0,
@@ -134,8 +123,7 @@ class JobPage extends GetView<JobController> {
               ),
 
               Container(
-                child: q == 0 ?
-                Column(children: [
+                child: Column(children: [
                   Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -152,7 +140,7 @@ class JobPage extends GetView<JobController> {
                       ),
 
                       TextButton(
-                        onPressed: () => controller.changeIndex(1),//Get.toNamed(AppRoutes.OFFRES, arguments: 1),
+                        onPressed: () => controller.changeIndex(3),
                         child: AutoSizeText(
                           "Voir plus",
                           style: TextStyle(
@@ -170,7 +158,7 @@ class JobPage extends GetView<JobController> {
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 4.0),
                     child:FutureBuilder<List<Comment>>(
-                    future: controller.fetchComments(1.toString()),
+                    future: controller.fetchOffres(1.toString()),
                     builder: (context, snapshot_1) {
                     if (snapshot_1.hasData) {
                     List<Comment>? comments1 = snapshot_1.data;
@@ -252,8 +240,6 @@ class JobPage extends GetView<JobController> {
                     ),
                   ),
                 ])
-                    :
-                Text('')
               ),
 
 
@@ -274,7 +260,7 @@ class JobPage extends GetView<JobController> {
                     ),
 
                     TextButton(
-                      onPressed: () => Get.toNamed(AppRoutes.COMMENT, arguments: 2),
+                      onPressed: () => controller.changeIndex(2),
                       child: Container(
                         padding: EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
@@ -300,7 +286,7 @@ class JobPage extends GetView<JobController> {
                     context: context,
                     removeTop: true,
                     child:FutureBuilder<List<Comment>>(
-                      future: controller.fetchComments(type.toString()),
+                      future: controller.fetchOffres(type.toString()),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                             List<Comment>? comments = snapshot.data;
@@ -329,6 +315,7 @@ class JobPage extends GetView<JobController> {
                                               child:Padding(
                                                 padding: const EdgeInsets.all(0.0),
                                                 child: ListTile(
+                                                            minLeadingWidth: 70,
                                                             leading: Image.network(comments[index].offre_image, width: 35, ),
                                                             title: AutoSizeText(comments[index].offretitre,maxLines: 2,),
                                                             subtitle: AutoSizeText(comments[index].diplome, maxLines: 1,),

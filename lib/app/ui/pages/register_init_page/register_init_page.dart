@@ -1,13 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:job_boarder/app/routes/app_routes.dart';
-
-import '../../global_widgets/button_style1_widget.dart';
-import '../../layouts/main/widgets/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/register_init_controller.dart';
+import '../../global_widgets/button_style1_widget.dart';
+import '../../layouts/main/widgets/main_layout_view.dart';
 import '../../theme/light_color.dart';
 import 'widgets/radio_box_widget.dart';
 

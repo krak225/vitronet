@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../config/app_constants.dart';
+import '../../../controllers/profil_update_controller.dart';
 import '../../global_widgets/button_style1_widget.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../controllers/profil_update_controller.dart';
 import '../../theme/custom_input_decoration.dart';
 import '../../theme/light_color.dart';
 import '../../utils/validator_state.dart';
@@ -31,7 +28,6 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
     String photo = _storage.read(AppConstants.USER_PHOTO).toString();
     String experience = _storage.read(AppConstants.USER_EXPERIENCE).toString();
     String diplome = _storage.read(AppConstants.USER_DIPLOME).toString();
-    int diplome_id = 0;
 
     return MainLayoutView(
         child: Column(
@@ -135,7 +131,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: Get.height * 0.04),
+                    SizedBox(height: Get.height * 0.02),
                     FadeInRight(
                       child: FormBuilderTextField(
                         name: 'email',
@@ -145,7 +141,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                             CustomInputDecoration.style1(labelText: 'Email'),
                       ),
                     ),
-                    SizedBox(height: Get.height * 0.04),
+                    SizedBox(height: Get.height * 0.02),
                     Row(
                       children: [
                         Expanded(
@@ -175,7 +171,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: Get.height * 0.04),
+                    SizedBox(height: Get.height * 0.02),
                     Row(
                       children: [
                         Expanded(
@@ -233,7 +229,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: Get.height * 0.04),
+                    SizedBox(height: Get.height * 0.02),
                     FadeInRight(
                       child: FormBuilderTextField(
                         name: 'adresse',
@@ -245,7 +241,7 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                     ),
                   ]),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 /*Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -277,12 +273,12 @@ class ProfilUpdatePage extends GetView<ProfilUpdateController> {
                   leading: Icon(Icons.location_on_outlined, color: Colors.black, size: 32,),
                   title: Text(adresse),//00 Niamey avenue suite 00
                   subtitle: Text(''),//00 Niger avenue suite 00 Niamey
-                ),*/
+                ),
                 Divider(
                   color: LightColor.lightGrey2,
-                ),
+                ),*/
 
-                SizedBox(height: Get.height * 0.05),
+                SizedBox(height: Get.height * 0.02),
 
                 FadeInRight(
                   duration: Duration(milliseconds: 600),

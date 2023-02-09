@@ -1,18 +1,14 @@
 
-import 'dart:io';
-
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:get_storage/get_storage.dart';
 
 import '../config/app_constants.dart';
 import '../data/provider/repositories/auth_repo.dart';
 import '../data/provider/repositories/register_repo.dart';
 import '../data/provider/responses/login_response.dart';
-import '../data/provider/responses/register_response.dart';
-import '../routes/app_routes.dart';
 import '../ui/theme/snackbar_ui.dart';
 
 class RegisterProfilController extends GetxController {

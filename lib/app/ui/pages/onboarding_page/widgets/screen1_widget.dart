@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/light_color.dart';
-
 class Screen1Widget extends StatelessWidget {
   const Screen1Widget({Key? key}) : super(key: key);
 

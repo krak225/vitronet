@@ -7,7 +7,7 @@ class LoginResponse {
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
     refresh = json['refresh'];
-    access = json['access'];
+    access = json['access_token'];
     id = json['id'];
     firstname = json['firstname'];
     lastname = json['lastname'];
@@ -27,7 +27,7 @@ class LoginResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['refresh'] = this.refresh;
-    data['access'] = this.access;
+    data['access_token'] = this.access;
     data['id'] = this.id;
     data['firstname'] = this.firstname;
     data['lastname'] = this.lastname;

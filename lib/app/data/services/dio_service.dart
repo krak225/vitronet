@@ -1,7 +1,7 @@
-import 'package:get/get.dart';
-import 'package:flutter/foundation.dart' as Foundation;
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as Dio;
+import 'package:flutter/foundation.dart' as Foundation;
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../config/app_constants.dart';

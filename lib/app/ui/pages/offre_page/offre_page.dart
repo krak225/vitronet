@@ -1,30 +1,21 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:job_boarder/app/ui/global_widgets/search_box_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 
+import '../../../controllers/job_controller.dart';
 import '../../../controllers/offre_controller.dart';
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-
-class Animal {
-  final int id;
-  final String name;
-
-  Animal({
-    required this.id,
-    required this.name,
-  });
-}
 
 class OffrePage extends GetView<OffreController> {
   int type;
   String libelle_offres = "Liste des offres d'emploi";
   int nbre_offres = 0;
   int? q = Get.arguments;
+  final JobController jobController = Get.find();
 
   OffrePage(this.type, this.libelle_offres);
 
@@ -47,7 +38,7 @@ class OffrePage extends GetView<OffreController> {
                 onTapSettings: () => {
 
                 },
-                comments: controller.comments,
+                comments: jobController.comments,
               ),
             ),
 
@@ -68,7 +59,7 @@ class OffrePage extends GetView<OffreController> {
                   ),
 
                   TextButton(
-                    onPressed: () => Get.toNamed(AppRoutes.COMMENT, arguments: 2),
+                    onPressed: () => null, //Get.toNamed(AppRoutes.COMMENT, arguments: 2),
                     child: Container(
                       padding: EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
@@ -94,7 +85,7 @@ class OffrePage extends GetView<OffreController> {
                 context: context,
                 removeTop: true,
                 child:FutureBuilder<List<Comment>>(
-                  future: controller.fetchOffres(type.toString()),
+                  future: jobController.fetchOffres(type.toString()),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       List<Comment>? comments = snapshot.data;

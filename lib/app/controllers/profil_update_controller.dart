@@ -1,10 +1,10 @@
 
 import 'dart:io';
 
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:image_picker/image_picker.dart';
 
 import '../data/provider/repositories/auth_repo.dart';

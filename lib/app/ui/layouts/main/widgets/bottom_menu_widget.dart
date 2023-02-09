@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/main_controller.dart';
-import '../../../../routes/app_routes.dart';
 import 'bottom_menu_item_widget.dart';
 
 class BottomMenuWidget extends StatelessWidget {
@@ -39,7 +38,7 @@ class BottomMenuWidget extends StatelessWidget {
             BottomMenuItemWidget(
               icon: 'assets/icons/comment.png',
               activIcon: 'assets/icons/comment-active.png',
-              isSelected: controller.index.value == 1,
+              isSelected: controller.index.value == 1 || controller.index.value == 2 || controller.index.value == 3 || controller.index.value == 4 || controller.index.value == 5 ,
               onPressed: () => controller.changeIndex(1),
             ),
 
@@ -72,7 +71,18 @@ class BottomMenuWidget extends StatelessWidget {
               activIcon: 'assets/icons/user.png',
               isSelected: controller.index.value == 5,
               onPressed: () => Get.toNamed(AppRoutes.PROFIL),
-            ),*/
+            ),
+
+            BottomMenuItemWidget(
+              icon: 'assets/icons/user.png',
+              activIcon: 'assets/icons/user.png',
+              isSelected: controller.index.value == 5,
+              onPressed: () => Get.toNamed(AppRoutes.PROFIL),
+            ),
+            */
+
+
+
 
           ],
         ),

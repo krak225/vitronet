@@ -6,7 +6,6 @@ import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import '../../theme/light_color.dart';
 
 class SearchPage extends GetView<SearchController> {
   TextEditingController textEditingController = TextEditingController();

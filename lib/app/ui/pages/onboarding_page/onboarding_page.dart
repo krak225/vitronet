@@ -1,17 +1,14 @@
-import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:job_boarder/app/ui/pages/onboarding_page/widgets/indicator_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 import 'package:onboarding/onboarding.dart';
 
+import '../../../controllers/onboarding_controller.dart';
 import '../../global_widgets/button_style1_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../controllers/onboarding_controller.dart';
 
 class OnboardingPage extends GetView<OnboardingController> {
   @override

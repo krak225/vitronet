@@ -1,10 +1,8 @@
 
-import 'dart:convert';
-
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 
 import '../data/provider/repositories/auth_repo.dart';
 import '../data/provider/responses/login_response.dart';

@@ -1,26 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:job_boarder/app/ui/global_widgets/search_box_widget.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 
 import '../../../config/app_constants.dart';
 import '../../../controllers/details_offre_controller.dart';
 import '../../../data/models/offre.dart';
-import '../../../routes/app_routes.dart';
 import '../../global_widgets/button_style1_widget.dart';
-import '../../global_widgets/button_style2_widget.dart';
-import '../../global_widgets/button_style4_widget.dart';
-import '../../global_widgets/item_box_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../controllers/job_controller.dart';
 import '../../theme/custom_input_decoration.dart';
-import '../home_page/widgets/home_header_box_widget.dart';
-import '../login_page/widgets/social_buttom_widget.dart';
 import 'widgets/details_offre_header_box_widget.dart';
 
 

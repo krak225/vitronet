@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -24,20 +22,22 @@ class JobController extends GetxController {
       late List<Comment> comments = List.empty();
 
       Future<void> changeIndex(int? index) async {
-        print(index);
+         print(index);
          Get.find<MainController>().changeIndex(index);
       }
 
 
-      Future<List<Comment>> fetchComments(String type) async {
+      Future<List<Comment>> fetchOffres(String type) async {
 
         String user_id = _storage.read(AppConstants.USER_ID).toString();
         String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
         String url = AppConstants.API_URL + "/offres/"+user_id +"/"+type;
         print (url);
+        //print(TOKEN_STORAGE);
+
         final response = await http.get(Uri.parse(url), headers: {
-          HttpHeaders.authorizationHeader: 'bearer $TOKEN_STORAGE',
+          HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
           HttpHeaders.contentTypeHeader: 'application/json',
         });
 
@@ -51,8 +51,12 @@ class JobController extends GetxController {
 
         } else {
 
+          print("response Body: " + response.body);
+
           throw Exception('Failed to load offres');
+
         }
+
       }
 
 }

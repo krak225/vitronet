@@ -2,16 +2,15 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:http/http.dart' as http;
 
 import '../config/app_constants.dart';
 import '../data/models/offre.dart';
 import '../data/provider/repositories/offre_repo.dart';
-import '../routes/app_routes.dart';
 import '../ui/theme/snackbar_ui.dart';
 
 class DetailsOffreController extends GetxController {

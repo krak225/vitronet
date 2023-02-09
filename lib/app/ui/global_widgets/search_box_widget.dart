@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job_boarder/app/data/models/offre.dart';
 import 'package:job_boarder/app/ui/theme/light_color.dart';
 
 class SearchBoxWidget extends StatelessWidget {

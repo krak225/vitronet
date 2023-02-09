@@ -1,5 +1,6 @@
 
 import 'package:get/get.dart';
+
 import '../controllers/details_offre_controller.dart';
 
 

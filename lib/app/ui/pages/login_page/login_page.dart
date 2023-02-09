@@ -1,19 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 import 'package:job_boarder/app/routes/app_routes.dart';
 
+import '../../../controllers/login_controller.dart';
 import '../../global_widgets/button_style1_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../controllers/login_controller.dart';
 import '../../theme/custom_input_decoration.dart';
 import '../../theme/light_color.dart';
 import '../../utils/validator_state.dart';
-import 'widgets/social_buttom_widget.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override

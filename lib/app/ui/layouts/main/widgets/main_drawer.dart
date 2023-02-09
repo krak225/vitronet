@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:job_boarder/app/controllers/main_controller.dart';
-import 'package:job_boarder/app/routes/app_routes.dart';
 
 import '../../../../config/app_constants.dart';
 
