@@ -34,6 +34,7 @@ class AuthRepo {
     box.write(AppConstants.USER_PHOTO, loginResponse.photo);
     box.write(AppConstants.USER_DOMAINE, loginResponse.domaine);
     box.write(AppConstants.USER_EXPERIENCE, loginResponse.experience);
+    box.write(AppConstants.USER_OTP, loginResponse.otp);
     print('@@@@@@@@@@@@@@@@@@loginResponse@@@@@@@@@@@');
     print(loginResponse.experience);
     //print(loginResponse.refresh);

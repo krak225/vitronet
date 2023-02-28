@@ -13,7 +13,7 @@ class SearchController extends GetxController {
   var factModels = [].obs;
   GetStorage _storage = GetStorage();
 
-  Future<RxList?> getOffres(String search) async {
+  Future<RxList?> getAllOffres(String search) async {
     factModels.clear();
 
     String user_id = _storage.read(AppConstants.USER_ID).toString();
@@ -23,7 +23,7 @@ class SearchController extends GetxController {
     String url = AppConstants.API_URL + "/offres_all/";
 
     final response = await http.get(Uri.parse(url), headers: {
-      HttpHeaders.authorizationHeader: 'bearer $TOKEN_STORAGE',
+      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
       HttpHeaders.contentTypeHeader: 'application/json',
     });
 

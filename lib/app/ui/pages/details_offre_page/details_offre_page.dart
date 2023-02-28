@@ -13,7 +13,7 @@ import '../../global_widgets/button_style1_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import '../../theme/custom_input_decoration.dart';
 import 'widgets/details_offre_header_box_widget.dart';
-
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class DetailsOffrePage extends GetView<DetailsOffreController> {
 
@@ -278,7 +278,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
-                      child: Text(comment.offredescription),
+                      child: HtmlWidget(comment.offredescription),
                     ),
                   ),
                   SizedBox(height: 40,),

@@ -13,10 +13,12 @@ class OffreRepo {
     return await dioService.getData('/offres');
   }
 
-
   Future<Response> postuler({required dynamic data}) async {
     return await dioService.postData('/postuler', data: data);
   }
 
+  Future<Response> saveAlertEmploi({required dynamic data}) async {
+    return await dioService.postData('/alert_emploi', data: data);
+  }
 
 }

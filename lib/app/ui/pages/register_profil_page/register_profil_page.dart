@@ -128,6 +128,64 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: FadeInRight(
+                                child: FormBuilderDropdown(
+                                  name: 'diplome',
+                                  validator: ValidatorState.required,
+                                  decoration: CustomInputDecoration.style2(labelText: 'Dernier diplôme'),
+                                  items: [
+                                    DropdownMenuItem(
+                                      child: Text('Bac'),
+                                      value: '1',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +1'),
+                                      value: '2',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +2'),
+                                      value: '3',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +3'),
+                                      value: '4',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +4'),
+                                      value: '5',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +5'),
+                                      value: '6',
+                                    ),
+                                    DropdownMenuItem(
+                                      child: Text('Bac +5 et plus'),
+                                      value: '7',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              child: FadeInRight(
+                                child: FormBuilderTextField(
+                                  name: 'experience',
+                                  initialValue: '',
+                                  // validator: ValidatorState.email,
+                                  decoration: CustomInputDecoration.style1(
+                                      labelText: "Année d'expérience"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: Get.height * 0.02),
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'email',

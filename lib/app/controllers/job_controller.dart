@@ -1,22 +1,25 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart' as dio;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:job_boarder/app/ui/theme/snackbar_ui.dart';
 
 import '../config/app_constants.dart';
 import '../data/models/offre.dart';
+import '../data/provider/repositories/auth_repo.dart';
 import '../data/provider/repositories/offre_repo.dart';
+import '../data/provider/responses/login_response.dart';
 import 'main_controller.dart';
 
 class JobController extends GetxController {
 
       GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
-
-      final RxBool isHide = false.obs;
+      final RxBool isHide = true.obs;
       final OffreRepo offreRepo = Get.find();
       GetStorage _storage = GetStorage();
       late List<Comment> comments = List.empty();
@@ -58,5 +61,36 @@ class JobController extends GetxController {
         }
 
       }
+
+
+      Future<void> saveAlertEmploi() async {
+
+        formKey.currentState!.save();
+        print(formKey.currentState!.value);
+
+        if (formKey.currentState!.validate()) {
+
+          print(formKey.currentState!.value);
+
+          dio.Response response = await this.offreRepo.saveAlertEmploi(data: formKey.currentState!.value);
+          print(response.data);
+
+          print(response.toString());
+          if (response.statusCode == 200) {
+
+
+            SnackbarUi.success("Alert Emploi enregistré avec succès !");
+
+          } else {
+            SnackbarUi.error("Erreur lors de l'enregistrement");
+          }
+
+
+        } else {
+          print("validation failed: ");
+        }
+
+      }
+
 
 }

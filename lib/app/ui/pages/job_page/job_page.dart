@@ -11,8 +11,10 @@ import '../../../controllers/main_controller.dart';
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/button_style1_widget.dart';
+import '../../layouts/main/widgets/config_alert_emploi_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 import '../../theme/custom_input_decoration.dart';
+import '../../utils/validator_state.dart';
 
 
 class JobPage extends GetView<JobController> {
@@ -37,86 +39,13 @@ class JobPage extends GetView<JobController> {
                       Get.toNamed(AppRoutes.SEARCH),
                     },
                     onTapSettings: () => {
+
                       Get.bottomSheet(
-                        Container(
-                          height: 400,
-                          color: Colors.white,
-                          child:Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: FormBuilder(
-                              key: controller.formKey,
-                              ///initialValue: controller.initValues,
-                              autovalidateMode: AutovalidateMode.disabled,
-                              child: SingleChildScrollView(
-                                child: Column(children: [
-                                  Container(
-                                    // height: 85,
-                                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10, ),
-                                    // color: Colors.red,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Icon(Icons.settings_suggest, size: 24, color: Colors.black,))
-                                        ,
-                                        Expanded(
-                                          flex: 5,
-                                          child: AutoSizeText("Mon agent de recherche",
-                                              maxLines: 1,
-                                              minFontSize: 16,
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.left,
-                                          ),
-                                        ),
-                                        Expanded(
-                                            flex: 1,
-                                            child: Container()
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  FadeInRight(
-                                    child: FormBuilderTextField(
-                                      name: 'titre',
-                                      initialValue: '',
-                                      decoration: CustomInputDecoration.style1(labelText: "Titre de l'offre"),
-                                    ),
-                                  ),
-                                  SizedBox(height: Get.height * 0.04),
-                                  FadeInRight(
-                                    delay: Duration(milliseconds: 300),
-                                    child: FormBuilderTextField(
-                                      name: 'entreprise',
-                                      initialValue: '',
-                                      decoration: CustomInputDecoration.style1(labelText: "Nom de l'entreprise"),
-                                    ),
-                                  ),
-                                  SizedBox(height: Get.height * 0.04),
-                                  FadeInRight(
-                                    delay: Duration(milliseconds: 300),
-                                    child: FormBuilderTextField(
-                                      name: 'domaine',
-                                      initialValue: '',
-                                      decoration: CustomInputDecoration.style1(labelText: "Secteur d'activité"),
-                                    ),
-                                  ),
-                                  SizedBox(height: Get.height * 0.04),
-                                  FadeInRight(
-                                    duration: Duration(milliseconds: 600),
-                                    child: ButtonStyle1Widget(
-                                      text: 'Appliquer',
-                                      onPressed: () => {print("search performed")},
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                            ),
-                          ),
-                          ),
-                          barrierColor: Colors.grey[3],
-                          isDismissible: true,
-                        )
+                        ConfiAlertEmploiWidget(),
+                        barrierColor: Colors.grey[3],
+                        isDismissible: true,
+                      )
+
                     },
                     comments: controller.comments,
                 ),
@@ -180,7 +109,7 @@ class JobPage extends GetView<JobController> {
                               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(39),
+                                borderRadius: BorderRadius.circular(16),
                                 boxShadow: [
                                     BoxShadow(
                                       color: LightColor.lightGrey2,
@@ -194,18 +123,17 @@ class JobPage extends GetView<JobController> {
                                     child: Container(
                                       child: Row(
                                         children: [
-                                        //Image.asset("assets/images/orange-3 1.png"),
-                                        Image.network(comments1[index].offre_image, width: 80, height: 70,),
+                                        Image.network(comments1[index].offre_image, width: 60, height: 60,),
                                         SizedBox(width: 5),
                                         Column(children: [
                                           AutoSizeText(
                                             comments1[index].offretitre,
                                             maxLines: 2,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
                                           ),
                                           AutoSizeText(
-                                            comments1[index].entreprise,
+                                            comments1[index].diplome,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey),
                                           ),

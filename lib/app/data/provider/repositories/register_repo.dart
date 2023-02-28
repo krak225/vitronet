@@ -13,9 +13,11 @@ class RegisterRepo {
   RegisterRepo({required this.dioService});
 
   Future<Response> register({required dynamic data}) async {
-
     return await dioService.postData('/register', data: data);
+  }
 
+  Future<Response> sendOTP({required dynamic data}) async {
+    return await dioService.postData('/otp', data: data);
   }
 
   Future<Response> update_profile({required dynamic data}) async {

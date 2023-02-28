@@ -12,6 +12,8 @@ import '../../layouts/main/widgets/main_layout_view.dart';
 import '../../theme/light_color.dart';
 
 class RegisterOtpPage extends GetView<RegisterOtpController> {
+  String entered_code = '';
+
   @override
   Widget build(BuildContext context) {
 
@@ -94,18 +96,17 @@ class RegisterOtpPage extends GetView<RegisterOtpController> {
                           },
                           //runs when every textfield is filled
                           onSubmit: (String verificationCode) {
-
+                            this.entered_code = verificationCode;
+                            controller.verifierOTP(verificationCode);
                           },
                         ),
-
-
                         SizedBox(height: Get.height * 0.05),
                         FadeInRight(
                           duration: Duration(milliseconds: 600),
                           child: ButtonStyle1Widget(
                             text: 'Continuer',
                             color: LightColor.second,
-                            onPressed: () => Get.toNamed(AppRoutes.HOME),
+                            onPressed: () => controller.verifierOTP(this.entered_code),
                           ),
                         ),
                         SizedBox(height: 20),
@@ -130,9 +131,10 @@ class RegisterOtpPage extends GetView<RegisterOtpController> {
                                     color: LightColor.second,
                                   ),
                                   recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
+                                    ..onTap = () => controller.sendOTP(), /*{
+
                                       Get.toNamed(AppRoutes.REGISTER_INIT);
-                                    },
+                                    }*/
                                 ),
                               ],
                             ),

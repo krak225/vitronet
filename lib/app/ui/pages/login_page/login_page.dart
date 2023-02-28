@@ -29,7 +29,7 @@ class LoginPage extends GetView<LoginController> {
                     height: Get.height * 0.07,
                   ),
                   Image.asset(
-                    'assets/images/logo.jpg',
+                    'assets/images/logo.png',
                     width: Get.width * 0.25,
                   ),
                   SizedBox(
@@ -199,7 +199,7 @@ class LoginPage extends GetView<LoginController> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Get.toNamed(AppRoutes.REGISTER_INIT);
+                              Get.toNamed(AppRoutes.REGISTER_DEMANDE);
                             },
                         ),
                       ],

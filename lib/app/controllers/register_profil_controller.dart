@@ -9,6 +9,7 @@ import '../config/app_constants.dart';
 import '../data/provider/repositories/auth_repo.dart';
 import '../data/provider/repositories/register_repo.dart';
 import '../data/provider/responses/login_response.dart';
+import '../routes/app_routes.dart';
 import '../ui/theme/snackbar_ui.dart';
 
 class RegisterProfilController extends GetxController {
@@ -33,7 +34,7 @@ class RegisterProfilController extends GetxController {
 
       var data = Map<String, dynamic>.from(formKey.currentState!.value);
 
-      String profil_id = _storage.read(AppConstants.USER_PROFIL_ID).toString();
+      String profil_id = '3';//_storage.read(AppConstants.USER_PROFIL_ID).toString();
       String situation_id = _storage.read(AppConstants.USER_SITUATION_ID).toString();
       String document_path_cni = _storage.read(AppConstants.USER_CNI).toString();
       String document_path_dpc = _storage.read(AppConstants.USER_DPC).toString();
@@ -75,7 +76,7 @@ class RegisterProfilController extends GetxController {
 
         //envoyer le token OTP
 
-        //Get.offAllNamed(AppRoutes.REGISTER_OTP, arguments:loginResponse.email);
+        Get.offAllNamed(AppRoutes.REGISTER_OTP, arguments:loginResponse.email);
 
       } else {
         SnackbarUi.error(response.data.toString());

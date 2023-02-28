@@ -8,6 +8,7 @@ import '../../../controllers/job_controller.dart';
 import '../../../controllers/offre_controller.dart';
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
+import '../../layouts/main/widgets/config_alert_emploi_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 
 class OffrePage extends GetView<OffreController> {
@@ -36,6 +37,12 @@ class OffrePage extends GetView<OffreController> {
                   Get.toNamed(AppRoutes.SEARCH)
                 },
                 onTapSettings: () => {
+
+                  Get.bottomSheet(
+                    ConfiAlertEmploiWidget(),
+                    barrierColor: Colors.grey[3],
+                    isDismissible: true,
+                  )
 
                 },
                 comments: jobController.comments,

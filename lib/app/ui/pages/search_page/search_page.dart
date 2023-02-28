@@ -13,7 +13,7 @@ class SearchPage extends GetView<SearchController> {
   @override
   Widget build(BuildContext context) {
 
-    controller.getOffres("");
+    controller.getAllOffres("");
 
     return Obx(()=> MainLayoutView(
       hPadding: 0,
@@ -34,7 +34,7 @@ class SearchPage extends GetView<SearchController> {
                         child: TextFormField(
                           controller: textEditingController,
                           onChanged: (value) {
-                            controller.getOffres(value);
+                            controller.getAllOffres(value);
                           },
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -42,7 +42,7 @@ class SearchPage extends GetView<SearchController> {
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  controller.getOffres(textEditingController.text);
+                                  controller.getAllOffres(textEditingController.text);
                                 },
                                 icon: Icon(Icons.search),
                               ),
