@@ -28,18 +28,10 @@ class RegisterDemandeController extends GetxController {
   late DocumentDto current_document;
 
   final RxList<DocumentDto> documents = <DocumentDto>[
-    DocumentDto(code: "CNI",
-        name: "Carte d'identité Nationale ou Titre de séjour",
-        icon: "assets/icons/carte-didentite.png"),
-    DocumentDto(code: "DPC",
-        name: "Diplômes / Certificats ",
-        icon: "assets/icons/facture.png"),
-    DocumentDto(code: "CV",
-        name: "Curriculum Vitae (CV)",
-        icon: "assets/icons/embauche.png"),
-    DocumentDto(code: "ATT",
-        name: "Attestation employeur, certificat de travail ou bulletins de salaire",
-        icon: "assets/icons/certificat.png"),
+    DocumentDto(code: "CNI", name: "Carte d'identité Nationale ou Titre de séjour", icon: "assets/icons/carte-didentite.png"),
+    //DocumentDto(code: "DPC", name: "Diplômes / Certificats ", icon: "assets/icons/facture.png"),
+    //DocumentDto(code: "CV", name: "Curriculum Vitae (CV)", icon: "assets/icons/embauche.png"),
+    //DocumentDto(code: "ATT", name: "Attestation employeur, certificat de travail ou bulletins de salaire", icon: "assets/icons/certificat.png"),
   ].obs;
 
 

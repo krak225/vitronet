@@ -31,18 +31,19 @@ class JobController extends GetxController {
 
 
       Future<List<Comment>> fetchOffres(String type) async {
+        print("fetchOffres");
 
         String user_id = _storage.read(AppConstants.USER_ID).toString();
         String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
         String url = AppConstants.API_URL + "/offres/"+user_id +"/"+type;
         print (url);
-        //print(TOKEN_STORAGE);
 
         final response = await http.get(Uri.parse(url), headers: {
           HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
           HttpHeaders.contentTypeHeader: 'application/json',
         });
+
 
         if (response.statusCode == 200) {
 

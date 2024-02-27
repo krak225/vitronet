@@ -35,14 +35,14 @@ class Comment{
 
   factory Comment.fromMap(Map<String, dynamic> json) => Comment(
     id: json["offre_id"],
-    offrenombreposte: int.parse(json["offrenombreposte"]),
+    offrenombreposte: json["offrenombreposte"],
     offretitre: json["offretitre"],
     offredescription: json["offredescription"],
     offre_datepublic: json["offre_datepublic"].toString(),
     offre_datefin: json["offre_datefin"].toString(),
     entreprise: json["raisonsociale"].toString(),
     offre_image: json["offre_image"].toString(),
-    type_contrat: json["typetravailib"].toString(),
+    type_contrat: json["typecontratlib"].toString(),
     diplome: json["diplomelib"].toString(),
     experience: int.parse(json["experience"]),
     metier: json["metier_libelle"].toString(),

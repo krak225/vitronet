@@ -37,9 +37,9 @@ class RegisterProfilController extends GetxController {
       String profil_id = '3';//_storage.read(AppConstants.USER_PROFIL_ID).toString();
       String situation_id = _storage.read(AppConstants.USER_SITUATION_ID).toString();
       String document_path_cni = _storage.read(AppConstants.USER_CNI).toString();
-      String document_path_dpc = _storage.read(AppConstants.USER_DPC).toString();
-      String document_path_cv = _storage.read(AppConstants.USER_CV).toString();
-      String document_path_att = _storage.read(AppConstants.USER_ATT).toString();
+      //String document_path_dpc = _storage.read(AppConstants.USER_DPC).toString();
+      //String document_path_cv = _storage.read(AppConstants.USER_CV).toString();
+      //String document_path_att = _storage.read(AppConstants.USER_ATT).toString();
 
       data['profil_id'] = profil_id;
       data['situation_id'] = situation_id;
@@ -47,17 +47,19 @@ class RegisterProfilController extends GetxController {
       if(document_path_cni != ''){
         data['cni'] = await dio.MultipartFile.fromFile(document_path_cni, filename: 'cni');
       }
-      if(document_path_dpc != ''){
-        data['dpc'] = await dio.MultipartFile.fromFile(document_path_dpc, filename: 'dpc');
+      /*if(document_path_dpc != ''){
+        //data['dpc'] = await dio.MultipartFile.fromFile(document_path_dpc, filename: 'dpc');
       }
       if(document_path_cv != ''){
-        data['cv'] = await dio.MultipartFile.fromFile(document_path_cv, filename: 'cv');
+        //data['cv'] = await dio.MultipartFile.fromFile(document_path_cv, filename: 'cv');
       }
       if(document_path_dpc != ''){
-        data['att'] = await dio.MultipartFile.fromFile(document_path_att, filename: 'att');
-      }
+        //data['att'] = await dio.MultipartFile.fromFile(document_path_att, filename: 'att');
+      }*/
 
       var formData = dio.FormData.fromMap(data);
+      print("formData");
+      print(formData);
 
       dio.Response response = await this.registerRepo.register(data: formData);
 
@@ -75,8 +77,9 @@ class RegisterProfilController extends GetxController {
         SnackbarUi.success("Inscription effectué avec succès");
 
         //envoyer le token OTP
-
-        Get.offAllNamed(AppRoutes.REGISTER_OTP, arguments:loginResponse.email);
+        //Get.offAllNamed(AppRoutes.REGISTER_OTP, arguments:loginResponse.email);
+        //laisser otp
+        Get.offAllNamed(AppRoutes.HOME);
 
       } else {
         SnackbarUi.error(response.data.toString());

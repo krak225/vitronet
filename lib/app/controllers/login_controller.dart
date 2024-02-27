@@ -25,7 +25,8 @@ class LoginController extends GetxController {
       print(formKey.currentState!.value);
 
       dio.Response response = await this.authRepo.login(data: formKey.currentState!.value);
-      //print(response.data);
+      print("response.data");
+      print(response);
       if (response.statusCode == 200) {
 
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);

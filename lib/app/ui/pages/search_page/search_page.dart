@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/search_controller.dart';
+import '../../../controllers/search_controller.dart' as cnSearch;
 import '../../../data/models/offre.dart';
 import '../../../routes/app_routes.dart';
 import '../../global_widgets/default_header_widget.dart';
 import '../../layouts/main/widgets/main_layout_view.dart';
 
-class SearchPage extends GetView<SearchController> {
+class SearchPage extends GetView<cnSearch.SearchController> {
   TextEditingController textEditingController = TextEditingController();
 
   @override

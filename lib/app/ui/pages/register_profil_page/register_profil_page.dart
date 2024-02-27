@@ -128,6 +128,84 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'genre',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Genre'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Masculin'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Féminin'),
+                                value: '2',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'telephone',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration:
+                            CustomInputDecoration.style1(labelText: 'Téléphone'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDateTimePicker(
+                            name: 'date_naissance',
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1960,1,1),
+                            lastDate: DateTime.now(),
+                            inputType: InputType.date,
+                            locale: ,
+                            decoration: CustomInputDecoration.style1(labelText: 'Date de naissance'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'lieu_naissance',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration:
+                            CustomInputDecoration.style1(labelText: 'Lieu de naissance'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'nationalite',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Nationalité'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Nigérien'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Autre'),
+                                value: '2',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'lieu_residence',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration:
+                            CustomInputDecoration.style1(labelText: 'Lieu de résidence'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
                         Row(
                           children: [
                             Expanded(
@@ -253,7 +331,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                               width: 10,
                             ),
                             Expanded(child: AutoSizeText(
-                              "Le mot de passe doit comporter au moins 8 caractères, majuscules, minuscules et un code unique comme # % !",
+                              "Le mot de passe doit comporter au moins 8 caractères", //, majuscules, minuscules et un code unique comme # % !",
                               style:TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.normal,
