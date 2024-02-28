@@ -163,7 +163,6 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             firstDate: DateTime(1960,1,1),
                             lastDate: DateTime.now(),
                             inputType: InputType.date,
-                            locale: ,
                             decoration: CustomInputDecoration.style1(labelText: 'Date de naissance'),
                           ),
                         ),
@@ -201,8 +200,83 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'lieu_residence',
                             initialValue: '',
                             // validator: ValidatorState.email,
-                            decoration:
-                            CustomInputDecoration.style1(labelText: 'Lieu de résidence'),
+                            decoration: CustomInputDecoration.style1(labelText: 'Lieu de résidence'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'departement',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration: CustomInputDecoration.style1(labelText: 'Département'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'commune',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration: CustomInputDecoration.style1(labelText: 'Commune'),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'handicap',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Handicap'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('OUI'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('NON'),
+                                value: '2',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'situation_matrimoniale',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Situation matrimoniale'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Célibataire'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Marié(e)'),
+                                value: '2',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Divorcé(e)'),
+                                value: '3',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'nombre_enfants',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration: CustomInputDecoration.style1(labelText: "Nombre d'enfants"),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'emploi_souhaite',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration: CustomInputDecoration.style1(labelText: "Emploi souhaité"),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
