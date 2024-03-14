@@ -19,9 +19,9 @@ class DocumentsController extends GetxController {
 
   final RxList<DocumentDto> documents = <DocumentDto>[
     DocumentDto(code: "CNI",
-        name: "Carte d'identité Nationale ou Titre de séjour",
-        icon: "assets/icons/carte-didentite.png",
-    ),
+      name: "Carte d'identité Nationale ou Titre de séjour",
+      icon: "assets/icons/carte-didentite.png",
+    ),/*
     DocumentDto(code: "DPC",
         name: "Diplômes / Certificats ",
         icon: "assets/icons/facture.png",
@@ -33,7 +33,7 @@ class DocumentsController extends GetxController {
     DocumentDto(code: "ATT",
         name: "Attestation employeur, certificat de travail ou bulletins de salaire",
         icon: "assets/icons/certificat.png",
-    ),
+    ),*/
   ].obs;
 
   DocumentsController(){

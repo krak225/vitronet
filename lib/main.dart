@@ -15,10 +15,10 @@ void main() async {
   await GetStorage.init();
   DependecyInjection.init();
 
-  runApp(MyApp());
+  runApp(KrakSoftMobileApp());
 }
 
-class MyApp extends StatelessWidget {
+class KrakSoftMobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes().darkTheme,
       themeMode: ThemeService().getThemeMode(),
       translations: Translation(),
-      locale: Locale('en'),
-      fallbackLocale: Locale('en'),
+      locale: Locale('fr'),
+      fallbackLocale: Locale('fr'),
       initialRoute: AppRoutes.START,
       unknownRoute: AppPages.unknownRoutePage,
       getPages: AppPages.pages,

@@ -280,62 +280,180 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: FadeInRight(
-                                child: FormBuilderDropdown(
-                                  name: 'diplome',
-                                  validator: ValidatorState.required,
-                                  decoration: CustomInputDecoration.style2(labelText: 'Dernier diplôme'),
-                                  items: [
-                                    DropdownMenuItem(
-                                      child: Text('Bac'),
-                                      value: '1',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +1'),
-                                      value: '2',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +2'),
-                                      value: '3',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +3'),
-                                      value: '4',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +4'),
-                                      value: '5',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +5'),
-                                      value: '6',
-                                    ),
-                                    DropdownMenuItem(
-                                      child: Text('Bac +5 et plus'),
-                                      value: '7',
-                                    ),
-                                  ],
-                                ),
+                        FadeInRight(
+                          child: FormBuilderTextField(
+                            name: 'experience',
+                            initialValue: '',
+                            // validator: ValidatorState.email,
+                            decoration: CustomInputDecoration.style1(
+                                labelText: "Année d'expérience"),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'diplome',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Dernier diplôme'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Bac'),
+                                value: '1',
                               ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                              child: FadeInRight(
-                                child: FormBuilderTextField(
-                                  name: 'experience',
-                                  initialValue: '',
-                                  // validator: ValidatorState.email,
-                                  decoration: CustomInputDecoration.style1(
-                                      labelText: "Année d'expérience"),
-                                ),
+                              DropdownMenuItem(
+                                child: Text('Bac +1'),
+                                value: '2',
                               ),
-                            ),
-                          ],
+                              DropdownMenuItem(
+                                child: Text('Bac +2'),
+                                value: '3',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Bac +3'),
+                                value: '4',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Bac +4'),
+                                value: '5',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Bac +5'),
+                                value: '6',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Bac +5 et plus'),
+                                value: '7',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'filiere',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Filière'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Comptabilité gestion'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Communication sociale'),
+                                value: '2',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Communication des entreprise'),
+                                value: '3',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'categorie_professionnelle',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Catégorie Professionnelle'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Comptabilité gestion'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Communication sociale'),
+                                value: '2',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Communication des entreprise'),
+                                value: '3',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'type_demandeur',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Type de demandeur'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Chômmeurs'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('En activité'),
+                                value: '2',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Jeunes diplômés'),
+                                value: '3',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Stage'),
+                                value: '4',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'niveau_instruction',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: "Niveau d'instruction"),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('1er Cycle Universitaire'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('2ème Cycle Universitaire'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('3ème Cycle Universitaire'),
+                                value: '1',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'langue_internationale',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Langue internationale'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Français'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Anglais'),
+                                value: '2',
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                        FadeInRight(
+                          child: FormBuilderDropdown(
+                            name: 'langue_locale',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Langue locale'),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Haoussa'),
+                                value: '1',
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Kanouri'),
+                                value: '2',
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: Get.height * 0.02),
                         FadeInRight(
@@ -444,6 +562,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         ),
                       ),
                     ),
+                    SizedBox(height: Get.height * 0.04),
                   ],
                 ),
               ),
