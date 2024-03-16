@@ -15,7 +15,7 @@ class ValidatorState {
   }
 
   static String? required(value) {
-    if (value == null || value.isEmpty) {
+    if (value == null) { //|| value.isEmpty
       SnackbarUi.error('Veuillez renseigner les champs requis');
       return 'Veuillez renseigner ce champ';
     }

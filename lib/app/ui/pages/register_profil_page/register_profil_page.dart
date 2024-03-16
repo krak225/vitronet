@@ -13,14 +13,6 @@ import '../../utils/validator_state.dart';
 class RegisterProfilPage extends GetView<RegisterProfilController> {
   @override
   Widget build(BuildContext context) {
-    /*GetStorage _storage = GetStorage();
-    String document_data_cni = '';//_storage.read(AppConstants.USER_CNI).toString();
-    String document_data_dpc = '';//_storage.read(AppConstants.USER_DPC).toString();
-    String document_data_cv = '';//_storage.read(AppConstants.USER_CV).toString();
-    String document_data_att = '';//_storage.read(AppConstants.USER_ATT).toString();
-    String profil_id = _storage.read(AppConstants.USER_PROFIL_ID).toString();
-    String situation_id = _storage.read(AppConstants.USER_SITUATION_ID).toString();
-    */
 
     return MainLayoutView(
         hPadding: 30,
@@ -111,8 +103,8 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'nom',
+                            validator: ValidatorState.required,
                             initialValue: '',
-                            // validator: ValidatorState.email,
                             decoration:
                             CustomInputDecoration.style1(labelText: 'Nom'),
                           ),
@@ -121,8 +113,8 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         FadeInRight(
                           child: FormBuilderTextField(
                             name: 'prenoms',
+                            validator: ValidatorState.required,
                             initialValue: '',
-                            // validator: ValidatorState.email,
                             decoration:
                             CustomInputDecoration.style1(labelText: 'Prenoms'),
                           ),
@@ -136,11 +128,11 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             items: [
                               DropdownMenuItem(
                                 child: Text('Masculin'),
-                                value: '1',
+                                value: 'M',
                               ),
                               DropdownMenuItem(
                                 child: Text('Féminin'),
-                                value: '2',
+                                value: 'F',
                               ),
                             ],
                           ),
@@ -150,6 +142,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           child: FormBuilderTextField(
                             name: 'telephone',
                             initialValue: '',
+                            keyboardType: TextInputType.number,
                             // validator: ValidatorState.email,
                             decoration:
                             CustomInputDecoration.style1(labelText: 'Téléphone'),
@@ -159,6 +152,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         FadeInRight(
                           child: FormBuilderDateTimePicker(
                             name: 'date_naissance',
+                            validator: ValidatorState.required,
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1960,1,1),
                             lastDate: DateTime.now(),
@@ -182,16 +176,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'nationalite',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Nationalité'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Nigérien'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Autre'),
-                                value: '2',
-                              ),
-                            ],
+                            items: controller.pays.map((p) {
+                              return DropdownMenuItem(
+                                child: Text(p.nom),
+                                value: p.id.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -266,6 +256,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           child: FormBuilderTextField(
                             name: 'nombre_enfants',
                             initialValue: '',
+                            keyboardType: TextInputType.number,
                             // validator: ValidatorState.email,
                             decoration: CustomInputDecoration.style1(labelText: "Nombre d'enfants"),
                           ),
@@ -284,6 +275,7 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                           child: FormBuilderTextField(
                             name: 'experience',
                             initialValue: '',
+                            keyboardType: TextInputType.number,
                             // validator: ValidatorState.email,
                             decoration: CustomInputDecoration.style1(
                                 labelText: "Année d'expérience"),
@@ -295,36 +287,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'diplome',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Dernier diplôme'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Bac'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +1'),
-                                value: '2',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +2'),
-                                value: '3',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +3'),
-                                value: '4',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +4'),
-                                value: '5',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +5'),
-                                value: '6',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Bac +5 et plus'),
-                                value: '7',
-                              ),
-                            ],
+                            items: controller.diplomes.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item.diplomelib),
+                                value: item.diplomeId.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -333,20 +301,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'filiere',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Filière'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Comptabilité gestion'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Communication sociale'),
-                                value: '2',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Communication des entreprise'),
-                                value: '3',
-                              ),
-                            ],
+                            items: controller.metiers.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item.metierLibelle),
+                                value: item.metierId,
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -355,20 +315,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'categorie_professionnelle',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Catégorie Professionnelle'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Comptabilité gestion'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Communication sociale'),
-                                value: '2',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Communication des entreprise'),
-                                value: '3',
-                              ),
-                            ],
+                            items: controller.categories_professionnelles.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item.cateproLibelle),
+                                value: item.cateproId.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -403,20 +355,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'niveau_instruction',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: "Niveau d'instruction"),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('1er Cycle Universitaire'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('2ème Cycle Universitaire'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('3ème Cycle Universitaire'),
-                                value: '1',
-                              ),
-                            ],
+                            items: controller.niveaux_instructions.map((n) {
+                                return DropdownMenuItem(
+                                  child: Text(n.niveauLibelle),
+                                  value: n.niveauId.toInt(),
+                                );
+                              }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -425,16 +369,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'langue_internationale',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Langue internationale'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Français'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Anglais'),
-                                value: '2',
-                              ),
-                            ],
+                            items: controller.langues_internationales.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item.langueInterLibelle),
+                                value: item.langueInterId.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
@@ -443,16 +383,12 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                             name: 'langue_locale',
                             validator: ValidatorState.required,
                             decoration: CustomInputDecoration.style2(labelText: 'Langue locale'),
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Haoussa'),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Kanouri'),
-                                value: '2',
-                              ),
-                            ],
+                            items: controller.langues_locales.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item.langueLocalLibelle),
+                                value: item.langueLocalId.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),

@@ -46,7 +46,7 @@ class JobController extends GetxController {
 
 
         if (response.statusCode == 200) {
-
+          print(response.body);
           final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
 
           comments = parsed.map<Comment>((json) => Comment.fromMap(json)).toList();

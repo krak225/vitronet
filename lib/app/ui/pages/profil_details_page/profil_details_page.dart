@@ -28,6 +28,7 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
     String genre = _storage.read(AppConstants.USER_GENRE).toString();
     String domaine = _storage.read(AppConstants.USER_DOMAINE).toString();
     String experience = _storage.read(AppConstants.USER_EXPERIENCE).toString();
+    String diplome = _storage.read(AppConstants.USER_DIPLOME).toString();
     String photo = _storage.read(AppConstants.USER_PHOTO).toString();
 
     return MainLayoutView(
@@ -175,7 +176,7 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
                                   child: TextFormField(
                                     enabled: false,
                                     initialValue: domaine,
-                                    decoration: CustomInputDecoration.style1(labelText: "Domaine de compétence", border: InputBorder.none,),
+                                    decoration: CustomInputDecoration.style1(labelText: "Métier", border: InputBorder.none,),
                                   ),
                                 ),
                               ),
@@ -185,8 +186,8 @@ class ProfilDetailsPage extends GetView<ProfilDetailsController> {
                           FadeInRight(
                             child: TextFormField(
                               enabled: false,
-                              initialValue: adresse +" ",
-                              decoration:CustomInputDecoration.style1(labelText: 'Adresse', border: InputBorder.none,),
+                              initialValue: diplome +" ",
+                              decoration:CustomInputDecoration.style1(labelText: 'Diplôme', border: InputBorder.none,),
                              ),
                           ),
                         ]),
