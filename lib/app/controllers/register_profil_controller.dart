@@ -16,6 +16,7 @@ import '../data/models/CategorieProfessionnelle.dart';
 import '../data/models/LangueInternationale.dart';
 import '../data/models/LangueLocale.dart';
 import '../data/models/Metier.dart';
+import '../data/models/Region.dart';
 import '../data/models/Situation.dart';
 import '../data/models/offre.dart';
 import '../data/models/pays.dart';
@@ -34,6 +35,7 @@ class RegisterProfilController extends GetxController {
   final RxBool isLoading = false.obs;
   final GetStorage _storage = GetStorage();
   late List<Pays> pays = List.empty();
+  late List<Region> regions = List.empty();
   late List<Metier> metiers = List.empty();
   late List<NiveauInstruction> niveaux_instructions = List.empty();
   late List<LangueInternationale> langues_internationales = List.empty();
@@ -627,6 +629,20 @@ class RegisterProfilController extends GetxController {
     ];
 
     langues_locales = languesLocalesData.map((json) => LangueLocale.fromJson(json)).toList();
+
+
+    List<Map<String, dynamic>> regionData = [
+      {"region_id": 1, "region_nom": "AGADEZ"},
+      {"region_id": 2, "region_nom": "DIFFA"},
+      {"region_id": 3, "region_nom": "DOSSO"},
+      {"region_id": 4, "region_nom": "MARADI"},
+      {"region_id": 5, "region_nom": "TAHOUA"},
+      {"region_id": 6, "region_nom": "TILLABERI"},
+      {"region_id": 7, "region_nom": "ZINDER"},
+      {"region_id": 8, "region_nom": "NIAMEY"},
+    ];
+
+    regions = regionData.map((json) => Region.fromJson(json)).toList();
 
 
     List<Map<String, dynamic>> diplomesData = [

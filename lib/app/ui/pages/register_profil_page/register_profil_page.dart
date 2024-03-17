@@ -186,11 +186,16 @@ class RegisterProfilPage extends GetView<RegisterProfilController> {
                         ),
                         SizedBox(height: Get.height * 0.02),
                         FadeInRight(
-                          child: FormBuilderTextField(
-                            name: 'lieu_residence',
-                            initialValue: '',
-                            // validator: ValidatorState.email,
-                            decoration: CustomInputDecoration.style1(labelText: 'Lieu de résidence'),
+                          child: FormBuilderDropdown(
+                            name: 'region',
+                            validator: ValidatorState.required,
+                            decoration: CustomInputDecoration.style2(labelText: 'Lieu de résidence'),
+                            items: controller.regions.map((region) {
+                              return DropdownMenuItem(
+                                child: Text(region.regionNom),
+                                value: region.regionId.toInt(),
+                              );
+                            }).toList(),
                           ),
                         ),
                         SizedBox(height: Get.height * 0.02),
