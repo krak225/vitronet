@@ -20,6 +20,7 @@ class AppConstants {
   static const String USER_EXPERIENCE = "USER_EXPERIENCE";
   static const String USER_DIPLOME = "USER_DIPLOME";
   static const String USER_OTP = "USER_OTP";
+  static const String USER_STATUT = "USER_STATUT";
 
 
   //pour les documents

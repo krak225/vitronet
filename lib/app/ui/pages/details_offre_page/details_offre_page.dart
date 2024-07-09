@@ -22,6 +22,7 @@ class DetailsOffrePage extends GetView<DetailsOffreController> {
 
     GetStorage _storage = GetStorage();
     String user_id = _storage.read(AppConstants.USER_ID).toString();
+    String user_statut = _storage.read(AppConstants.USER_STATUT).toString();
 
     final Comment comment = Get.arguments;
 

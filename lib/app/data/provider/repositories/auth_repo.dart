@@ -21,6 +21,7 @@ class AuthRepo {
 
   Future sessionTokenDataSave(LoginResponse loginResponse) async {
 
+    box.write(AppConstants.USER_STATUT, loginResponse.statut);
     box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
     box.write(AppConstants.TOKEN_STORAGE, loginResponse.access);
     box.write(AppConstants.REFRESH_TOKEN_STORAGE, loginResponse.refresh);
@@ -36,8 +37,7 @@ class AuthRepo {
     box.write(AppConstants.USER_EXPERIENCE, loginResponse.experience);
     box.write(AppConstants.USER_OTP, loginResponse.otp);
     print('@@@@@@@@@@@@@@@@@@loginResponse@@@@@@@@@@@');
-    print(loginResponse.experience);
-    //print(loginResponse.refresh);
+    print(loginResponse.email);
 
   }
 

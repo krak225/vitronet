@@ -1,9 +1,9 @@
 class LoginResponse {
 
-  String? refresh, access, id, firstname, lastname, email, telephone, adresse, genre, photo, cni, dpc, cv, att, domaine, experience, otp;
+  String? refresh, access, id, firstname, lastname, email, telephone, adresse, genre, photo, cni, dpc, cv, att, domaine, experience, otp, statut;
 
 
-  LoginResponse({this.refresh, this.access, this.id, this.firstname, this.lastname, this.email, this.telephone, this.adresse, this.genre, this.photo, this.cni, this.dpc, this.cv, this.att, this.domaine, this.experience, this.otp});
+  LoginResponse({this.refresh, this.access, this.id, this.firstname, this.lastname, this.email, this.telephone, this.adresse, this.genre, this.photo, this.cni, this.dpc, this.cv, this.att, this.domaine, this.experience, this.otp, this.statut});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
     refresh = json['refresh'];
@@ -23,6 +23,7 @@ class LoginResponse {
     domaine = json['domaine'];
     experience = json['experience'];
     otp = json['otp'];
+    statut = json['user_statut'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +45,7 @@ class LoginResponse {
     data['domaine'] = this.domaine;
     data['experience'] = this.experience;
     data['otp'] = this.otp;
+    data['statut'] = this.statut;
     return data;
   }
 
