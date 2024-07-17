@@ -22,7 +22,7 @@ class KrakSoftMobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Job Boarder',
+      title: 'Ticket Plus',
       debugShowCheckedModeBanner: false,
       theme: Themes().lightTheme,
       darkTheme: Themes().darkTheme,
