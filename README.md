@@ -1,4 +1,4 @@
-# job_boarder
+# scanticket
 
 A new Flutter project.
 

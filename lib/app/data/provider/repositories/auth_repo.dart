@@ -21,26 +21,16 @@ class AuthRepo {
 
   Future sessionTokenDataSave(LoginResponse loginResponse) async {
 
-    box.write(AppConstants.USER_STATUT, loginResponse.statut);
-    box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
-    box.write(AppConstants.TOKEN_STORAGE, loginResponse.access);
-    box.write(AppConstants.REFRESH_TOKEN_STORAGE, loginResponse.refresh);
-    box.write(AppConstants.USER_FIRSTNAME, loginResponse.firstname);
-    box.write(AppConstants.USER_LASTNAME, loginResponse.lastname);
-    box.write(AppConstants.USER_ID, loginResponse.id);
-    box.write(AppConstants.USER_EMAIL, loginResponse.email);
-    box.write(AppConstants.USER_TELEPHONE, loginResponse.telephone);
-    box.write(AppConstants.USER_ADRESSE, loginResponse.adresse);
-    box.write(AppConstants.USER_GENRE, loginResponse.genre);
-    box.write(AppConstants.USER_PHOTO, loginResponse.photo);
-    box.write(AppConstants.USER_DOMAINE, loginResponse.domaine);
-    box.write(AppConstants.USER_EXPERIENCE, loginResponse.experience);
-    box.write(AppConstants.USER_OTP, loginResponse.otp);
-    print('@@@@@@@@@@@@@@@@@@loginResponse@@@@@@@@@@@');
-    print(loginResponse.email);
+    box.write(AppConstants.TOKEN_STORAGE, loginResponse.accessToken);
+    box.write(AppConstants.USER_STORAGE, loginResponse.user);
+    box.write(AppConstants.USER_ID, loginResponse.user?.id);
+    box.write(AppConstants.USER_FIRSTNAME, loginResponse.user?.prenoms);
+    box.write(AppConstants.USER_LASTNAME, loginResponse.user?.nom);
+    box.write(AppConstants.USER_EMAIL, loginResponse.user?.email);
+
+    print(loginResponse.accessToken);
 
   }
-
 
 
 

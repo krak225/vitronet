@@ -20,7 +20,6 @@ class AppConstants {
   static const String USER_EXPERIENCE = "USER_EXPERIENCE";
   static const String USER_DIPLOME = "USER_DIPLOME";
   static const String USER_OTP = "USER_OTP";
-  static const String USER_STATUT = "USER_STATUT";
 
 
   //pour les documents
@@ -35,9 +34,13 @@ class AppConstants {
 
   //static const String BASE_URL = "http://10.0.2.2:8000"; //localhost for android
   // static const String BASE_URL = "http://127.0.0.1:8000"; //localhost for ios
-  static const String BASE_URL = "https://anpe-niger.ne";
+  static const String BASE_URL = "https://hellodepart.com";
 
   static const String API_URL = BASE_URL + "/api";
+
+  static const String COMPAGNIE_URL = BASE_URL + "/assets/images/compagnie/";
+  static const String PRODUCTS_URL = API_URL + "/photos/produits/";
+  static const String CLIENTS_URL = API_URL + "/photos/clients/";
 
   static const String LOGIN = "/login";
   static const String appEmail = "";
