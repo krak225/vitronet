@@ -24,7 +24,7 @@ class PaiementScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
 
     return CinetPayCheckout(
-      title: 'Guichet HelloDépart',
+      title: 'Guichet TicketPlus',
       configData: <String, dynamic> {
         'apikey': '1114703932630f91ed741316.24658063',
         'site_id': '174242',

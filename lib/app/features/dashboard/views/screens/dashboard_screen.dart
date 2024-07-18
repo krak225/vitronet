@@ -31,7 +31,7 @@ class DashboardScreen extends GetView<DashboardController>{
         },
       child: Scaffold(
         //key: controller.scafoldKey,
-        appBar: AppBar(title: Text('Hello Départ'), backgroundColor: AppColor.bleu, centerTitle: true, ),
+        appBar: AppBar(title: Text('TicketPlus'), backgroundColor: AppColor.kPrimaryDarkColor, centerTitle: false, ),
         /*appBar: AnimatedAppBar(
           drawerTween: null,
           onPressed: () {
@@ -219,7 +219,7 @@ class DashboardScreen extends GetView<DashboardController>{
         Padding(
           padding: const EdgeInsets.all(kSpacing),
           child: Text(
-            "© 2023 HelloDépart | Design by krak225",
+            "© 2024 TicketPlus | Design by krak225",
             style: Theme.of(context).textTheme.caption,
           ),
         ),

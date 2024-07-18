@@ -74,13 +74,13 @@ class Facture {
     factureMontant = json['facture_montant'];
     factureMontantTotal = json['facture_montant_total'];
     //factureTotalApayer = json['facture_total_apayer'];
-    factureTotalTiersOut = json['facture_total_tiers_out'].round().toInt();
-    factureCompteCompagnie = json['facture_compte_compagnie'].round().toInt();
+    factureTotalTiersOut = 0;//json['facture_total_tiers_out'].round().toInt();
+    factureCompteCompagnie = 0;//json['facture_compte_compagnie'].round().toInt();
     //factureParttelcoIn = json['facture_parttelco_in'];
     //factureParttelcoOut1 = double.parse(json['facture_parttelco_out1'].toString());
     //factureParttelcoOut2 = double.parse(json['facture_parttelco_out2'].toString());
-    facturePartpdv = json['facture_partpdv'].round().toInt();
-    facturePartHellodepart = json['facture_part_hellodepart'].round().toInt();
+    facturePartpdv = 0;//json['facture_partpdv'].round().toInt();
+    facturePartHellodepart = 0;//json['facture_part_hellodepart'].round().toInt();
     factureFrais = json['facture_frais'];
     factureTimbreEtat = json['facture_timbre_etat'];
     factureCommission = json['facture_commission'];

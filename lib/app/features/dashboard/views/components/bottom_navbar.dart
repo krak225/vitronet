@@ -1,10 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../../constans/app_color.dart';
-
 import '../../controllers/dashboard_controller.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -30,19 +27,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: "Accueil",
         ),
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.car),
-          icon: Icon(EvaIcons.carOutline),
-          label: "Départs",
+          activeIcon: Icon(EvaIcons.checkmarkCircle2),
+          icon: Icon(EvaIcons.checkmarkCircle2Outline),
+          label: "Tickets vérifiés",
         ),
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.bell),
-          icon: Icon(EvaIcons.bellOutline),
-          label: "Tickets vendus",
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.creditCard),
-          icon: Icon(EvaIcons.creditCardOutline),
-          label: "Commissions",
+          activeIcon: Icon(EvaIcons.archive),
+          icon: Icon(EvaIcons.archiveOutline),
+          label: "Faux Tickets",
         ),
       ],
       selectedItemColor: AppColor.bleu,//Theme.of(context).primaryColor,

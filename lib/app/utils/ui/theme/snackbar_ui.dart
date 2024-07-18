@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_depart/app/constans/app_color.dart';
 
 class SnackbarUi {
 
   static void error(message,{Duration? duration}){
-    Get.snackbar('ERREUR', '$message',
+    Get.snackbar('Erreur', '$message',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         borderRadius: 50,
@@ -14,8 +15,19 @@ class SnackbarUi {
         icon: Icon(Icons.error, color: Colors.white));
   }
 
+  static void warning(message,{Duration? duration}){
+    Get.snackbar('Attention', '$message',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orange,
+        borderRadius: 50,
+        margin: EdgeInsets.all(10),
+        colorText: Colors.white,
+        duration: duration ?? Duration(seconds: 5),
+        icon: Icon(Icons.lock, color: Colors.white));
+  }
+
   static void success(message,{Duration? duration}){
-    Get.snackbar('SUCCES', '$message',
+    Get.snackbar('Succès', '$message',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         borderRadius: 50,
@@ -26,7 +38,7 @@ class SnackbarUi {
   }
 
   static void info(message,{Duration? duration}){
-    Get.snackbar('INFO', '$message',
+    Get.snackbar('Info', '$message',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.black,
         borderRadius: 50,

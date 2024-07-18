@@ -6,7 +6,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../../../constans/app_constants.dart';
 import '../../../../shared_components/header_text.dart';
 import '../../controllers/home_controller.dart';
-import '../components/liste_factures.dart';
+import '../components/liste_tickets.dart';
 
 class FacturesScreen extends GetView<HomeController> {
   const FacturesScreen({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class FacturesScreen extends GetView<HomeController> {
             ],
           ),
           const SizedBox(height: kSpacing),
-          ListeFactures(
+          ListeTickets(
             data: controller.fetchTickets(),
             onPressed: controller.onPressedTask,
           )

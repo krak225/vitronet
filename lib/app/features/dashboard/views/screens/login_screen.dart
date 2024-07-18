@@ -42,7 +42,7 @@ class LoginScreen extends GetView<LoginController> {
                     padding: EdgeInsets.all(16),
                     backgroundColor: Colors.white,
                     side: BorderSide(
-                      width: 2.0,
+                      width: 1.0,
                       color: Colors.white,
                     ),
                     shape: CircleBorder(),
@@ -172,7 +172,7 @@ class LoginScreen extends GetView<LoginController> {
                     .copyWith(
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
-                    fontSize: 8,
+                    fontSize: 10,
                   )
                 ),
 

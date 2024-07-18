@@ -33,8 +33,8 @@ class TaskProgress extends StatelessWidget {
 
   Widget _buildText() {
     return Text(
-      //"Recettes des ${data.totalTask} derniers jours",
-      "Suivi des recettes",
+      //"Recettes des ${data.totalTask} derniers événements",
+      "Evénements précédents",
       style: TextStyle(
         fontWeight: FontWeight.w600,
         color: kFontColorPallets[2],

@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:intl/intl.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 import '../../../config/app_constants.dart';
 import '../../../constans/app_constants.dart';
@@ -137,7 +138,7 @@ class HomeController extends GetxController {
       } else {
         print("response Body: " + response.body);
 
-        throw Exception('Failed to load départs');
+        throw Exception('Failed to load data');
       }
 
   }
@@ -300,31 +301,31 @@ class HomeController extends GetxController {
 
     taskInProgress.add(CardTaskData(
       label: STAT_TODAY.toString(),
-      taux: "0",
+      taux: "50",
       jobDesk: "Aujourd'hui",
       dueDate: DateTime.now().add(const Duration(hours: 0)),
     ));
     taskInProgress.add(CardTaskData(
       label: STAT_TODAY_1.toString(),
-      taux: "0",
+      taux: "30",
       jobDesk: "Hier",
       dueDate: DateTime.now().subtract(const Duration(days: 1)),
     ));
     taskInProgress.add(CardTaskData(
       label: STAT_TODAY_2.toString(),
-      taux: "0",
+      taux: "50",
       jobDesk: "Avant-hier",
       dueDate: DateTime.now().subtract(const Duration(days: 2)),
     ));
     taskInProgress.add(CardTaskData(
       label: STAT_TODAY_3.toString(),
-      taux: "0",
+      taux: "20",
       jobDesk: "Il y a 3 jours",
       dueDate: DateTime.now().subtract(const Duration(days: 3)),
     ));
     taskInProgress.add(CardTaskData(
       label: STAT_TODAY_4.toString(),
-      taux: "0",
+      taux: "60",
       jobDesk: "Il y a 4 jours",
       dueDate: DateTime.now().subtract(const Duration(days: 4)),
     ));
@@ -334,6 +335,10 @@ class HomeController extends GetxController {
     fetchVilles();
 
 
+  }
+
+  Future<void> scanTicket() async {
+    String cameraScanResult = await scanner.scan();
   }
 
 }

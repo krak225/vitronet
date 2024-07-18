@@ -53,9 +53,9 @@ class TaskGroup extends StatelessWidget {
     int val = index % 3;
 
     if (val == 2) {
-      return Colors.lightBlue;
+      return Colors.red;
     } else if (val == 1) {
-      return Colors.amber;
+      return Colors.amberAccent;
     } else {
       return Colors.redAccent;
     }

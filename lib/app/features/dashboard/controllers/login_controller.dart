@@ -37,7 +37,8 @@ class LoginController extends GetxController {
         Get.offAllNamed(AppPages.initial);
 
       } else {
-        SnackbarUi.error(response.data['message']);
+        SnackbarUi.error("Login ou mot de passe erroné.");
+        //SnackbarUi.error(response.data['message']);
         //isLoading.value = false;
       }
 

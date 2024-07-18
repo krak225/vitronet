@@ -6,8 +6,8 @@ import '../../../../shared_components/details_facture.dart';
 import '../../model/client.dart';
 import '../../model/facture.dart';
 
-class ListeFactures extends StatelessWidget {
-  const ListeFactures({
+class ListeTickets extends StatelessWidget {
+  const ListeTickets({
     required this.data,
     required this.onPressed,
     Key? key,
@@ -50,7 +50,7 @@ class ListeFactures extends StatelessWidget {
                 );
 
           } else if (snapshot.hasError) {
-            return Text("AUCUN TICKET VENDU");//"${snapshot.error}"
+            return Text("AUCUN TICKET VERIFIE");//"${snapshot.error}"
           }
           return Center(child: CircularProgressIndicator());
         },

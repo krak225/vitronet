@@ -7,15 +7,15 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../shared_components/header_text.dart';
 import '../../controllers/dashboard_controller.dart';
 
-class HeaderWeeklyTask extends StatelessWidget {
-  HeaderWeeklyTask({Key? key}) : super(key: key);
+class HeaderVerificationTickets extends StatelessWidget {
+  HeaderVerificationTickets({Key? key}) : super(key: key);
   final DashboardController controller = Get.find();
   
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const HeaderText("Mes tickets vendus"),
+        const HeaderText("Vérification de tickets"),
         const Spacer(),
         _buildArchive(),
         const SizedBox(width: 10),
