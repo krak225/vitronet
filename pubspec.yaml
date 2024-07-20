@@ -58,7 +58,7 @@ dependencies:
   get_storage:
   loader_overlay: ^2.1.0
   cinetpay: ^1.0.6
-  qrscan: ^0.3.3
+  masi_qr_code_scanner: ^0.0.2
   ##
 
 

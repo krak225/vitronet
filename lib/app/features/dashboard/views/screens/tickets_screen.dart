@@ -8,21 +8,21 @@ import '../../../../shared_components/header_text.dart';
 import '../../controllers/home_controller.dart';
 import '../components/liste_tickets.dart';
 
-class FacturesScreen extends GetView<HomeController> {
-  const FacturesScreen({Key? key}) : super(key: key);
+class TicketsScreen extends GetView<HomeController> {
+  const TicketsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         controller: ScrollController(),
-        child: _buildFacturesContent(
+        child: _buildTicketsContent(
           onPressedMenu: () => controller.openDrawer(),
           context: context
         )
     );
   }
 
-  Widget _buildFacturesContent({Function()? onPressedMenu, required BuildContext context}) {
+  Widget _buildTicketsContent({Function()? onPressedMenu, required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSpacing),
       child: Column(

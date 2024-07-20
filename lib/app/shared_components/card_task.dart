@@ -4,6 +4,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../app/utils/helpers/app_helpers.dart';
+import 'icon_label.dart';
 
 class CardTaskData {
   String? label;
@@ -128,7 +129,7 @@ class CardTask extends StatelessWidget {
   }
 
   Widget _buildDate() {
-    return _IconLabel(
+    return IconLabel(
       color: onPrimary,
       iconData: EvaIcons.calendarOutline,
       label: DateFormat('d MMM').format(data.dueDate!),
@@ -136,7 +137,7 @@ class CardTask extends StatelessWidget {
   }
 
   Widget _buildHours() {
-    return _IconLabel(
+    return IconLabel(
       color: onPrimary,
       iconData: EvaIcons.clockOutline,
       label: data.dueDate!.dueDate(),
@@ -151,40 +152,6 @@ class CardTask extends StatelessWidget {
       ),
       icon: const Icon(EvaIcons.checkmarkCircle2Outline),
       label: Text(data.taux.length > 4 ? data.taux.substring(0,4).replaceAll('.', ",") + " %" : data.taux.replaceAll('.', ",") + " %"),
-    );
-  }
-}
-
-class _IconLabel extends StatelessWidget {
-  const _IconLabel({
-    required this.color,
-    required this.iconData,
-    required this.label,
-    Key? key,
-  }) : super(key: key);
-
-  final Color color;
-  final IconData iconData;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          iconData,
-          color: color,
-          size: 18,
-        ),
-        const SizedBox(width: 5),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: color.withOpacity(.8),
-          ),
-        )
-      ],
     );
   }
 }

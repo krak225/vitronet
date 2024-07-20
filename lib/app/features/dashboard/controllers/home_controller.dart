@@ -8,14 +8,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/cupertino.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:intl/intl.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
 
 import '../../../config/app_constants.dart';
 import '../../../constans/app_constants.dart';
 import '../../../shared_components/card_task.dart';
-import '../../../shared_components/list_task_date.dart';
 import '../../../shared_components/selection_button.dart';
 import '../../../shared_components/task_progress.dart';
 import '../../../shared_components/user_profile.dart';
@@ -338,7 +335,37 @@ class HomeController extends GetxController {
   }
 
   Future<void> scanTicket() async {
-    String cameraScanResult = await scanner.scan();
+
+  }
+
+
+  Future<String> verifTicket(String qr_code) async {
+    String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
+        .toString();
+
+    print(TOKEN_STORAGE);
+
+    String url = AppConstants.API_URL + "/verif_ticket";
+
+    final response = await http.get(Uri.parse(url), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
+      HttpHeaders.contentTypeHeader: 'application/json',
+    });
+
+    print(url);
+
+    if (response.statusCode == 200) {
+
+      return "Vérification OK";
+
+    } else {
+
+      print("response Body: " + response.body);
+
+      throw Exception('Failed to load clients');
+
+    }
+
   }
 
 }

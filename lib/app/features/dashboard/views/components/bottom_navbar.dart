@@ -27,14 +27,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: "Accueil",
         ),
         BottomNavigationBarItem(
+          activeIcon: Icon(EvaIcons.camera),
+          icon: Icon(EvaIcons.cameraOutline),
+          label: "Scanner un ticket",
+        ),
+        BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.checkmarkCircle2),
           icon: Icon(EvaIcons.checkmarkCircle2Outline),
           label: "Tickets vérifiés",
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.archive),
-          icon: Icon(EvaIcons.archiveOutline),
-          label: "Faux Tickets",
         ),
       ],
       selectedItemColor: AppColor.bleu,//Theme.of(context).primaryColor,

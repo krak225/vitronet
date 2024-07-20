@@ -1,14 +1,18 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:hello_depart/app/utils/stdfn.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:masi_qr_code_scanner/masi_qr_code_scanner.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../constans/app_constants.dart';
 import '../../../../shared_components/form_rechercher_depart.dart';
 import '../../../../shared_components/header_text.dart';
+import '../../../../utils/ui/theme/snackbar_ui.dart';
 import '../../controllers/home_controller.dart';
 import '../components/liste_departs.dart';
 
@@ -19,11 +23,27 @@ class DepartsScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         controller: ScrollController(),
-        child: _buildContent(
+        child: _buildQRCodeView(
           onPressedMenu: () => controller.openDrawer(),
           context: context
         )
     );
+  }
+
+  Widget _buildQRCodeView({Function()? onPressedMenu, required BuildContext context}) {
+    return QRCodeScanner(
+        onScan: (String data) {
+          HapticFeedback.vibrate();
+          debugPrint(data);
+          SnackbarUi.error("onScan: " + data);
+          controller.verifTicket(data);
+        },
+        size: 800,
+        borderLength: 300,
+        borderWidth: 2,
+        borderColor: Colors.red,
+        borderRadius: 13,
+      );
   }
 
   Widget _buildContent({Function()? onPressedMenu, required BuildContext context}) {
@@ -67,11 +87,11 @@ class DepartsScreen extends GetView<HomeController> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  elevation: 0,
-                  backgroundColor: Colors.blue[300]
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.blue[300]
                 ),
                 label: const Text("Rechercher"),
               ),
@@ -79,11 +99,11 @@ class DepartsScreen extends GetView<HomeController> {
           ),
           const SizedBox(height: kSpacing),
           Obx(() =>ListeDeparts(
-              data: controller.fetchDeparts(controller.ville_depart_id.value, controller.ville_destination_id.value, controller.date_depart.value),
-              onPressed: controller.onPressedTask,
-              onPressedAssign: controller.onPressedAssignTask,
-              onPressedMember: controller.onPressedMemberTask,
-            ),
+            data: controller.fetchDeparts(controller.ville_depart_id.value, controller.ville_destination_id.value, controller.date_depart.value),
+            onPressed: controller.onPressedTask,
+            onPressedAssign: controller.onPressedAssignTask,
+            onPressedMember: controller.onPressedMemberTask,
+          ),
           ),
 
         ],

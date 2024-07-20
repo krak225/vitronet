@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_depart/app/features/dashboard/controllers/home_controller.dart';
+import 'package:hello_depart/app/shared_components/icon_label.dart';
 
 class ScanButton extends StatelessWidget {
 
@@ -19,9 +20,9 @@ class ScanButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       child: Material(
         child: InkWell(
-          onTap: ()=>controller.scanTicket(),
+          onTap: () => controller.scanTicket(),
           child: Container(
-            width: 350,
+            width: 400,
             height: 170,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -32,13 +33,14 @@ class ScanButton extends StatelessWidget {
             ),
             child: _BackgroundDecoration(
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(5),
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildQRcode(),
                       _doneButton(),
+                      //Center(child: IconLabel(color: Colors.white, iconData: EvaIcons.camera, label: "Scanner"))
                     ],
                   ),
                 ),
@@ -58,7 +60,7 @@ class ScanButton extends StatelessWidget {
 
   Widget _doneButton() {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: () => controller.scanTicket(),
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white, backgroundColor: Colors.blue,
       ),

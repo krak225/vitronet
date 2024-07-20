@@ -23,14 +23,12 @@ import '../../../shared_components/list_task_date.dart';
 import '../../../shared_components/selection_button.dart';
 import '../../../shared_components/task_progress.dart';
 import '../../../shared_components/user_profile.dart';
-import '../../../utils/stdfn.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 import '../model/client.dart';
 import '../model/facture.dart';
-import '../views/screens/departs_screen.dart';
-import '../views/screens/factures_screen.dart';
 import '../views/screens/home_screen.dart';
-import '../views/screens/messages_screen.dart';
+import '../views/screens/scanqrcode_screen.dart';
+import '../views/screens/tickets_screen.dart';
 import 'home_controller.dart';
 
 class PhotoTemporaire {
@@ -98,12 +96,11 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   final tabIndex = 0.obs;
   List<Widget> pageList = [
     HomeScreen(),
-    DepartsScreen(),
-    FacturesScreen(),
-    MessagesScreen(),
+    ScanQRCodeScreen(),
+    TicketsScreen(),
   ];
 
-  final pageListTitle = ["Accueil", "Tickets vendus", "Départs"];
+  final pageListTitle = ["Accueil", "Vérifier un ticket", "Tickets vérifiés"];
 
   Future<void> changeIndex(int? index) async {
     hcontroller.ville_depart_id = 0.obs;
