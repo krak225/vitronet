@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:hello_depart/app/utils/stdfn.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-import 'package:masi_qr_code_scanner/masi_qr_code_scanner.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../constans/app_constants.dart';
@@ -31,7 +28,7 @@ class DepartsScreen extends GetView<HomeController> {
   }
 
   Widget _buildQRCodeView({Function()? onPressedMenu, required BuildContext context}) {
-    return QRCodeScanner(
+    return Text("QRCodeView")/*QRCodeScanner(
         onScan: (String data) {
           HapticFeedback.vibrate();
           debugPrint(data);
@@ -43,7 +40,7 @@ class DepartsScreen extends GetView<HomeController> {
         borderWidth: 2,
         borderColor: Colors.red,
         borderRadius: 13,
-      );
+      )*/;
   }
 
   Widget _buildContent({Function()? onPressedMenu, required BuildContext context}) {

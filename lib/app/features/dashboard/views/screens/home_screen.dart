@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:hello_depart/app/shared_components/label_icon.dart';
 
 import '../../../../shared_components/account_amount.dart';
 import '../../../../shared_components/scan_button.dart';
@@ -35,7 +34,8 @@ class HomeScreen extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          const SizedBox(height: kSpacing),
+          /*Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.amber, Colors.amber],
@@ -48,17 +48,17 @@ class HomeScreen extends GetView<HomeController> {
             child: Row(
                 children: [AccountAmount(color: Colors.black, iconData: EvaIcons.eye, label: "10. 898F")]
             )
-          ),
+          ),*/
           ScanButton(controller: controller),
           const SizedBox(height: kSpacing),
           HeaderVerificationTickets(),
-          const SizedBox(height: kSpacing),
-          TaskInProgress(data: controller.taskInProgress),
-          const SizedBox(height: kSpacing * 2),
-          //ListeTickets(
-          //  data: controller.fetchTickets(),
-          //  onPressed: controller.onPressedTask,
-          //),
+          //const SizedBox(height: kSpacing),
+          //TaskInProgress(data: controller.taskInProgress),
+          //const SizedBox(height: kSpacing * 2),
+          ListeTickets(
+            data: controller.fetchTickets(),
+            onPressed: controller.onPressedTask,
+          ),
         ],
       ),
     );

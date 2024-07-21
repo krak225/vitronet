@@ -19,25 +19,25 @@ class MainMenu extends StatelessWidget {
           activeIcon: EvaIcons.home,
           icon: EvaIcons.homeOutline,
           label: "Accueil",
-        ),
+        ),/*
         SelectionButtonData(
           activeIcon: EvaIcons.checkmarkCircle,
           icon: EvaIcons.bellOutline,
           label: "Scanner un ticket",
           totalNotif: 0,
-        ),
+        ),*/
         SelectionButtonData(
           activeIcon: EvaIcons.checkmarkCircle2,
           icon: EvaIcons.checkmarkCircle,
           label: "Tickets vérifiés",
           totalNotif: 0,
-        ),
+        ),/*
         SelectionButtonData(
           activeIcon: EvaIcons.expand,
           icon: EvaIcons.creditCardOutline,
           label: "Faux tickets",
           totalNotif: 0,
-        ),
+        ),*/
       ],
       onSelected: onSelected,
     );

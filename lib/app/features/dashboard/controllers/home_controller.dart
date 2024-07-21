@@ -17,11 +17,13 @@ import '../../../shared_components/selection_button.dart';
 import '../../../shared_components/task_progress.dart';
 import '../../../shared_components/user_profile.dart';
 import '../../../utils/stdfn.dart';
+import '../../../utils/ui/theme/snackbar_ui.dart';
 import '../model/Ville.dart';
 import '../model/client.dart';
 import '../model/facture.dart';
 import '../model/hellodepart_models.dart';
 import '../model/produit.dart';
+import '../model/ticket.dart';
 
 class HomeController extends GetxController {
   final scafoldKey = GlobalKey<ScaffoldState>();
@@ -33,6 +35,7 @@ class HomeController extends GetxController {
 
   final RxBool isLoading = false.obs;
 
+  late List<Ticket> tickets = List.empty();
   late List<Client> clients = List.empty();
   late List<Produit> produits = List.empty();
   late List<Facture> factures = List.empty();
@@ -158,10 +161,10 @@ class HomeController extends GetxController {
 
   }
 
-  Future<List<Facture>> fetchTickets() async {
+  Future<List<Ticket>> fetchTickets() async {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-    String url = AppConstants.API_URL + "/factures";
+    String url = AppConstants.API_URL + "/tickets";
 
     final response = await http.get(Uri.parse(url), headers: {
       HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
@@ -174,50 +177,15 @@ class HomeController extends GetxController {
       print(response.body);
       final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
 
-      factures = parsed.map<Facture>((json) => Facture.fromJson(json)).toList();
+      tickets = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
 
-      var today_0 = DateTime.now();
-      var today_1 = DateTime.now().subtract(const Duration(days: 1));
-      var today_2 = DateTime.now().subtract(const Duration(days: 2));
-      var today_3 = DateTime.now().subtract(const Duration(days: 3));
-      var today_4 = DateTime.now().subtract(const Duration(days: 4));
-
-      DateFormat dateFormat = DateFormat('yyyy-MM-dd');
-      String today_0_formated = dateFormat.format(today_0);
-      String today_1_formated = dateFormat.format(today_1);
-      String today_2_formated = dateFormat.format(today_2);
-      String today_3_formated = dateFormat.format(today_3);
-      String today_4_formated = dateFormat.format(today_4);
-
-      var STAT_TODAY = Stdfn.sumTotalFactures(factures.where((facture) => facture.factureDateCreation!.contains(today_0_formated)));
-      var STAT_TODAY_1 = Stdfn.sumTotalFactures(factures.where((facture) => facture.factureDateCreation!.contains(today_1_formated)));
-      var STAT_TODAY_2 = Stdfn.sumTotalFactures(factures.where((facture) => facture.factureDateCreation!.contains(today_2_formated)));
-      var STAT_TODAY_3 = Stdfn.sumTotalFactures(factures.where((facture) => facture.factureDateCreation!.contains(today_3_formated)));
-      var STAT_TODAY_4 = Stdfn.sumTotalFactures(factures.where((facture) => facture.factureDateCreation!.contains(today_4_formated)));
-
-      var MONTANT_TOTAL_COMMANDES = Stdfn.sumTotalFactures(factures);
-
-      List<int> stats = [
-        STAT_TODAY,
-        STAT_TODAY_1,
-        STAT_TODAY_2,
-        STAT_TODAY_3,
-        STAT_TODAY_4];
-
-      int i = 0;
-      for(var stat in taskInProgress){
-        stat.label = Stdfn.toAmount(stats[i]).toString();
-        stat.taux = (stats[i] * 100 / MONTANT_TOTAL_COMMANDES).toString();
-        i++;
-      }
-
-      return factures;
+      return tickets;
 
     } else {
 
       print("response Body: " + response.body);
 
-      throw Exception('Failed to load factures');
+      throw Exception('Failed to load tickets');
 
     }
 
@@ -339,7 +307,7 @@ class HomeController extends GetxController {
   }
 
 
-  Future<String> verifTicket(String qr_code) async {
+  Future<void> verifTicket(String qr_code) async {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
         .toString();
 
@@ -347,18 +315,20 @@ class HomeController extends GetxController {
 
     String url = AppConstants.API_URL + "/verif_ticket";
 
-    final response = await http.get(Uri.parse(url), headers: {
+    final response = await http.post(Uri.parse(url), headers: {
       HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
       HttpHeaders.contentTypeHeader: 'application/json',
-    });
+    }, body: jsonEncode({'qrcode': qr_code}),);
 
     print(url);
 
     if (response.statusCode == 200) {
 
-      return "Vérification OK";
+      SnackbarUi.success("TICKET CERTIFIE CONFORME.");
 
     } else {
+
+      SnackbarUi.error("TICKET INVALIDE.");
 
       print("response Body: " + response.body);
 

@@ -58,7 +58,7 @@ dependencies:
   get_storage:
   loader_overlay: ^2.1.0
   cinetpay: ^1.0.6
-  masi_qr_code_scanner: ^0.0.2
+  qr_bar_code_scanner_dialog: ^0.0.5
   ##
 
 
@@ -83,6 +83,7 @@ flutter:
     - assets/images/profil.png
     - assets/images/logo.png
     - assets/images/logo-round.png
+    - assets/images/logo.jpeg
     - assets/images/qrcode.png
     - assets/icons/facebook.png
     - assets/icons/apple.png

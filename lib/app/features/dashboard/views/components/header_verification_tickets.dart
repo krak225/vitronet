@@ -25,7 +25,7 @@ class HeaderVerificationTickets extends StatelessWidget {
 
   Widget _buildArchive() {
     return ElevatedButton(
-      onPressed: () => controller.changeIndex(2),
+      onPressed: () => controller.changeIndex(1),
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.grey[850], backgroundColor: Colors.grey[100],
         shape: RoundedRectangleBorder(

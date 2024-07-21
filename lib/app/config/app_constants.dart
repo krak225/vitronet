@@ -31,7 +31,6 @@ class AppConstants {
   static const String USER_ATT = "USER_ATT";
   static const String USER_PHOTO = "USER_PHOTO";
 
-
   //static const String BASE_URL = "http://10.0.2.2:8000"; //localhost for android
   // static const String BASE_URL = "http://127.0.0.1:8000"; //localhost for ios
   static const String BASE_URL = "https://eisi.ci/ticketplus_api/public";

@@ -25,20 +25,20 @@ class _BottomNavbarState extends State<BottomNavbar> {
           activeIcon: Icon(EvaIcons.home),
           icon: Icon(EvaIcons.homeOutline),
           label: "Accueil",
-        ),
+        ),/*
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.camera),
           icon: Icon(EvaIcons.cameraOutline),
           label: "Scanner un ticket",
-        ),
+        ),*/
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.checkmarkCircle2),
           icon: Icon(EvaIcons.checkmarkCircle2Outline),
           label: "Tickets vérifiés",
         ),
       ],
-      selectedItemColor: AppColor.bleu,//Theme.of(context).primaryColor,
-      unselectedItemColor: AppColor.bleu.withOpacity(.5),//Theme.of(context).primaryColor.withOpacity(.5),
+      selectedItemColor: AppColor.orange,//Theme.of(context).primaryColor,
+      unselectedItemColor: AppColor.orange.withOpacity(.5),//Theme.of(context).primaryColor.withOpacity(.5),
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: false,
       onTap: (value) {

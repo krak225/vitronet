@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hello_depart/app/shared_components/build_liste_tickets.dart';
+import 'package:hello_depart/app/shared_components/details_ticket.dart';
 
-import '../../../../shared_components/build_liste_factures.dart';
-import '../../../../shared_components/details_facture.dart';
 import '../../model/client.dart';
-import '../../model/facture.dart';
+import '../../model/ticket.dart';
 
 class ListeTickets extends StatelessWidget {
   const ListeTickets({
@@ -13,26 +13,26 @@ class ListeTickets extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final Future<List<Facture>> data;
+  final Future<List<Ticket>> data;
   final Function(int index, Client data) onPressed;
 
   @override
   Widget build(BuildContext context) {
 
-    return FutureBuilder<List<Facture>>(
+    return FutureBuilder<List<Ticket>>(
         future: data,
         builder: (context, snapshot) {
           print(snapshot);
 
           if (snapshot.hasData) {
-            List<Facture>? factures = snapshot.data;
+            List<Ticket>? tickets = snapshot.data;
 
-            print(factures!.length);
+            print(tickets!.length);
 
             return Column(
                 children: List.generate(
-                  factures!.length, (index) =>
-                    BuildListFactures(facture: factures[index],
+                  tickets!.length, (index) =>
+                    BuildListTickets(ticket: tickets[index],
                       onPressed: () => {
                         showModalBottomSheet(
                             backgroundColor: Colors.transparent,
@@ -40,7 +40,8 @@ class ListeTickets extends StatelessWidget {
                             isScrollControlled: true,
                             builder: (context) {
 
-                              return DetailsFacture(factures[index]);
+                              //return IconLabel(label: tickets[index].toString(), color: Colors.white, iconData: EvaIcons.inboxOutline,); //
+                              return DetailsTicket(tickets[index]);
 
                             }
                         )
@@ -50,7 +51,7 @@ class ListeTickets extends StatelessWidget {
                 );
 
           } else if (snapshot.hasError) {
-            return Text("AUCUN TICKET VERIFIE");//"${snapshot.error}"
+            return Text("AUCUN TICKET TROUVE");//"${snapshot.error}"
           }
           return Center(child: CircularProgressIndicator());
         },

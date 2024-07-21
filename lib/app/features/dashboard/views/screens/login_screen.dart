@@ -15,7 +15,7 @@ class LoginScreen extends GetView<LoginController> {
 
     return Scaffold(
       //key: _homeKey,
-      backgroundColor: AppColor.kPrimaryDarkColor.withOpacity(1),
+      backgroundColor: AppColor.bleu.withOpacity(1),
       body: SafeArea(
         top: false,
         bottom: false,
@@ -36,7 +36,7 @@ class LoginScreen extends GetView<LoginController> {
                 ),
                 ),
                 SizedBox(height: 10,),
-                ElevatedButton(
+                /*ElevatedButton(
                   onPressed: () => {},
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(16),
@@ -48,10 +48,18 @@ class LoginScreen extends GetView<LoginController> {
                     shape: CircleBorder(),
                   ),
                   child: CircleAvatar(child: Image.asset(
-                    'assets/images/logo-round.png',
+                    'assets/images/logo.jpeg',
                   ),
                   )
+                ),*/
+                FadeInRight(
+                    delay: Duration(milliseconds: 300),
+                    child:Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 0),
+                            child:Image.asset('assets/images/logo.jpeg'),
+                        ),
                 ),
+                SizedBox(height: 10,),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                   child: Stack(
@@ -59,6 +67,7 @@ class LoginScreen extends GetView<LoginController> {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                         alignment: Alignment.bottomCenter,
+
                         //margin: EdgeInsets.symmetric(horizontal: 16.0,),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -123,7 +132,7 @@ class LoginScreen extends GetView<LoginController> {
                                             label: Text('Se connecter'),
                                             style: ElevatedButton.styleFrom(
                                               minimumSize: Size.fromHeight(40),
-                                              backgroundColor: AppColor.kPrimaryColor,// fromHeight use double.infinity as width and 40 is the height
+                                              backgroundColor: AppColor.orange,// fromHeight use double.infinity as width and 40 is the height
                                             ),
                                           ),
                                         ),
@@ -149,7 +158,7 @@ class LoginScreen extends GetView<LoginController> {
                                               child: Text(
                                                 'Mot de passe oublié ?',
                                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                                  color: AppColor.kThirdColor,
+                                                  color: AppColor.white,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -170,7 +179,7 @@ class LoginScreen extends GetView<LoginController> {
                     .textTheme
                     .bodyLarge!
                     .copyWith(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.normal,
                     fontSize: 10,
                   )

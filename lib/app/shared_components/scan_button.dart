@@ -4,6 +4,9 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:hello_depart/app/features/dashboard/controllers/home_controller.dart';
 import 'package:hello_depart/app/shared_components/icon_label.dart';
+import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
+
+import '../utils/ui/theme/snackbar_ui.dart';
 
 class ScanButton extends StatelessWidget {
 
@@ -39,7 +42,7 @@ class ScanButton extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       _buildQRcode(),
-                      _doneButton(),
+                      _doneButton(context),
                       //Center(child: IconLabel(color: Colors.white, iconData: EvaIcons.camera, label: "Scanner"))
                     ],
                   ),
@@ -58,11 +61,18 @@ class ScanButton extends StatelessWidget {
     return Expanded(child: Image.asset('assets/images/qrcode.png', height: 400,));
   }
 
-  Widget _doneButton() {
+  Widget _doneButton(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () => controller.scanTicket(),
+      //onPressed: () => controller.scanTicket(),
+      onPressed: () => QrBarCodeScannerDialog().getScannedQrBarCode(
+          context: context,
+          onCode: (code) {
+            controller.verifTicket(code.toString());
+            //SnackbarUi.success("Vérification du code: " + code.toString());
+          }),
+      //onPressed: () => controller.verifTicket("1"),
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white, backgroundColor: Colors.blue,
+        foregroundColor: Colors.white, backgroundColor: Colors.blue, //padding: const EdgeInsets.symmetric(horizontal: , vertical: 0),
       ),
       icon: const Icon(EvaIcons.checkmarkCircle2Outline),
       label: Text("Scanner un ticket"),

@@ -42,7 +42,7 @@ class TicketsScreen extends GetView<HomeController> {
           const SizedBox(height: kSpacing * 1),
           Row(
             children: [
-              const HeaderText("Mes tickets vendus"),
+              const HeaderText("Les tickets vérifiés"),
               const Spacer(),
               const SizedBox(width: 10),
               /*ElevatedButton.icon(
