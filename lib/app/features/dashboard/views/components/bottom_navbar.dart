@@ -25,12 +25,12 @@ class _BottomNavbarState extends State<BottomNavbar> {
           activeIcon: Icon(EvaIcons.home),
           icon: Icon(EvaIcons.homeOutline),
           label: "Accueil",
-        ),/*
+        ),
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.camera),
-          icon: Icon(EvaIcons.cameraOutline),
-          label: "Scanner un ticket",
-        ),*/
+          activeIcon: Icon(EvaIcons.calendar),
+          icon: Icon(EvaIcons.calendarOutline),
+          label: "Evénements",
+        ),
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.checkmarkCircle2),
           icon: Icon(EvaIcons.checkmarkCircle2Outline),

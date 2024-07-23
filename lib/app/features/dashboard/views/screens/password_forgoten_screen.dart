@@ -2,12 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:hello_depart/app/config/routes/app_pages.dart';
 
+import '../../../../config/routes/app_pages.dart';
 import '../../../../constans/app_color.dart';
-import '../../controllers/login_controller.dart';
-class LoginScreen extends GetView<LoginController> {
-  LoginScreen({Key? key}) : super(key: key);
+import '../../controllers/password_controller.dart';
+class PasswordForgotenScreen extends GetView<PasswordController> {
+  PasswordForgotenScreen({Key? key}) : super(key: key);
 
   GlobalKey<FormState> _homeKey = GlobalKey<FormState>(debugLabel: '_homeScreenkey');
 
@@ -27,7 +27,7 @@ class LoginScreen extends GetView<LoginController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children:[
                 Padding(padding: EdgeInsets.only(top: 150)),
-                /*Text('Connexion', style: Theme.of(context)
+                Text('Mot de passe oublié', style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
                     .copyWith(
@@ -35,26 +35,10 @@ class LoginScreen extends GetView<LoginController> {
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                     ),
-                ),*/
+                ),
                 SizedBox(height: 10,),
-                /*ElevatedButton(
-                  onPressed: () => {},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(16),
-                    backgroundColor: Colors.white,
-                    side: BorderSide(
-                      width: 1.0,
-                      color: Colors.white,
-                    ),
-                    shape: CircleBorder(),
-                  ),
-                  child: CircleAvatar(child: Image.asset(
-                    'assets/images/logo.jpeg',
-                  ),
-                  )
-                ),*/
-                FadeInRight(
-                    delay: Duration(milliseconds: 300),
+                /*FadeInRight(
+                    delay: Duration(milliseconds: 0),
                     child: Container(
                       width: 200,
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -72,6 +56,22 @@ class LoginScreen extends GetView<LoginController> {
                         child: Image.asset('assets/images/logo.jpeg'),
                       ),
                     ),
+                ),*/
+                SizedBox(height: 10,),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(10,),
+                  ),
+                  child: Text("Saisir l'adresse e-mail associé à votre compte et le système vous envera un code pour réinitialiser votre mot de passe.", style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),),
                 ),
                 SizedBox(height: 10,),
                 Padding(
@@ -81,7 +81,6 @@ class LoginScreen extends GetView<LoginController> {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                         alignment: Alignment.bottomCenter,
-
                         //margin: EdgeInsets.symmetric(horizontal: 16.0,),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -105,32 +104,14 @@ class LoginScreen extends GetView<LoginController> {
                                         child: FormBuilderTextField(
                                           name: "email",
                                           initialValue: "",
-                                          decoration: InputDecoration(labelText: "E-mail"),
+                                          decoration: InputDecoration(labelText: "Adresse e-mail"),
                                           keyboardType: TextInputType.text,
                                           onSaved: (value) {
                                             //_username = value!;
                                           },
                                           validator: (value) {
                                             if (value!.isEmpty) {
-                                              return 'E-mail requis';
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                      ),
-                                      FadeInRight(
-                                        delay: Duration(milliseconds: 300),
-                                        child:FormBuilderTextField(
-                                          name: "password",
-                                          initialValue: "",
-                                          decoration: InputDecoration(labelText: "Mot de passe"),
-                                          obscureText: true,
-                                          onSaved: (value) {
-                                            //_password = value!;
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return 'Mot de passe requis';
+                                              return 'Veuillez saisir votre e-mail requis';
                                             }
                                             return null;
                                           },
@@ -141,9 +122,9 @@ class LoginScreen extends GetView<LoginController> {
                                         delay: Duration(milliseconds: 300),
                                         child:Center(
                                           child: ElevatedButton.icon(
-                                            onPressed: () => controller.login(),
+                                            onPressed: () => controller.init_password_reset(),
                                             icon: Icon(Icons.arrow_forward),
-                                            label: Text('Se connecter', style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                            label: Text('Continuer', style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
                                             ),),
@@ -172,9 +153,9 @@ class LoginScreen extends GetView<LoginController> {
                                             ),
                                             Text(' | '),*/
                                             TextButton(
-                                              onPressed: () => Get.toNamed(AppPages.password_forgoten),
+                                              onPressed: () => Get.toNamed(AppPages.login),
                                               child: Text(
-                                                'Mot de passe oublié ?',
+                                                'Retour',
                                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,

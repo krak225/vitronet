@@ -9,15 +9,16 @@ import '../../../data/provider/repositories/auth_repo.dart';
 import '../../../data/provider/responses/login_response.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 
-class LoginController extends GetxController {
+class PasswordController extends GetxController {
   //GlobalKey<FormBuilderState> formKeyLogin = GlobalKey<FormBuilderState>();
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
   final RxBool isHide = true.obs;
   final AuthRepo authRepo = Get.find();
 
-  Future<void> login() async {
+  Future<void> init_password_reset() async {
     //box.write('isLogin', true);
-    Get.offAllNamed(AppPages.initial);
+
+    Get.offAllNamed(AppPages.reset_password);
 
     formKey.currentState!.save();
     print(formKey.currentState!.value);
@@ -43,13 +44,10 @@ class LoginController extends GetxController {
         //isLoading.value = false;
       }
 
-
     } else {
       print("validation failed: ");
     }
   }
-
-
 
 
 }

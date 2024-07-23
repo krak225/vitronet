@@ -30,7 +30,7 @@ class DashboardScreen extends GetView<DashboardController>{
         },
       child: Scaffold(
         //key: controller.scafoldKey,
-        appBar: AppBar(title: Text('Ticket +'), backgroundColor: AppColor.kPrimaryColor, centerTitle: false, ),
+        appBar: AppBar(title: Image.asset('assets/images/logo.jpeg'), backgroundColor: AppColor.kPrimaryColor, centerTitle: false, ),
         /*appBar: AnimatedAppBar(
           drawerTween: null,
           onPressed: () {

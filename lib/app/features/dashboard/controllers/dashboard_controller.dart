@@ -12,6 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:hello_depart/app/features/dashboard/views/screens/evenements_screen.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/app_constants.dart';
@@ -96,8 +97,9 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   final tabIndex = 0.obs;
   List<Widget> pageList = [
     HomeScreen(),
-    //ScanQRCodeScreen(),
+    EvenementsScreen(),
     TicketsScreen(),
+    //ScanQRCodeScreen(),
   ];
 
   final pageListTitle = ["Accueil", "Vérifier un ticket", "Tickets vérifiés"];

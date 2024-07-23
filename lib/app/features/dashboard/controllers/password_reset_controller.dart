@@ -9,15 +9,15 @@ import '../../../data/provider/repositories/auth_repo.dart';
 import '../../../data/provider/responses/login_response.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 
-class LoginController extends GetxController {
+class ResetPasswordController extends GetxController {
   //GlobalKey<FormBuilderState> formKeyLogin = GlobalKey<FormBuilderState>();
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
   final RxBool isHide = true.obs;
   final AuthRepo authRepo = Get.find();
 
-  Future<void> login() async {
+  Future<void> reset_password() async {
     //box.write('isLogin', true);
-    Get.offAllNamed(AppPages.initial);
+    Get.offAllNamed(AppPages.login);
 
     formKey.currentState!.save();
     print(formKey.currentState!.value);

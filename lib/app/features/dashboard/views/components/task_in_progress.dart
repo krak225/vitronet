@@ -41,11 +41,11 @@ class TaskInProgress extends StatelessWidget {
   Color _getSequenceColor(int index) {
     int val = index % 4;
     if (val == 3) {
-      return AppColor.bleu;
+      return AppColor.blue;
     } else if (val == 2) {
       return Colors.redAccent;
     } else if (val == 1) {
-      return AppColor.bleu;
+      return AppColor.blue;
     } else {
       return Colors.amber;
     }
