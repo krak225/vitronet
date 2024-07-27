@@ -17,7 +17,7 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     //box.write('isLogin', true);
-    Get.offAllNamed(AppPages.initial);
+    //Get.offAllNamed(AppPages.initial);
 
     formKey.currentState!.save();
     print(formKey.currentState!.value);

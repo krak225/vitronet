@@ -27,6 +27,7 @@ class AuthRepo {
     box.write(AppConstants.USER_FIRSTNAME, loginResponse.user?.prenoms);
     box.write(AppConstants.USER_LASTNAME, loginResponse.user?.nom);
     box.write(AppConstants.USER_EMAIL, loginResponse.user?.email);
+    box.write(AppConstants.USER_ORGANISATEUR, loginResponse.organisateur?.organisateurNom);
 
     print(loginResponse.accessToken);
 

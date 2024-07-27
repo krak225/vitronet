@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hello_depart/app/shared_components/build_liste_evenements.dart';
 import 'package:hello_depart/app/shared_components/build_liste_tickets.dart';
 import 'package:hello_depart/app/shared_components/details_evenement.dart';
 import 'package:hello_depart/app/shared_components/details_ticket.dart';
 
+import '../../../../config/routes/app_pages.dart';
 import '../../model/client.dart';
 import '../../model/evenement.dart';
 import '../../model/ticket.dart';
@@ -34,7 +38,7 @@ class ListeEvenements extends StatelessWidget {
                 children: List.generate(
                   evenements!.length, (index) =>
                     BuildListEvenements(evenement: evenements[index],
-                      onPressed: () => {
+                      /*onPressed: () => {
                         showModalBottomSheet(
                             backgroundColor: Colors.transparent,
                             context: context,
@@ -46,7 +50,13 @@ class ListeEvenements extends StatelessWidget {
 
                             }
                         )
-                      },
+                      },*/
+                      onPressed: () => Get.toNamed(AppPages.details_evenement,
+                            parameters: {
+                              'id': evenements[index].evenementId.toString(),
+                              'libelle': evenements[index].evenementLibelle.toString(),
+                              'date': evenements[index].evenementDate.toString(),
+                        }),
                     ),
                   ),
                 );

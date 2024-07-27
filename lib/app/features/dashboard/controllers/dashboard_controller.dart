@@ -12,7 +12,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:hello_depart/app/features/dashboard/views/screens/details_evenement_screen.dart';
 import 'package:hello_depart/app/features/dashboard/views/screens/evenements_screen.dart';
+import 'package:hello_depart/app/shared_components/details_evenement.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/app_constants.dart';
@@ -28,6 +30,7 @@ import '../model/client.dart';
 import '../model/facture.dart';
 import '../views/screens/home_screen.dart';
 import '../views/screens/paiement_screen.dart';
+import '../views/screens/reglages_screen.dart';
 import '../views/screens/scanqrcode_screen.dart';
 import '../views/screens/tickets_screen.dart';
 import 'home_controller.dart';
@@ -60,7 +63,7 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   GlobalKey<FormBuilderState> formKey2 = GlobalKey<FormBuilderState>();
 
   RxBool is_photo_client_picked = false.obs;
-  String USER_FIRSTNAME="", USER_LASTNAME = "";
+  String USER_FIRSTNAME="", USER_LASTNAME = "", USER_EMAIL= "", USER_ORGANISATEUR = "";
   var dataProfil = null;
   RxInt nombre_ticket = 1.obs;
 
@@ -70,11 +73,13 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
   void onInit() {
     USER_FIRSTNAME = _storage.read(AppConstants.USER_FIRSTNAME).toString();
     USER_LASTNAME = _storage.read(AppConstants.USER_LASTNAME).toString();
+    USER_EMAIL = _storage.read(AppConstants.USER_EMAIL).toString();
+    USER_ORGANISATEUR = _storage.read(AppConstants.USER_ORGANISATEUR).toString();
 
     dataProfil = UserProfileData(
       image: AssetImage(ImageUserPath.jemi),
       name: USER_FIRSTNAME + " " + USER_LASTNAME,
-      jobDesk: "Vérificateur",
+      jobDesk: USER_ORGANISATEUR,
     );
 
   }
@@ -96,9 +101,10 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
 
   final tabIndex = 0.obs;
   List<Widget> pageList = [
-    HomeScreen(),
+    //HomeScreen(),
     EvenementsScreen(),
-    TicketsScreen(),
+    ReglagesScreen(),
+    //TicketsScreen(),
     //ScanQRCodeScreen(),
   ];
 

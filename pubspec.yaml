@@ -85,6 +85,7 @@ flutter:
     - assets/images/logo-round.png
     - assets/images/logo.jpeg
     - assets/images/qrcode.png
+    - assets/images/keypad.png
     - assets/icons/facebook.png
     - assets/icons/apple.png
     - assets/icons/google.png

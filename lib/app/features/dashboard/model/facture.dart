@@ -142,6 +142,7 @@ class User {
   int? profilId;
   int? villeId;
   int? compagnieId;
+  String? organisateur;
   String? nom;
   String? prenoms;
   String? telephone;
@@ -157,6 +158,7 @@ class User {
         required this.profilId,
         required this.villeId,
         required this.compagnieId,
+        required this.organisateur,
         required this.nom,
         required this.prenoms,
         required this.telephone,
@@ -172,6 +174,7 @@ class User {
     profilId = json['profil_id'];
     villeId = json['ville_id'];
     compagnieId = json['compagnie_id'];
+    organisateur = json['organisateur'];
     nom = json['nom'];
     prenoms = json['prenoms'];
     telephone = json['telephone'];

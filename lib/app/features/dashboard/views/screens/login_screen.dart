@@ -81,7 +81,6 @@ class LoginScreen extends GetView<LoginController> {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                         alignment: Alignment.bottomCenter,
-
                         //margin: EdgeInsets.symmetric(horizontal: 16.0,),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -172,7 +171,7 @@ class LoginScreen extends GetView<LoginController> {
                                             ),
                                             Text(' | '),*/
                                             TextButton(
-                                              onPressed: () => Get.toNamed(AppPages.password_forgoten),
+                                              onPressed: () => Get.toNamed(AppPages.details_evenement),
                                               child: Text(
                                                 'Mot de passe oublié ?',
                                                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -197,9 +196,9 @@ class LoginScreen extends GetView<LoginController> {
                     .textTheme
                     .bodyLarge!
                     .copyWith(
-                    color: AppColor.white,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 14,
                   )
                 ),
 

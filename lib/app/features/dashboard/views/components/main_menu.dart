@@ -15,23 +15,29 @@ class MainMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SelectionButton(
       data: [
-        SelectionButtonData(
+        /*SelectionButtonData(
           activeIcon: EvaIcons.home,
           icon: EvaIcons.homeOutline,
           label: "Accueil",
-        ),/*
-        SelectionButtonData(
-          activeIcon: EvaIcons.checkmarkCircle,
-          icon: EvaIcons.bellOutline,
-          label: "Scanner un ticket",
-          totalNotif: 0,
         ),*/
+        SelectionButtonData(
+          activeIcon: EvaIcons.calendar,
+          icon: EvaIcons.calendarOutline,
+          label: "Evénements",
+          totalNotif: 0,
+        ),
+        SelectionButtonData(
+          activeIcon: EvaIcons.settings,
+          icon: EvaIcons.settingsOutline,
+          label: "Réglages",
+          totalNotif: 0,
+        ),/*
         SelectionButtonData(
           activeIcon: EvaIcons.checkmarkCircle2,
           icon: EvaIcons.checkmarkCircle,
           label: "Tickets vérifiés",
           totalNotif: 0,
-        ),/*
+        ),
         SelectionButtonData(
           activeIcon: EvaIcons.expand,
           icon: EvaIcons.creditCardOutline,

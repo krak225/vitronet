@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../constans/app_color.dart';
 import '../constans/app_constants.dart';
-import '../features/dashboard/model/facture.dart';
 import '../features/dashboard/model/evenement.dart';
 import '../utils/stdfn.dart';
 
@@ -30,7 +29,7 @@ class BuildListEvenements extends StatelessWidget {
       leading: _buildIcon(),
       title: _buildTitle(),
       subtitle: _buildSubtitle(),
-      trailing: _buildMontantTotal(),
+      //trailing: _buildMontantTotal(),
     );
   }
 
@@ -56,10 +55,14 @@ class BuildListEvenements extends StatelessWidget {
   }
 
   Widget _buildSubtitle() {
-    return Text("Vérifié le " + Stdfn.dateTimeFromDB(evenement.evenementDate!),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-    );
+    return Row(children: [
+      Text(Stdfn.dateFromDB(evenement.evenementDate!),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      SizedBox(width: 10,),
+      _buildMontantTotal()
+    ],);
   }
 
   Widget _buildMontantTotal() {
@@ -72,9 +75,9 @@ class BuildListEvenements extends StatelessWidget {
           child: Container(
             //width: 50.0,
             padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-            color: AppColor.orange.withOpacity(1),
+            color: AppColor.black.withOpacity(1),
             child:Text(
-              Stdfn.toAmount(int.parse(evenement.evenementId.toString())),
+              Stdfn.toAmount(int.parse(evenement.evenementNombreTicketsVerifies.toString())) + "/ " + Stdfn.toAmount(int.parse(evenement.evenementNombreTotalTickets.toString())),
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

@@ -34,7 +34,7 @@ class HomeScreen extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: kSpacing),
+          //const SizedBox(height: kSpacing),
           /*Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -49,6 +49,7 @@ class HomeScreen extends GetView<HomeController> {
                 children: [AccountAmount(color: Colors.black, iconData: EvaIcons.eye, label: "10. 898F")]
             )
           ),*/
+          HeaderVerificationTickets(),
           ScanButton(controller: controller),
           const SizedBox(height: kSpacing),
           HeaderVerificationTickets(),
@@ -56,45 +57,9 @@ class HomeScreen extends GetView<HomeController> {
           //TaskInProgress(data: controller.taskInProgress),
           //const SizedBox(height: kSpacing * 2),
           ListeTickets(
-            data: controller.fetchTickets(),
+            data: controller.fetchTickets(0),
             onPressed: controller.onPressedTask,
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHomeContent({Function()? onPressedMenu}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kSpacing),
-      child: Column(
-        children: [
-          const SizedBox(height: kSpacing),
-          Row(
-            children: [
-              Expanded(
-                child: HeaderText(
-                  DateTime.now().formatdMMMMY(),
-                ),
-              ),
-              const SizedBox(width: kSpacing / 2),
-              SizedBox(
-                width: 200,
-                child: TaskProgress(data: controller.dataTask),
-              ),
-            ],
-          ),
-          const SizedBox(height: kSpacing),
-          TaskInProgress(data: controller.taskInProgress),
-          const SizedBox(height: kSpacing * 2),
-          HeaderVerificationTickets(),
-          const SizedBox(height: kSpacing),
-          ScanButton(controller: controller,),
-          const SizedBox(height: kSpacing),
-          //ListeTickets(
-          //  data: controller.fetchTickets(),
-          //  onPressed: controller.onPressedTask,
-          //),
         ],
       ),
     );

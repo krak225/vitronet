@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_depart/app/features/dashboard/views/components/ligne_horizontal.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -30,7 +31,21 @@ class DashboardScreen extends GetView<DashboardController>{
         },
       child: Scaffold(
         //key: controller.scafoldKey,
-        appBar: AppBar(title: Image.asset('assets/images/logo.jpeg'), backgroundColor: AppColor.kPrimaryColor, centerTitle: false, ),
+        appBar: AppBar(
+          title: Column(children: [
+            Container(
+                width: 200,
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                decoration: BoxDecoration(
+                  color: AppColor.yellow,
+                  borderRadius: BorderRadius.circular(10,),
+                ),
+                child: Image.asset('assets/images/logo.png'),
+              ),
+            ]),
+          backgroundColor: AppColor.yellow,
+          centerTitle: true,
+        ),
         /*appBar: AnimatedAppBar(
           drawerTween: null,
           onPressed: () {
@@ -53,123 +68,90 @@ class DashboardScreen extends GetView<DashboardController>{
             ? null
             : const BottomNavbar(),
         body: NotificationListener<ScrollNotification>(
-    onNotification: controller.scrollListener,
-    child: SafeArea(
-              child: ResponsiveBuilder(
-                mobileBuilder: (context, constraints) {
-                  return SingleChildScrollView(
-                    child: Obx(() => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          /*const SizedBox(height: kSpacing),
-                          Row(
+              onNotification: controller.scrollListener,
+                child: SafeArea(
+                  child: ResponsiveBuilder(
+                      mobileBuilder: (context, constraints) {
+                      return SingleChildScrollView(
+                        child: Obx(() => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
-                                Padding(
-                                  padding: const EdgeInsets.only(right: kSpacing / 2),
-                                  child: IconButton(
-                                    onPressed: ()=> {},
-                                    icon: const Icon(Icons.menu),
-                                  ),
-                                ),
-                              Expanded(
-                                //child: SearchField(onSearch: controller.searchTask,hintText: "Rechercher une facture .. "),
-                                child: HeaderText("Tableau de bord"),
-                              ),
-                              Positioned(
-                                child: TextButton(
-                                  onPressed: () => {},
-                                  child:DottedBorder(
-                                    color: kFontColorPallets[3],
-                                    strokeWidth: .3,
-                                    strokeCap: StrokeCap.round,
-                                    borderType: BorderType.Circle,
-                                    child: CircleAvatar(
-                                      radius: 20,
-                                      backgroundImage: AssetImage('assets/images/raster/man.png'),
-                                      backgroundColor: Colors.greenAccent,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          */
-                          controller.pageList[controller.tabIndex.value]
-                        ],
-                      )
-                    )
-                  );
-                },
-                tabletBuilder: (context, constraints) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        flex: constraints.maxWidth > 800 ? 8 : 7,
-                        child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: _buildTaskContent(
-                            onPressedMenu: () => controller.openDrawer(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: const VerticalDivider(),
-                      ),
-                      Flexible(
-                        flex: 4,
-                        child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: Obx(() => Column(
-                            children: [
+                              //LigneHorizontale(data: LigneHorizontaleData(totalTask: 4, totalCompleted: 4, title: "")),
                               controller.pageList[controller.tabIndex.value]
                             ],
-                          )),
+                          )
+                        )
+                      );
+                  },
+                  tabletBuilder: (context, constraints) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          flex: constraints.maxWidth > 800 ? 8 : 7,
+                          child: SingleChildScrollView(
+                            controller: ScrollController(),
+                            child: _buildTaskContent(
+                              onPressedMenu: () => controller.openDrawer(),
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                desktopBuilder: (context, constraints) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        flex: constraints.maxWidth > 1350 ? 3 : 4,
-                        child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: _buildSidebar(context),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: const VerticalDivider(),
                         ),
-                      ),
-                      Flexible(
-                        flex: constraints.maxWidth > 1350 ? 10 : 9,
-                        child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: Obx(() => Column(
-                            children: [
-                              controller.pageList[controller.tabIndex.value]
-                            ],
-                          )),
+                        Flexible(
+                          flex: 4,
+                          child: SingleChildScrollView(
+                            controller: ScrollController(),
+                            child: Obx(() => Column(
+                              children: [
+                                controller.pageList[controller.tabIndex.value]
+                              ],
+                            )),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: const VerticalDivider(),
-                      ),
-                      Flexible(
-                        flex: 4,
-                        child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: _buildCalendarContent(),
+                      ],
+                    );
+                  },
+                  desktopBuilder: (context, constraints) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          flex: constraints.maxWidth > 1350 ? 3 : 4,
+                          child: SingleChildScrollView(
+                            controller: ScrollController(),
+                            child: _buildSidebar(context),
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
+                        Flexible(
+                          flex: constraints.maxWidth > 1350 ? 10 : 9,
+                          child: SingleChildScrollView(
+                            controller: ScrollController(),
+                            child: Obx(() => Column(
+                              children: [
+                                controller.pageList[controller.tabIndex.value]
+                              ],
+                            )),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          child: const VerticalDivider(),
+                        ),
+                        Flexible(
+                          flex: 4,
+                          child: SingleChildScrollView(
+                            controller: ScrollController(),
+                            child: _buildCalendarContent(),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
           ),
         ),
     );

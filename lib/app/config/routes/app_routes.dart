@@ -8,6 +8,7 @@ class Routes {
   static const dashboard = _Paths.dashboard;
   static const paiement = _Paths.paiement;
   static const evenements = _Paths.evenements;
+  static const details_evenement = _Paths.details_evenement;
 }
 
 /// contains a list of route names.
@@ -19,6 +20,7 @@ class _Paths {
   static const dashboard = '/dashboard';
   static const paiement = '/paiement';
   static const evenements = '/evenements';
+  static const details_evenement = '/details_evenement';
 
   // Example :
   // static const index = '/';

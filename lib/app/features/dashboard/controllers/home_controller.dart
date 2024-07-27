@@ -161,10 +161,10 @@ class HomeController extends GetxController {
 
   }
 
-  Future<List<Ticket>> fetchTickets() async {
+  Future<List<Ticket>> fetchTickets(int evenementId) async {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-    String url = AppConstants.API_URL + "/tickets";
+    String url = AppConstants.API_URL + "/tickets/"+evenementId.toString();
 
     final response = await http.get(Uri.parse(url), headers: {
       HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
@@ -264,42 +264,6 @@ class HomeController extends GetxController {
 
     TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-    taskInProgress.add(CardTaskData(
-      label: STAT_TODAY.toString(),
-      taux: "50",
-      jobDesk: "Aujourd'hui",
-      dueDate: DateTime.now().add(const Duration(hours: 0)),
-    ));
-    taskInProgress.add(CardTaskData(
-      label: STAT_TODAY_1.toString(),
-      taux: "30",
-      jobDesk: "Hier",
-      dueDate: DateTime.now().subtract(const Duration(days: 1)),
-    ));
-    taskInProgress.add(CardTaskData(
-      label: STAT_TODAY_2.toString(),
-      taux: "50",
-      jobDesk: "Avant-hier",
-      dueDate: DateTime.now().subtract(const Duration(days: 2)),
-    ));
-    taskInProgress.add(CardTaskData(
-      label: STAT_TODAY_3.toString(),
-      taux: "20",
-      jobDesk: "Il y a 3 jours",
-      dueDate: DateTime.now().subtract(const Duration(days: 3)),
-    ));
-    taskInProgress.add(CardTaskData(
-      label: STAT_TODAY_4.toString(),
-      taux: "60",
-      jobDesk: "Il y a 4 jours",
-      dueDate: DateTime.now().subtract(const Duration(days: 4)),
-    ));
-
-    //charger les données au lancement de l'application
-    fetchTickets();
-    fetchVilles();
-
-
   }
 
   Future<void> scanTicket() async {
@@ -313,6 +277,8 @@ class HomeController extends GetxController {
 
     print(TOKEN_STORAGE);
 
+    isLoading.value = true;
+
     String url = AppConstants.API_URL + "/verif_ticket";
 
     final response = await http.post(Uri.parse(url), headers: {
@@ -324,10 +290,12 @@ class HomeController extends GetxController {
 
     if (response.statusCode == 200) {
 
+      isLoading.value = false;
       SnackbarUi.success("TICKET CERTIFIE CONFORME.");
 
     } else {
 
+      isLoading.value = false;
       SnackbarUi.error("TICKET INVALIDE.");
 
       print("response Body: " + response.body);
@@ -335,6 +303,48 @@ class HomeController extends GetxController {
       throw Exception('Failed to load clients');
 
     }
+
+  }
+
+
+  //
+  Future<void> verifTicketByNumero() async {
+
+    print ("verifTicketByNumero");
+    /*
+    formKey.currentState!.save();
+
+    if (formKey.currentState!.validate()) {
+      isLoading.value = true;
+
+      var data = Map<String, dynamic>.from(formKey.currentState!.value);
+
+      var formData = dio.FormData.fromMap(data);
+      print(formData);
+      dio.Response response = await this.registerRepo.payerTicket(data: formData);
+
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+
+        //la facture a été enregistrée, procéder au paiement via cinetpay
+
+        //SnackbarUi.success("Facture enregistrée avec succès");
+
+        Get.to(AppPages.paiement);
+
+      } else {
+        print(response.data);
+
+        SnackbarUi.error(response.data.toString());
+        isLoading.value = false;
+      }
+
+      isLoading.value = false;
+
+    } else {
+      SnackbarUi.error("Veuillez saisir le numéro du ticket");
+      isLoading.value = false;
+    }*/
 
   }
 

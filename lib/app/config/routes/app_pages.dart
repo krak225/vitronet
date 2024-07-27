@@ -5,6 +5,7 @@ import '../../features/dashboard/bindings/paiement_binding.dart';
 import '../../features/dashboard/views/screens/dashboard_screen.dart';
 import 'package:get/get.dart';
 
+import '../../features/dashboard/views/screens/details_evenement_screen.dart';
 import '../../features/dashboard/views/screens/evenements_screen.dart';
 import '../../features/dashboard/views/screens/login_screen.dart';
 import '../../features/dashboard/views/screens/paiement_screen.dart';
@@ -21,6 +22,7 @@ class AppPages {
   static const password_forgoten = Routes.password_forgoten;
   static const reset_password = Routes.reset_password;
   static const evenements = Routes.evenements;
+  static const details_evenement = Routes.details_evenement;
 
   static final routes = [
     GetPage(
@@ -46,6 +48,11 @@ class AppPages {
     GetPage(
       name: _Paths.evenements,
       page: () => EvenementsScreen(),
+      binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.details_evenement,
+      page: () => DetailsEvenementScreen(),
       binding: DashboardBinding(),
     ),
   ];

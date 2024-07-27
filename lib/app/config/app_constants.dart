@@ -12,6 +12,7 @@ class AppConstants {
   static const String USER_ID = "USER_ID";
   static const String USER_FIRSTNAME = "USER_FIRSTNAME";
   static const String USER_LASTNAME = "USER_LASTNAME";
+  static const String USER_ORGANISATEUR = "USER_ORGANISATEUR";
   static const String USER_EMAIL = "USER_EMAIL";
   static const String USER_TELEPHONE = "USER_TELEPHONE";
   static const String USER_ADRESSE = "USER_ADRESSE";

@@ -25,15 +25,15 @@ class HeaderVerificationTickets extends StatelessWidget {
 
   Widget _buildArchive() {
     return ElevatedButton(
-      onPressed: () => controller.changeIndex(1),
+      onPressed: () => null,//controller.changeIndex(1),
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.grey[850], backgroundColor: Colors.grey[100],
+        //foregroundColor: Colors.white[850], backgroundColor: Colors.white[100],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         elevation: 0,
       ),
-      child: const Text("Voir plus"),
+      child: null, //const Text("Voir plus"),
     );
   }
 }

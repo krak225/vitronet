@@ -71,7 +71,7 @@ class ListeDeparts extends StatelessWidget {
                 );
 
           } else if (snapshot.hasError) {
-            return Text("AUCUN DEPART TROUVE");//"${snapshot.error}"
+            return Text("AUCUN TICKET TROUVE");//"${snapshot.error}"
           }
           return Center(child: CircularProgressIndicator());
         },

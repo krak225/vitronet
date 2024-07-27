@@ -24,6 +24,7 @@ class DetailsEvenement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
         child: Column(children: [
           SizedBox(
@@ -52,7 +53,7 @@ class DetailsEvenement extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   AutoSizeText(
-                                    "Evenement N°" + evenement!.evenementId.toString() ,
+                                    evenement!.evenementLibelle.toString() ,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -72,11 +73,11 @@ class DetailsEvenement extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("QR code: ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Date : ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         Expanded(
-                                            child:Text(evenement.evenementLibelle.toString()?? '', textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                            child: Text(Stdfn.dateFromDB(evenement!.evenementDate!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
                                         ),
                                       ],
                                     ),
@@ -88,11 +89,43 @@ class DetailsEvenement extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("Montant: ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Nombre total tickets : ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         Expanded(
-                                            child:Text(Stdfn.toAmount(int.parse(evenement!.evenementId.toString())), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                            child: Text(Stdfn.toAmount(evenement!.evenementNombreTotalTickets!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Nombre tickets vérifiés : ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child: Text(Stdfn.toAmount(evenement!.evenementNombreTicketsVerifies!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Nombre tickets restants : ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child: Text(Stdfn.toAmount(evenement!.evenementNombreTicketsNonVerifies!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
                                         ),
                                       ],
                                     ),
@@ -120,23 +153,7 @@ class DetailsEvenement extends StatelessWidget {
                                   ),
                                   Divider(height: 1, color: Colors.grey[100],),
                                   SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Date : ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child: Text(Stdfn.dateTimeFromDB(evenement!.evenementDate!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
+                                  /*FadeInRight(
                                     child: Row(
                                       children: [
                                         Expanded(
@@ -149,7 +166,7 @@ class DetailsEvenement extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  ),*/
                                   /*Divider(height: 1, color: Colors.grey[100],),
                                   SizedBox(height: Get.height * 0.01),
                                   FadeInRight(

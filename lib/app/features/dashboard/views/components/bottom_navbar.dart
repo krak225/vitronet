@@ -21,21 +21,26 @@ class _BottomNavbarState extends State<BottomNavbar> {
     return BottomNavigationBar(
       currentIndex: controller.tabIndex.value,
       items: const [
-        BottomNavigationBarItem(
+        /*BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.home),
           icon: Icon(EvaIcons.homeOutline),
           label: "Accueil",
-        ),
+        ),*/
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.calendar),
           icon: Icon(EvaIcons.calendarOutline),
           label: "Evénements",
         ),
         BottomNavigationBarItem(
+          activeIcon: Icon(EvaIcons.settings),
+          icon: Icon(EvaIcons.settingsOutline),
+          label: "Réglages",
+        ),/*
+        BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.checkmarkCircle2),
           icon: Icon(EvaIcons.checkmarkCircle2Outline),
           label: "Tickets vérifiés",
-        ),
+        ),*/
       ],
       selectedItemColor: AppColor.orange,//Theme.of(context).primaryColor,
       unselectedItemColor: AppColor.orange.withOpacity(.5),//Theme.of(context).primaryColor.withOpacity(.5),
