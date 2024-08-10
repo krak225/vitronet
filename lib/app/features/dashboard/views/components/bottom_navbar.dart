@@ -32,9 +32,9 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: "Evénements",
         ),
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.settings),
+          activeIcon: Icon(EvaIcons.book),
           icon: Icon(EvaIcons.settingsOutline),
-          label: "Réglages",
+          label: "Profil",
         ),/*
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.checkmarkCircle2),

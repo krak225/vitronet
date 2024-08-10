@@ -34,6 +34,10 @@ class HomeController extends GetxController {
   String TOKEN_STORAGE = "";
 
   final RxBool isLoading = false.obs;
+  final RxBool isVerified = false.obs;
+
+  var liste_tickets = <Ticket>[].obs; // Observable list of tickets
+  var isLoadingTickets = true.obs; // Variable to track loading state
 
   late List<Ticket> tickets = List.empty();
   late List<Client> clients = List.empty();
@@ -162,31 +166,45 @@ class HomeController extends GetxController {
   }
 
   Future<List<Ticket>> fetchTickets(int evenementId) async {
-    String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-    String url = AppConstants.API_URL + "/tickets/"+evenementId.toString();
+    liste_tickets.value = List.empty();
+    isLoadingTickets.value = true;
 
-    final response = await http.get(Uri.parse(url), headers: {
-      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
-      HttpHeaders.contentTypeHeader: 'application/json',
-    });
+    try {
+      String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-    print(url);
+      String url = AppConstants.API_URL + "/tickets/"+evenementId.toString();
 
-    if (response.statusCode == 200) {
-      print(response.body);
-      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+      final response = await http.get(Uri.parse(url), headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
+        HttpHeaders.contentTypeHeader: 'application/json',
+      });
 
-      tickets = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
+      print(url);
 
-      return tickets;
+      if (response.statusCode == 200) {
+        print(response.body);
+        final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
 
-    } else {
+        //tickets = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
 
-      print("response Body: " + response.body);
+        liste_tickets.value = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
+        isLoadingTickets.value = false;
 
-      throw Exception('Failed to load tickets');
+        return tickets;
 
+      } else {
+
+        isLoadingTickets.value = false;
+
+        print("response Body: " + response.body);
+
+        throw Exception('Failed to load tickets');
+
+      }
+
+    } finally {
+      isLoadingTickets.value = false; // Set loading to false, whether successful or not
     }
 
   }
@@ -271,31 +289,36 @@ class HomeController extends GetxController {
   }
 
 
-  Future<void> verifTicket(String qr_code) async {
+  Future<void> verifTicket(String qr_code, evenement_id, BuildContext context) async {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
         .toString();
 
     print(TOKEN_STORAGE);
 
     isLoading.value = true;
+    isVerified.value = false;
 
     String url = AppConstants.API_URL + "/verif_ticket";
 
     final response = await http.post(Uri.parse(url), headers: {
       HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
       HttpHeaders.contentTypeHeader: 'application/json',
-    }, body: jsonEncode({'qrcode': qr_code}),);
+    }, body: jsonEncode({'qrcode': qr_code, 'evenement_id': evenement_id}),);
 
     print(url);
 
     if (response.statusCode == 200) {
 
       isLoading.value = false;
+      isVerified.value = true;
       SnackbarUi.success("TICKET CERTIFIE CONFORME.");
+      Navigator.pop(context);
+      fetchTickets(evenement_id);
 
     } else {
 
       isLoading.value = false;
+      isVerified.value = false;
       SnackbarUi.error("TICKET INVALIDE.");
 
       print("response Body: " + response.body);

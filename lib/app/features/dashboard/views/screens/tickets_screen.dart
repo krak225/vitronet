@@ -75,10 +75,10 @@ class TicketsScreen extends GetView<HomeController> {
             ],
           ),
           const SizedBox(height: kSpacing),
-          ListeTickets(
+          /*ListeTickets(
             data: controller.fetchTickets(0),
             onPressed: controller.onPressedTask,
-          )
+          )*/
         ],
       ),
     );

@@ -1,20 +1,14 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:hello_depart/app/config/routes/app_pages.dart';
-import 'package:hello_depart/app/features/dashboard/model/evenement.dart';
 
 import '../../../../constans/app_color.dart';
 import '../../../../constans/app_constants.dart';
 import '../../../../shared_components/header_text.dart';
-import '../../../../shared_components/scan_button.dart';
 import '../../../../shared_components/scan_buttons.dart';
 import '../../../../utils/stdfn.dart';
 import '../../controllers/home_controller.dart';
-import '../../controllers/login_controller.dart';
-import '../components/header_verification_tickets.dart';
 import '../components/liste_tickets.dart';
 class DetailsEvenementScreen extends GetView<HomeController> {
   DetailsEvenementScreen({Key? key}) : super(key: key);
@@ -32,6 +26,8 @@ class DetailsEvenementScreen extends GetView<HomeController> {
     int? evenementNombreTotalTickets = 0;//Get.parameters['id'];
     int? evenementNombreTicketsVerifies = 0;//Get.parameters['id'];
     int? evenementNombreTicketsNonVerifies = 0;//Get.parameters['id'];
+
+    controller.fetchTickets(evenementId!);
 
     return Scaffold(
       //key: _homeKey,
@@ -176,14 +172,14 @@ class DetailsEvenementScreen extends GetView<HomeController> {
                         ],
                       ),
                       SizedBox(height: Get.height * 0.01),
-                      ScanButtons(controller: controller),
+                      ScanButtons(controller: controller, evenement_id: evenementId!, ),
                       const SizedBox(height: kSpacing),
                       Row(
                         children: [
                           const HeaderText("Liste des tickets"),
                           const Spacer(),
                           ElevatedButton(
-                            onPressed: () => null,//controller.changeIndex(1),
+                            onPressed: () => controller.fetchTickets(evenementId),
                             style: ElevatedButton.styleFrom(
                               //foregroundColor: Colors.white[850], backgroundColor: Colors.white[100],
                               shape: RoundedRectangleBorder(
@@ -191,15 +187,28 @@ class DetailsEvenementScreen extends GetView<HomeController> {
                               ),
                               elevation: 0,
                             ),
-                            child: Icon(EvaIcons.search, color: AppColor.yellow,),
+                            child: Icon(EvaIcons.refresh, color: AppColor.yellow,),
                           ),
                           const SizedBox(width: 10),
                         ],
                       ),
-                      ListeTickets(
+                      /*ListeTickets(
                         data: controller.fetchTickets(evenementId!),
                         onPressed: controller.onPressedTask,
-                      ),
+                      ),*/
+                      Obx(() {
+                        // Assuming `tickets` is an observable list in your controller
+                        if (controller.isLoadingTickets.value) { // Check if loading
+                          return Center(child: Container(padding: EdgeInsets.symmetric(vertical: 100, horizontal: 0), child: CircularProgressIndicator())); //color: Colors.black
+                        } else if (controller.liste_tickets.isEmpty) {
+                          return Center(child: Container(padding: EdgeInsets.symmetric(vertical: 100, horizontal: 0), child:Text('Aucun ticket disponible.')));
+                        } else {
+                          return ListeTickets(
+                            data: controller.liste_tickets, // Use the observable list directly
+                            onPressed: controller.onPressedTask,
+                          );
+                        }
+                      }),
                     ],
                   ),
                 )

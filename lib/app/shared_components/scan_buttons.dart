@@ -7,19 +7,18 @@ import 'package:flutter/widgets.dart';
 import 'package:hello_depart/app/constans/app_color.dart';
 import 'package:hello_depart/app/features/dashboard/controllers/home_controller.dart';
 import 'package:hello_depart/app/shared_components/form_verfication_numero_ticket.dart';
-import 'package:hello_depart/app/shared_components/icon_label.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
-
-import '../utils/ui/theme/snackbar_ui.dart';
 
 class ScanButtons extends StatelessWidget {
 
   const ScanButtons({
     required this.controller,
+    required this.evenement_id,
     Key? key,
   }) : super(key: key);
 
   final HomeController controller;
+  final int evenement_id;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +54,9 @@ class ScanButtons extends StatelessWidget {
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Row(children: [
-                          Expanded(child: _VerifyByQrcodeButton(context),),
+                          Expanded(child: _VerifyByQrcodeButton(context, evenement_id),),
                           SizedBox(width: 4,),
-                          Expanded(child: _VerifyByNumberButton(context),),
+                          Expanded(child: _VerifyByNumberButton(context, evenement_id),),
                         ])
                       ),
                       //Center(child: IconLabel(color: Colors.white, iconData: EvaIcons.camera, label: "Scanner"))
@@ -83,13 +82,13 @@ class ScanButtons extends StatelessWidget {
     );
   }
 
-  Widget _VerifyByQrcodeButton(BuildContext context) {
+  Widget _VerifyByQrcodeButton(BuildContext context, int evenement_id) {
     return ElevatedButton.icon(
       //onPressed: () => controller.scanTicket(),
       onPressed: () => QrBarCodeScannerDialog().getScannedQrBarCode(
           context: context,
           onCode: (code) {
-            controller.verifTicket(code.toString());
+            controller.verifTicket(code.toString(), evenement_id, context);
             //SnackbarUi.success("Vérification du code: " + code.toString());
           }),
       //onPressed: () => controller.verifTicket("1"),
@@ -97,12 +96,12 @@ class ScanButtons extends StatelessWidget {
         foregroundColor: Colors.black, backgroundColor: AppColor.yellow, //padding: const EdgeInsets.symmetric(horizontal: , vertical: 0),
       ),
       icon: const Icon(EvaIcons.cameraOutline),
-      label: Text("Scanner Code"),
+      label: Text("Scanner le Code"),
     );
   }
 }
 
-Widget _VerifyByNumberButton(BuildContext context) {
+Widget _VerifyByNumberButton(BuildContext context, int evenement_id) {
   return ElevatedButton.icon(
     //onPressed: () => controller.scanTicket(),
     onPressed: () {
@@ -112,7 +111,9 @@ Widget _VerifyByNumberButton(BuildContext context) {
           isScrollControlled: true,
           builder: (context) {
 
-            return FormVerificationNumeroTicket();
+            return FormVerificationNumeroTicket(evenement_id: evenement_id, onVerificationSuccess: () {
+              Navigator.pop(context);
+            });
 
           }
       );
@@ -121,7 +122,7 @@ Widget _VerifyByNumberButton(BuildContext context) {
       foregroundColor: Colors.black, backgroundColor: Colors.white, //padding: const EdgeInsets.symmetric(horizontal: , vertical: 0),
     ),
     icon: const Icon(EvaIcons.keypadOutline),
-    label: Text("Saisir numéro"),
+    label: Text("Saisir le numéro"),
   );
 }
 

@@ -13,7 +13,10 @@ import '../utils/validator_state.dart';
 class FormVerificationNumeroTicket extends StatelessWidget {
   final HomeController controller = Get.find();
 
-  FormVerificationNumeroTicket({Key? key}) : super(key: key);
+  FormVerificationNumeroTicket({required this.evenement_id, required this.onVerificationSuccess, Key? key}) : super(key: key);
+
+  final int evenement_id;
+  final VoidCallback onVerificationSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,7 @@ class FormVerificationNumeroTicket extends StatelessWidget {
                       //validator: ValidatorState.required,
                       //decoration: CustomInputDecoration.style1(labelText: 'Numéro du ticket'),
                       decoration: InputDecoration(labelText: "Numéro du ticket"),
+                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                       keyboardType: TextInputType.number,
                       onSaved: (value) {
                         _numero_ticket = value!;
@@ -73,16 +77,7 @@ class FormVerificationNumeroTicket extends StatelessWidget {
                       },
                     ),
                   ),
-                  /*SizedBox(height: Get.height * 0.02),
-                  FadeInRight(
-                    child: FormBuilderDateTimePicker(
-                      name: 'date_depart',
-                      initialValue: DateTime.now(),
-                      inputType: InputType.date,
-                      format: DateFormat('dd/MM/yyyy'),
-                      decoration: CustomInputDecoration.style1(labelText: 'Date'),
-                    ),
-                  ),*/
+                  SizedBox(height: Get.height * 0.02),
                 ]),
                 ),
                 SizedBox(height: Get.height * 0.04),
@@ -93,10 +88,16 @@ class FormVerificationNumeroTicket extends StatelessWidget {
                       onPressed: () {
                           if (controller.formKey.currentState?.validate() ?? false) {
                             controller.formKey.currentState?.save();
-                            controller.verifTicket(controller.formKey.currentState?.value['numero_ticket'] ?? '');
+                            controller.verifTicket(controller.formKey.currentState?.value['numero_ticket'] ?? '', evenement_id, context);
+                            bool isVerified = controller.isVerified.value;
+
+                            if (isVerified) {
+                              //onVerificationSuccess();
+                            } else {
+                              //onVerificationSuccess();
+                            }
                           }
                       },
-                      //controller.verifTicketByNumero(numero_ticket.value),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white, backgroundColor: Colors.black, //padding: const EdgeInsets.symmetric(horizontal: , vertical: 0),
                       ),
@@ -115,7 +116,7 @@ class FormVerificationNumeroTicket extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 230,
                 ),
             ]),
               ),

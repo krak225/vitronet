@@ -56,10 +56,10 @@ class HomeScreen extends GetView<HomeController> {
           //const SizedBox(height: kSpacing),
           //TaskInProgress(data: controller.taskInProgress),
           //const SizedBox(height: kSpacing * 2),
-          ListeTickets(
+          /*ListeTickets(
             data: controller.fetchTickets(0),
             onPressed: controller.onPressedTask,
-          ),
+          ),*/
         ],
       ),
     );

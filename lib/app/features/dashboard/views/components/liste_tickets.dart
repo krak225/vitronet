@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:hello_depart/app/shared_components/build_liste_tickets.dart';
 import 'package:hello_depart/app/shared_components/details_ticket.dart';
 
@@ -13,50 +14,31 @@ class ListeTickets extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final Future<List<Ticket>> data;
+  //final Future<List<Ticket>> data;
+  final RxList<Ticket> data;
   final Function(int index, Client data) onPressed;
 
   @override
   Widget build(BuildContext context) {
 
-    return FutureBuilder<List<Ticket>>(
-        future: data,
-        builder: (context, snapshot) {
-          print(snapshot);
+    return Column(
+        children: List.generate(
+          data!.length, (index) =>
+            BuildListTickets(ticket: data[index],
+              onPressed: () => {
+                showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) {
 
-          if (snapshot.hasData) {
-            List<Ticket>? tickets = snapshot.data;
+                      return DetailsTicket(data[index]);
 
-            print(tickets!.length);
-
-            return Column(
-                children: List.generate(
-                  tickets!.length, (index) =>
-                    BuildListTickets(ticket: tickets[index],
-                      onPressed: () => {
-                        showModalBottomSheet(
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-
-                              //return IconLabel(label: tickets[index].toString(), color: Colors.white, iconData: EvaIcons.inboxOutline,); //
-                              return DetailsTicket(tickets[index]);
-
-                            }
-                        )
-                      },
-                    ),
-                  ),
-                );
-
-          } else if (snapshot.hasError) {
-            return Text("AUCUN TICKET TROUVE");//"${snapshot.error}"
-          }
-          return Center(child: CircularProgressIndicator());
-        },
-    );
-
-
+                    }
+                )
+              },
+            ),
+          ),
+        );
   }
 }

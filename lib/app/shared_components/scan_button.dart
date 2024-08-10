@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 import 'package:hello_depart/app/constans/app_color.dart';
 import 'package:hello_depart/app/features/dashboard/controllers/home_controller.dart';
 import 'package:hello_depart/app/shared_components/form_verfication_numero_ticket.dart';
-import 'package:hello_depart/app/shared_components/icon_label.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 
 import '../utils/ui/theme/snackbar_ui.dart';
@@ -88,7 +87,7 @@ class ScanButton extends StatelessWidget {
       onPressed: () => QrBarCodeScannerDialog().getScannedQrBarCode(
           context: context,
           onCode: (code) {
-            controller.verifTicket(code.toString());
+            controller.verifTicket(code.toString(), 0, context);
             //SnackbarUi.success("Vérification du code: " + code.toString());
           }),
       //onPressed: () => controller.verifTicket("1"),
@@ -111,7 +110,9 @@ Widget _VerifyByNumberButton(BuildContext context) {
           isScrollControlled: true,
           builder: (context) {
 
-            return FormVerificationNumeroTicket();
+            return FormVerificationNumeroTicket(evenement_id: 0, onVerificationSuccess: () {
+              Navigator.pop(context);
+            });
 
           }
       );

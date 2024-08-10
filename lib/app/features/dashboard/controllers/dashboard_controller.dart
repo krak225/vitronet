@@ -12,9 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:hello_depart/app/features/dashboard/views/screens/details_evenement_screen.dart';
 import 'package:hello_depart/app/features/dashboard/views/screens/evenements_screen.dart';
-import 'package:hello_depart/app/shared_components/details_evenement.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/app_constants.dart';
@@ -28,11 +26,8 @@ import '../../../shared_components/user_profile.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 import '../model/client.dart';
 import '../model/facture.dart';
-import '../views/screens/home_screen.dart';
 import '../views/screens/paiement_screen.dart';
 import '../views/screens/reglages_screen.dart';
-import '../views/screens/scanqrcode_screen.dart';
-import '../views/screens/tickets_screen.dart';
 import 'home_controller.dart';
 
 class PhotoTemporaire {

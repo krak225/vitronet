@@ -7,6 +7,7 @@ import '../controllers/dashboard_controller.dart';
 import '../controllers/details_evenement_controller.dart';
 import '../controllers/evenements_controller.dart';
 import '../controllers/home_controller.dart';
+import '../controllers/reglages_controller.dart';
 
 class DashboardBinding extends Bindings {
   @override
@@ -15,5 +16,6 @@ class DashboardBinding extends Bindings {
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => EvenementsController());
     Get.lazyPut(() => DetailsEvenementController());
+    Get.lazyPut(() => ReglagesController());
   }
 }
