@@ -104,7 +104,71 @@ class DetailsTicket extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("Date création : ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Bénéficiaire: ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child:Text(ticket!.clientBeneficiaire!.nom.toString() + " " + ticket!.clientBeneficiaire!.prenoms.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Acheteur: ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child:Text(ticket!.clientAcheteur!.nom.toString() + " " + ticket!.clientAcheteur!.prenoms.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Moyen de paiement: ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child:Text(ticket!.moyenPaiement!.moyenPaiementLibelle.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Téléphone Paiement: ", style:TextStyle(fontSize: 12),),
+                                          ),
+                                        ),
+                                        Expanded(
+                                            child:Text(ticket!.ticketTelephonePaiement.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Divider(height: 1, color: Colors.grey[100],),
+                                  SizedBox(height: Get.height * 0.01),
+                                  FadeInRight(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: FadeInRight(
+                                            child: Text("Date d'achat : ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         SizedBox(

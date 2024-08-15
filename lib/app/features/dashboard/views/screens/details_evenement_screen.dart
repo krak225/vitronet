@@ -2,9 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_depart/app/shared_components/form_verfication_numero_ticket.dart';
 
 import '../../../../constans/app_color.dart';
 import '../../../../constans/app_constants.dart';
+import '../../../../shared_components/form_recherche_ticket.dart';
+import '../../../../shared_components/form_reserver_ticket.dart';
 import '../../../../shared_components/header_text.dart';
 import '../../../../shared_components/scan_buttons.dart';
 import '../../../../utils/stdfn.dart';
@@ -187,7 +190,30 @@ class DetailsEvenementScreen extends GetView<HomeController> {
                               ),
                               elevation: 0,
                             ),
-                            child: Icon(EvaIcons.refresh, color: AppColor.yellow,),
+                            child: Icon(EvaIcons.refresh, color: Colors.black,),
+                          ),
+                          ElevatedButton(
+                            onPressed: () => //controller.fetchTickets(evenementId),
+                            {
+                              showModalBottomSheet(
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (context) {
+
+                                    return FormRechercheTicket(evenement_id: evenementId, onVerificationSuccess: () {  },);
+
+                                  }
+                              )
+                            },
+                            style: ElevatedButton.styleFrom(
+                              //foregroundColor: Colors.white[850], backgroundColor: Colors.white[100],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: Icon(EvaIcons.search, color: AppColor.yellow,),
                           ),
                           const SizedBox(width: 10),
                         ],

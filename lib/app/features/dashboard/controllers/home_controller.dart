@@ -56,6 +56,10 @@ class HomeController extends GetxController {
   late RxInt ville_depart_id = 0.obs;
   late RxInt ville_destination_id = 0.obs;
   late RxString date_depart = "".obs;
+  late RxString search_numero_ticket = "".obs;
+  late RxString search_nom_acheteur = "".obs;
+  late RxString search_numero_telephone = "".obs;
+  late RxString search_date_depart = "".obs;
 
   //////////
   final dataProfil = const UserProfileData(
@@ -94,58 +98,17 @@ class HomeController extends GetxController {
     }
   }
 
+  @override
+  void onInit() {
 
-  void fetchVilles() async {
-
-    String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
-    String url = AppConstants.API_URL + "/villes";
-
-    final response = await http.get(Uri.parse(url), headers: {
-      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
-      HttpHeaders.contentTypeHeader: 'application/json',
-    });
-
-    print(url);
-    if (response.statusCode == 200) {
-      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-
-      villes = parsed.map<Ville>((json) => Ville.fromJson(json)).toList();
-
-    }
-  }
-
-
-  Future<List<Depart>> fetchDeparts(int ville_depart_id, int ville_destination_id, String date_depart) async {
-
-      String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
-
-      String url = AppConstants.API_URL + "/rechercher_departs/" +
-          ville_depart_id.toString() + "/" + ville_destination_id.toString() +
-          "/" + date_depart.toString();
-
-      final response = await http.get(Uri.parse(url), headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
-        HttpHeaders.contentTypeHeader: 'application/json',
-      });
-
-      print(url);
-
-      if (response.statusCode == 200) {
-        //print("responseBody: "+ response.body);
-
-        final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-
-        departs = parsed.map<Depart>((json) => Depart.fromJson(json)).toList();
-
-        return departs;
-
-      } else {
-        print("response Body: " + response.body);
-
-        throw Exception('Failed to load data');
-      }
+    TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
   }
+
+  Future<void> scanTicket() async {
+
+  }
+
 
   Future<void> searchDeparts() async {
     formKey.currentState!.save();
@@ -165,7 +128,9 @@ class HomeController extends GetxController {
 
   }
 
-  Future<List<Ticket>> fetchTickets(int evenementId) async {
+
+  //Charger la liste de tous les tickets
+  Future fetchTickets(int evenementId) async {
 
     liste_tickets.value = List.empty();
     isLoadingTickets.value = true;
@@ -186,12 +151,8 @@ class HomeController extends GetxController {
         print(response.body);
         final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
 
-        //tickets = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
-
         liste_tickets.value = parsed.map<Ticket>((json) => Ticket.fromJson(json)).toList();
         isLoadingTickets.value = false;
-
-        return tickets;
 
       } else {
 
@@ -199,95 +160,14 @@ class HomeController extends GetxController {
 
         print("response Body: " + response.body);
 
-        throw Exception('Failed to load tickets');
-
       }
 
     } finally {
       isLoadingTickets.value = false; // Set loading to false, whether successful or not
+      throw Exception('Failed to load tickets');
     }
 
   }
-
-  Future<List<Client>> fetchClients() async {
-    String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
-        .toString();
-
-    print(TOKEN_STORAGE);
-
-    String url = AppConstants.API_URL + "/clients";
-
-    final response = await http.get(Uri.parse(url), headers: {
-      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
-      HttpHeaders.contentTypeHeader: 'application/json',
-    });
-
-    print(url);
-
-    if (response.statusCode == 200) {
-
-      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-
-      clients = parsed.map<Client>((json) => Client.fromMap(json)).toList();
-
-      return clients;
-
-    } else {
-
-      print("response Body: " + response.body);
-
-      throw Exception('Failed to load clients');
-
-    }
-
-  }
-
-  Future<List<Produit>> fetchProduits() async {
-
-    String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
-        .toString();
-
-    print(TOKEN_STORAGE);
-
-    String url = AppConstants.API_URL + "/produits";
-
-    final response = await http.get(Uri.parse(url), headers: {
-      HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
-      HttpHeaders.contentTypeHeader: 'application/json',
-    });
-
-    print(url);
-
-    if (response.statusCode == 200) {
-
-      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-
-      produits = parsed.map<Produit>((json) => Produit.fromJson(json)).toList();
-
-      return produits;
-
-    } else {
-
-      print("response Body: " + response.body);
-
-      throw Exception('Failed to load clients');
-
-    }
-
-  }
-
-
-  @override
-  void onInit() {
-
-    TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
-
-  }
-
-  Future<void> scanTicket() async {
-
-  }
-
 
   Future<void> verifTicket(String qr_code, evenement_id, BuildContext context) async {
     String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE)
@@ -329,45 +209,43 @@ class HomeController extends GetxController {
 
   }
 
-
-  //
-  Future<void> verifTicketByNumero() async {
-
-    print ("verifTicketByNumero");
-    /*
+  Future<void> rechercherTicket() async {
     formKey.currentState!.save();
 
-    if (formKey.currentState!.validate()) {
-      isLoading.value = true;
+    var data = Map<String, dynamic>.from(formKey.currentState!.value);
+    var _numero_ticket = data['numero_ticket']?? '';
+    var _nom_acheteur = data['nom_acheteur']?? '';
+    var _numero_telephone = data['numero_telephone']?? '';
+    var _date_achat = data['date_achat']?? '';
 
-      var data = Map<String, dynamic>.from(formKey.currentState!.value);
+    search_numero_ticket.value = _numero_ticket.toString();
+    search_nom_acheteur.value = _nom_acheteur.toString();
+    search_numero_telephone.value = _numero_telephone.toString();
+    search_date_depart.value = _date_achat.toString();
 
-      var formData = dio.FormData.fromMap(data);
-      print(formData);
-      dio.Response response = await this.registerRepo.payerTicket(data: formData);
+    Get.back();
 
-      if (response.statusCode == 200) {
-        isLoading.value = false;
+    update();
 
-        //la facture a été enregistrée, procéder au paiement via cinetpay
+    //actualiser
+    liste_tickets.value = liste_tickets.value.where((ticket) {
+      bool matches = true;
 
-        //SnackbarUi.success("Facture enregistrée avec succès");
-
-        Get.to(AppPages.paiement);
-
-      } else {
-        print(response.data);
-
-        SnackbarUi.error(response.data.toString());
-        isLoading.value = false;
+      if (_numero_ticket.isNotEmpty) {
+        matches = matches && ticket.ticketQrcode!.contains(_numero_ticket);
+      }
+      if (_nom_acheteur.isNotEmpty) {
+        matches = matches && ticket.ticketQrcode!.contains(_nom_acheteur);
+      }
+      if (_numero_telephone.isNotEmpty) {
+        matches = matches && ticket.ticketQrcode!.contains(_numero_telephone);
+      }
+      if (_date_achat == '') {
+        matches = matches && ticket.ticketQrcode!.toString() == _date_achat;
       }
 
-      isLoading.value = false;
-
-    } else {
-      SnackbarUi.error("Veuillez saisir le numéro du ticket");
-      isLoading.value = false;
-    }*/
+      return matches;
+    }).toList();
 
   }
 

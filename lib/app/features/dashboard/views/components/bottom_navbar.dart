@@ -32,14 +32,19 @@ class _BottomNavbarState extends State<BottomNavbar> {
           label: "Evénements",
         ),
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.book),
+          activeIcon: Icon(EvaIcons.settings),
           icon: Icon(EvaIcons.settingsOutline),
           label: "Profil",
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Icon(EvaIcons.alertCircle),
+          icon: Icon(EvaIcons.alertCircleOutline),
+          label: "Notifications",
         ),/*
         BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.checkmarkCircle2),
-          icon: Icon(EvaIcons.checkmarkCircle2Outline),
-          label: "Tickets vérifiés",
+          activeIcon: Icon(EvaIcons.list),
+          icon: Icon(EvaIcons.listOutline),
+          label: "Liste des tickets",
         ),*/
       ],
       selectedItemColor: AppColor.orange,//Theme.of(context).primaryColor,

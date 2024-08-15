@@ -32,41 +32,47 @@ class DashboardScreen extends GetView<DashboardController>{
       child: Scaffold(
         //key: controller.scafoldKey,
         appBar: AppBar(
+          leading: Builder(
+           builder: (BuildContext context) {
+             return IconButton(
+               icon: const Icon(Icons.menu, color: Colors.transparent,),
+               onPressed: () {
+                 //Scaffold.of(context).openDrawer();
+               },
+               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+             );
+           },
+         ),
           title: Column(children: [
-            Container(
-                width: 200,
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                decoration: BoxDecoration(
-                  color: AppColor.yellow,
-                  borderRadius: BorderRadius.circular(10,),
-                ),
-                child: Image.asset('assets/images/logo.png'),
-              ),
-            ]),
+                  Container(
+                      width: 200,
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      decoration: BoxDecoration(
+                        color: AppColor.yellow,
+                        borderRadius: BorderRadius.circular(10,),
+                      ),
+                      child: Image.asset('assets/images/logo.png'),
+                    ),
+                  ]),
           backgroundColor: AppColor.yellow,
           centerTitle: true,
+          actions: <Widget>[
+                   IconButton(
+                     icon: const Icon(EvaIcons.alertCircleOutline),
+                     tooltip: 'Notifications',
+                     onPressed: () {
+                       // handle the press
+                     },
+                   ),
+                 ],
         ),
-        /*appBar: AnimatedAppBar(
-          drawerTween: null,
-          onPressed: () {
-            controller.openDrawer();
-          },
-          colorAnimationController: controller.ColorAnimationController,
-          colorTween: null,
-          homeTween: null,
-          iconTween: null,
-          workOutTween: null,
-        ),*/
-        drawer: ResponsiveBuilder.isDesktop(context)
-            ? null
-            : Drawer(
+        drawer: ResponsiveBuilder.isDesktop(context) ? null :
+              Drawer(
                 child: SafeArea(
                   child: SingleChildScrollView(child: _buildSidebar(context)),
                 ),
               ),
-        bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb)
-            ? null
-            : const BottomNavbar(),
+        bottomNavigationBar: (ResponsiveBuilder.isDesktop(context) || kIsWeb) ? null : const BottomNavbar(),
         body: NotificationListener<ScrollNotification>(
               onNotification: controller.scrollListener,
                 child: SafeArea(

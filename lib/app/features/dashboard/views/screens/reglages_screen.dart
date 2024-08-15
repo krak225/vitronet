@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,10 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../constans/app_constants.dart';
 import '../../../../shared_components/header_text.dart';
+import '../../../../shared_components/simple_selection_button.dart';
+import '../../../../shared_components/user_profile.dart';
 import '../../controllers/reglages_controller.dart';
+import '../components/task_menu.dart';
 
 class ReglagesScreen extends GetView<ReglagesController> {
   const ReglagesScreen({Key? key}) : super(key: key);
@@ -151,6 +155,109 @@ class ReglagesScreen extends GetView<ReglagesController> {
                 ),
               ],
             ),
+          ),
+          const Divider(
+            indent: 20,
+            thickness: 1,
+            endIndent: 20,
+            height: 60,
+          ),
+          FadeInRight(
+            child:Column(
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const SizedBox(height: kSpacing),
+              /*Row(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 5,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FadeInRight(
+                      child: Text("Nom : ", style:TextStyle(fontSize: 20),),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FadeInRight(
+                      child:Text(controller.USER_EMAIL, textAlign: TextAlign.right, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: kSpacing),
+              Row(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 5,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FadeInRight(
+                      child: Text("Prénoms : ", style:TextStyle(fontSize: 20),),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FadeInRight(
+                      child:Text(controller.USER_FIRSTNAME, textAlign: TextAlign.right, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                ],
+              ),*/
+              const SizedBox(height: kSpacing),
+              Row(
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 5,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: Colors.black),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FadeInRight(
+                      child:Text(controller.USER_FIRSTNAME + " " + controller.USER_LASTNAME, textAlign: TextAlign.left, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: ListTile(
+                  onTap: ()=> null, //controller.logout(),
+                  hoverColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                  ),
+                  leading: Icon(EvaIcons.logOut, color: Colors.red,),
+                  title: Text("Se déconnecter"),
+                ),
+              ),
+              const SizedBox(height: kSpacing),
+              Padding(
+                padding: const EdgeInsets.all(kSpacing),
+                child: Text(
+                  "© 2024 TicketPlus | Design by krak225",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+              ),
+            ],
+          ),
           ),
         ],
       ),

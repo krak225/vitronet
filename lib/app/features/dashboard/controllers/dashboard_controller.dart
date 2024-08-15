@@ -26,8 +26,11 @@ import '../../../shared_components/user_profile.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 import '../model/client.dart';
 import '../model/facture.dart';
+import '../views/screens/notifications_screen.dart';
 import '../views/screens/paiement_screen.dart';
+import '../views/screens/qr_code_scanner_screen.dart';
 import '../views/screens/reglages_screen.dart';
+import '../views/screens/tickets_screen.dart';
 import 'home_controller.dart';
 
 class PhotoTemporaire {
@@ -99,8 +102,8 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
     //HomeScreen(),
     EvenementsScreen(),
     ReglagesScreen(),
+    NotificationsScreen(),
     //TicketsScreen(),
-    //ScanQRCodeScreen(),
   ];
 
   final pageListTitle = ["Accueil", "Vérifier un ticket", "Tickets vérifiés"];

@@ -1,30 +1,28 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../constans/app_constants.dart';
-import '../../../../shared_components/form_add_client.dart';
 import '../../../../shared_components/header_text.dart';
 import '../../controllers/home_controller.dart';
-import '../components/liste_clients.dart';
+import '../components/liste_tickets.dart';
 
-class ClientsScreen extends GetView<HomeController> {
-  const ClientsScreen({Key? key}) : super(key: key);
+class NotificationsScreen extends GetView<HomeController> {
+  const NotificationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         controller: ScrollController(),
-        child: _buildClientsContent(
+        child: _buildTicketsContent(
           onPressedMenu: () => controller.openDrawer(),
           context: context
         )
     );
   }
 
-  Widget _buildClientsContent({Function()? onPressedMenu, required BuildContext context}) {
+  Widget _buildTicketsContent({Function()? onPressedMenu, required BuildContext context}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSpacing),
       child: Column(
@@ -44,37 +42,26 @@ class ClientsScreen extends GetView<HomeController> {
           const SizedBox(height: kSpacing * 1),
           Row(
             children: [
-              const HeaderText("Mes clients"),
+              const HeaderText("Notifications"),
               const Spacer(),
               const SizedBox(width: 10),
-              ElevatedButton.icon(
+              /*ElevatedButton.icon(
                 icon: const Icon(
                   EvaIcons.plus,
                   size: 16,
                 ),
                 onPressed: () {
 
-                  showModalBottomSheet(
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (context) {
+                  //showModalBottomSheet(
+                  //    backgroundColor: Colors.transparent,
+                  //    context: context,
+                  //    isScrollControlled: true,
+                  //    builder: (context) {
 
-                        return FormAddClientBottomSheet();
+                  //      return FormAddFacture();
 
-                      }
-                  );
-
-                  /*
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return Dialog(
-                          shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.0)), //this right here
-                          child: FormAddClientBottomSheet(),
-                        );
-                      }
-                  );*/
+                  //    }
+                  //);
 
                 },
                 style: ElevatedButton.styleFrom(
@@ -84,16 +71,14 @@ class ClientsScreen extends GetView<HomeController> {
                   elevation: 0,
                 ),
                 label: const Text("Nouveau"),
-              ),
+              ),*/
             ],
           ),
           const SizedBox(height: kSpacing),
-          ListeClients(
-            data: controller.fetchClients(),
+          /*ListeTickets(
+            data: controller.fetchTickets(0),
             onPressed: controller.onPressedTask,
-            onPressedAssign: controller.onPressedAssignTask,
-            onPressedMember: controller.onPressedMemberTask,
-          )
+          )*/
         ],
       ),
     );
