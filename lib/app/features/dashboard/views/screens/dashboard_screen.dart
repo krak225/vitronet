@@ -51,7 +51,7 @@ class DashboardScreen extends GetView<DashboardController>{
                         color: AppColor.yellow,
                         borderRadius: BorderRadius.circular(10,),
                       ),
-                      child: Image.asset('assets/images/logo.png', height: 45,),
+                      child: Image.asset('assets/images/launcher_icon.png', height: 45,),
                     ),
                   ]),
           backgroundColor: AppColor.yellow,

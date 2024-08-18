@@ -45,7 +45,7 @@ class DetailsEvenementScreen extends GetView<HomeController> {
               color: AppColor.yellow,
               borderRadius: BorderRadius.circular(10,),
             ),
-            child: Image.asset('assets/images/logo.png'),
+            child: Image.asset('assets/images/launcher_icon.png'),
           ),
         ]),
         backgroundColor: AppColor.yellow,

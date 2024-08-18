@@ -82,7 +82,7 @@ flutter:
     - assets/images/users/.
     - assets/icons/.
     - assets/images/profil.png
-    - assets/images/logo.png
+    - assets/images/launcher_icon.png
     - assets/images/logo-round.png
     - assets/images/logo.jpeg
     - assets/images/qrcode.png

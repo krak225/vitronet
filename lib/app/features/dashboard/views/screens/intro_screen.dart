@@ -32,7 +32,7 @@ class IntroScreen extends GetView<IntroController> {
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 60,
-                    child: Image.asset('assets/images/logo.png', height: 70,), //Text
+                    child: Image.asset('assets/images/launcher_icon.png', height: 70,), //Text
                   ),
                 ),
                 SizedBox(height: 10,),
