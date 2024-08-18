@@ -29,8 +29,9 @@ class BuildListEvenements extends StatelessWidget {
       leading: _buildIcon(),
       title: _buildTitle(),
       subtitle: _buildSubtitle(),
-      //trailing: _buildMontantTotal(),
+      trailing: _buildMontantTotal(),
     );
+
   }
 
   Widget _buildIcon() {
@@ -59,9 +60,7 @@ class BuildListEvenements extends StatelessWidget {
       Text(Stdfn.dateFromDB(evenement.evenementDate!),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-      ),
-      SizedBox(width: 10,),
-      _buildMontantTotal()
+      )
     ],);
   }
 
@@ -77,7 +76,7 @@ class BuildListEvenements extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
             color: AppColor.black.withOpacity(1),
             child:Text(
-              Stdfn.toAmount(int.parse(evenement.evenementNombreTicketsVerifies.toString())) + "/ " + Stdfn.toAmount(int.parse(evenement.evenementNombreTotalTickets.toString())),
+              "Ajouter",
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

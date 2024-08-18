@@ -14,7 +14,7 @@ class HeaderVerificationTickets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const HeaderText("Vérification de tickets"),
+        const HeaderText("Demande de collecte"),
         const Spacer(),
         _buildArchive(),
         const SizedBox(width: 10),

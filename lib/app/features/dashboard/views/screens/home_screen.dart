@@ -34,21 +34,7 @@ class HomeScreen extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //const SizedBox(height: kSpacing),
-          /*Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.amber, Colors.amber],
-                begin: AlignmentDirectional.topCenter,
-                end: AlignmentDirectional.bottomCenter,
-              ),
-            ),
-            width: 130,
-            height: 60,
-            child: Row(
-                children: [AccountAmount(color: Colors.black, iconData: EvaIcons.eye, label: "10. 898F")]
-            )
-          ),*/
+          const SizedBox(height: kSpacing),
           HeaderVerificationTickets(),
           ScanButton(controller: controller),
           const SizedBox(height: kSpacing),

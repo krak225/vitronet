@@ -59,6 +59,7 @@ dependencies:
   loader_overlay: ^2.1.0
   cinetpay: ^1.0.6
   qr_bar_code_scanner_dialog: ^0.0.5
+  intro_slider: ^4.2.1
   ##
 
 

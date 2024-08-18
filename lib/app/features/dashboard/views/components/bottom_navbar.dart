@@ -19,33 +19,29 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: AppColor.white,
       currentIndex: controller.tabIndex.value,
       items: const [
-        /*BottomNavigationBarItem(
+        BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.home),
           icon: Icon(EvaIcons.homeOutline),
           label: "Accueil",
-        ),*/
-        BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.calendar),
-          icon: Icon(EvaIcons.calendarOutline),
-          label: "Evénements",
         ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.settings),
-          icon: Icon(EvaIcons.settingsOutline),
-          label: "Profil",
-        ),
-        BottomNavigationBarItem(
-          activeIcon: Icon(EvaIcons.alertCircle),
-          icon: Icon(EvaIcons.alertCircleOutline),
-          label: "Notifications",
-        ),/*
         BottomNavigationBarItem(
           activeIcon: Icon(EvaIcons.list),
           icon: Icon(EvaIcons.listOutline),
-          label: "Liste des tickets",
-        ),*/
+          label: "Vêtements",
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Icon(EvaIcons.shoppingCart),
+          icon: Icon(EvaIcons.shoppingCartOutline),
+          label: "Panier",
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Icon(EvaIcons.list),
+          icon: Icon(EvaIcons.listOutline),
+          label: "Mes commandes",
+        ),
       ],
       selectedItemColor: AppColor.orange,//Theme.of(context).primaryColor,
       unselectedItemColor: AppColor.orange.withOpacity(.5),//Theme.of(context).primaryColor.withOpacity(.5),

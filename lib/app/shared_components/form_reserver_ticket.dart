@@ -14,6 +14,7 @@ import 'package:hello_depart/app/constans/app_color.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../config/app_constants.dart';
+import '../constans/app_color.dart';
 import '../constans/app_constants.dart';
 import '../features/dashboard/controllers/home_controller.dart';
 import '../features/dashboard/controllers/dashboard_controller.dart';

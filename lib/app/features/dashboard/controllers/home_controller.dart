@@ -138,7 +138,7 @@ class HomeController extends GetxController {
     try {
       String TOKEN_STORAGE = _storage.read(AppConstants.TOKEN_STORAGE).toString();
 
-      String url = AppConstants.API_URL + "/tickets/"+evenementId.toString();
+      String url = AppConstants.API_URL + "/vetements";
 
       final response = await http.get(Uri.parse(url), headers: {
         HttpHeaders.authorizationHeader: 'Bearer $TOKEN_STORAGE',
@@ -164,7 +164,7 @@ class HomeController extends GetxController {
 
     } finally {
       isLoadingTickets.value = false; // Set loading to false, whether successful or not
-      throw Exception('Failed to load tickets');
+      throw Exception('Failed to load clothes');
     }
 
   }

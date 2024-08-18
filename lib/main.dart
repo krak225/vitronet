@@ -13,17 +13,17 @@ void main() async {
   await GetStorage.init();
   DependecyInjection.init();
 
-  runApp(const TicketPlus());
+  runApp(const VitroNet());
 }
 
-class TicketPlus extends StatelessWidget {
-  const TicketPlus({Key? key}) : super(key: key);
+class VitroNet extends StatelessWidget {
+  const VitroNet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return GetMaterialApp(
-      title: 'TicketPlus',
+      title: 'VitroNet',
       theme: AppTheme.basic,
       initialRoute: AppPages.login,
       getPages: AppPages.routes,

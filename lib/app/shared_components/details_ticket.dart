@@ -14,6 +14,8 @@ import '../features/dashboard/controllers/home_controller.dart';
 import '../features/dashboard/controllers/dashboard_controller.dart';
 import '../features/dashboard/model/ticket.dart';
 import '../utils/stdfn.dart';
+import '../utils/ui/theme/custom_input_decoration.dart';
+import '../utils/validator_state.dart';
 
 class DetailsTicket extends StatelessWidget {
   final DashboardController controller = Get.find();
@@ -52,7 +54,7 @@ class DetailsTicket extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   AutoSizeText(
-                                    "Ticket N°" + ticket!.ticketId.toString() ,
+                                    "Détails du vêtement",
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -72,7 +74,7 @@ class DetailsTicket extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("QR code: ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Désignation: ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         Expanded(
@@ -88,7 +90,7 @@ class DetailsTicket extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("Montant: ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Prix unitaire: ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         Expanded(
@@ -104,124 +106,47 @@ class DetailsTicket extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: FadeInRight(
-                                            child: Text("Bénéficiaire: ", style:TextStyle(fontSize: 12),),
+                                            child: Text("Quantité: ", style:TextStyle(fontSize: 12),),
                                           ),
                                         ),
                                         Expanded(
-                                            child:Text(ticket!.clientBeneficiaire!.nom.toString() + " " + ticket!.clientBeneficiaire!.prenoms.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
+                                            child:FormBuilderTextField(
+                                              name: 'quantite',
+                                              initialValue: '',
+                                              validator: ValidatorState.required,
+                                              //decoration: CustomInputDecoration.style1(labelText: 'Quantité'),
+                                            ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Acheteur: ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child:Text(ticket!.clientAcheteur!.nom.toString() + " " + ticket!.clientAcheteur!.prenoms.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Moyen de paiement: ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child:Text(ticket!.moyenPaiement!.moyenPaiementLibelle.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Téléphone Paiement: ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child:Text(ticket!.ticketTelephonePaiement.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Date d'achat : ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Expanded(
-                                          child: FadeInRight(
-                                              child: Text(Stdfn.dateTimeFromDB(ticket!.ticketDateCreation!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Date vérification: ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child: Text(Stdfn.dateTimeFromDB(ticket!.ticketDateVerification!), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: FadeInRight(
-                                            child: Text("Statut: ", style:TextStyle(fontSize: 12),),
-                                          ),
-                                        ),
-                                        Expanded(
-                                            child: Text(ticket!.ticketStatut!, textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),)
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  /*Divider(height: 1, color: Colors.grey[100],),
-                                  SizedBox(height: Get.height * 0.01),
-                                  FadeInRight(
-                                    child: FadeInRight(
-                                      child: _buildTotalFacture(),
-                                    ),
-                                  ),*/
                                   SizedBox(height: Get.height * 0.1),
+                                  FadeInRight(
+                                    duration: Duration(milliseconds: 600),
+                                    child:
+                                    Center(child: ElevatedButton.icon(
+                                      onPressed: () {
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.white, backgroundColor: AppColor.AccentColor, //padding: const EdgeInsets.symmetric(horizontal: , vertical: 0),
+                                      ),
+                                      icon: controller.isLoading.value ? Container(
+                                        width: 24,
+                                        height: 24,
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: const CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 3,
+                                        ),
+                                      )
+                                          : const Icon(Icons.add),
+                                      label: const Text('Ajouter au panier à linge'),
+                                    ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                 ]),
                                 ),
                               ),

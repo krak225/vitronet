@@ -12,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:hello_depart/app/features/dashboard/views/screens/evenements_screen.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/app_constants.dart';
@@ -26,11 +25,14 @@ import '../../../shared_components/user_profile.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 import '../model/client.dart';
 import '../model/facture.dart';
+import '../views/screens/home_screen.dart';
+import '../views/screens/intro_screen.dart';
 import '../views/screens/notifications_screen.dart';
 import '../views/screens/paiement_screen.dart';
-import '../views/screens/qr_code_scanner_screen.dart';
+import '../views/screens/panier_screen.dart';
 import '../views/screens/reglages_screen.dart';
 import '../views/screens/tickets_screen.dart';
+import '../views/screens/vetements_screen.dart';
 import 'home_controller.dart';
 
 class PhotoTemporaire {
@@ -99,11 +101,11 @@ class DashboardController extends GetxController with GetSingleTickerProviderSta
 
   final tabIndex = 0.obs;
   List<Widget> pageList = [
-    //HomeScreen(),
-    EvenementsScreen(),
-    ReglagesScreen(),
+    HomeScreen(),
+    VetementsScreen(),
+    PanierScreen(),
+    //ReglagesScreen(),
     NotificationsScreen(),
-    //TicketsScreen(),
   ];
 
   final pageListTitle = ["Accueil", "Vérifier un ticket", "Tickets vérifiés"];

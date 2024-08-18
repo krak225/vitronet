@@ -1,15 +1,13 @@
 import 'package:hello_depart/app/features/dashboard/views/screens/password_forgoten_screen.dart';
 
 import '../../features/dashboard/bindings/dashboard_binding.dart';
-import '../../features/dashboard/bindings/paiement_binding.dart';
 import '../../features/dashboard/views/screens/dashboard_screen.dart';
 import 'package:get/get.dart';
 
 import '../../features/dashboard/views/screens/details_evenement_screen.dart';
-import '../../features/dashboard/views/screens/evenements_screen.dart';
 import '../../features/dashboard/views/screens/login_screen.dart';
-import '../../features/dashboard/views/screens/paiement_screen.dart';
 import '../../features/dashboard/views/screens/reset_password_screen.dart';
+import '../../features/dashboard/views/screens/vetements_screen.dart';
 
 part 'app_routes.dart';
 
@@ -47,7 +45,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.evenements,
-      page: () => EvenementsScreen(),
+      page: () => VetementsScreen(),
       binding: DashboardBinding(),
     ),
     GetPage(

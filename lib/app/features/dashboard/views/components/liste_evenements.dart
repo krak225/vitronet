@@ -38,19 +38,6 @@ class ListeEvenements extends StatelessWidget {
                 children: List.generate(
                   evenements!.length, (index) =>
                     BuildListEvenements(evenement: evenements[index],
-                      /*onPressed: () => {
-                        showModalBottomSheet(
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            isScrollControlled: true,
-                            builder: (context) {
-
-                              //return IconLabel(label: tickets[index].toString(), color: Colors.white, iconData: EvaIcons.inboxOutline,); //
-                              return DetailsEvenement(evenements[index]);
-
-                            }
-                        )
-                      },*/
                       onPressed: () => Get.toNamed(AppPages.details_evenement,
                             parameters: {
                               'id': evenements[index].evenementId.toString(),

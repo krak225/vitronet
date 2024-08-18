@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 import 'package:hello_depart/app/config/routes/app_pages.dart';
 
 import '../../../../constans/app_color.dart';
-import '../../controllers/login_controller.dart';
-class LoginScreen extends GetView<LoginController> {
-  LoginScreen({Key? key}) : super(key: key);
-
-  GlobalKey<FormState> _homeKey = GlobalKey<FormState>(debugLabel: '_homeScreenkey');
+import '../../controllers/intro_controller.dart';
+class IntroScreen extends GetView<IntroController> {
+  IntroScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
 
     return Scaffold(
       //key: _homeKey,

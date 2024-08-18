@@ -9,7 +9,7 @@ import '../../../data/provider/repositories/auth_repo.dart';
 import '../../../data/provider/responses/login_response.dart';
 import '../../../utils/ui/theme/snackbar_ui.dart';
 
-class LoginController extends GetxController {
+class IntroController extends GetxController {
   //GlobalKey<FormBuilderState> formKeyLogin = GlobalKey<FormBuilderState>();
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
   final RxBool isHide = true.obs;

@@ -35,9 +35,9 @@ class DashboardScreen extends GetView<DashboardController>{
           leading: Builder(
            builder: (BuildContext context) {
              return IconButton(
-               icon: const Icon(Icons.menu, color: Colors.transparent,),
+               icon: const Icon(Icons.menu, color: Colors.white,),
                onPressed: () {
-                 //Scaffold.of(context).openDrawer();
+                 Scaffold.of(context).openDrawer();
                },
                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
              );
@@ -51,11 +51,11 @@ class DashboardScreen extends GetView<DashboardController>{
                         color: AppColor.yellow,
                         borderRadius: BorderRadius.circular(10,),
                       ),
-                      child: Image.asset('assets/images/logo.png'),
+                      child: Image.asset('assets/images/logo.png', height: 45,),
                     ),
                   ]),
           backgroundColor: AppColor.yellow,
-          centerTitle: true,
+          centerTitle: false,
           actions: <Widget>[
                    IconButton(
                      icon: const Icon(EvaIcons.alertCircleOutline),

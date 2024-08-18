@@ -56,7 +56,7 @@ class BuildListTickets extends StatelessWidget {
   }
 
   Widget _buildSubtitle() {
-    return Text("Vérifié le " + Stdfn.dateTimeFromDB(ticket.ticketDateVerification!),
+    return Text("Qté: 1, PU: 100",
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
     );
@@ -74,10 +74,11 @@ class BuildListTickets extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
             color: AppColor.orange.withOpacity(1),
             child:Text(
-              Stdfn.toAmount(int.parse(ticket.ticketMontant.toString())),
+              Stdfn.toAmount(int.parse(ticket.ticketMontant.toString())) +" F",
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
               textAlign: TextAlign.right,
             ),
